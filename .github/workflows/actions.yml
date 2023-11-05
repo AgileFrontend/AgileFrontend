@@ -34,6 +34,7 @@ jobs:
         with:
           node-version: "20.9.0"
           cache: 'npm'
+          cache-dependency-path: AgileFront/package-lock.json
       - name: Install Eslint
         run: cd AgileFront && npm install
       - name: Run ESlint
@@ -56,6 +57,7 @@ jobs:
           with:
             node-version: "20.9.0"
             cache: 'npm'
+            cache-dependency-path: AgileFront/package-lock.json
         #- name: Install Angular
         #  run: npm install -g @angular/cli
         - name: Install dependencies
