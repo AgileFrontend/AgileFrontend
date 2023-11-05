@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: "20.9.0"
       - name: Install Eslint
-        run: npm install
+        run: cd AgileFront && npm install
       - name: Run ESlint
         run: npm eslint
       - name: Upload analysis results to GitHub
