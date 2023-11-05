@@ -36,9 +36,4 @@ jobs:
       - name: Install Eslint
         run: cd AgileFront && npm install
       - name: Run ESlint
-        run: npm run eslint
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: eslint-results.sarif
-          wait-for-processing: true
+        run: cd AgileFront && npm run eslint
