@@ -12,9 +12,8 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": ["npm install -g @angular/cli", "npm install -g firebase-tools", "cd /workspaces/AgileFrontend/AgileFront", "npm install", "firebase login"]
+	"postCreateCommand": "npm install -g @angular/cli && npm install -g firebase-tools && cd /workspaces/AgileFrontend/AgileFront && npm install && firebase login"
 						
-}
 
 	// Configure tool-specific properties.
 	// "customizations": {},
