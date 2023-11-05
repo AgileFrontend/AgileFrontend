@@ -10,19 +10,27 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"agilebackend-9e4d6","appId":"1:592568335590:web:b4712eaa69ff0502cccf27","storageBucket":"agilebackend-9e4d6.appspot.com","apiKey":"AIzaSyCEoR-Q079wqtiXOaMG9jXUdxtclKHGqmQ","authDomain":"agilebackend-9e4d6.firebaseapp.com","messagingSenderId":"592568335590","measurementId":"G-5T240TZMVG"})),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'agilebackend-9e4d6',
+        appId: '1:592568335590:web:b4712eaa69ff0502cccf27',
+        storageBucket: 'agilebackend-9e4d6.appspot.com',
+        apiKey: 'AIzaSyCEoR-Q079wqtiXOaMG9jXUdxtclKHGqmQ',
+        authDomain: 'agilebackend-9e4d6.firebaseapp.com',
+        messagingSenderId: '592568335590',
+        measurementId: 'G-5T240TZMVG',
+      }),
+    ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
