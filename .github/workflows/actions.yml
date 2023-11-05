@@ -20,7 +20,7 @@ on:
 
 jobs:
   eslint:
-    name: Run eslint scanning
+    name: Run eslint and prettier
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -33,6 +33,7 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
+          cache: 'npm'
       - name: Install Eslint
         run: cd AgileFront && npm install
       - name: Run ESlint
@@ -41,3 +42,26 @@ jobs:
         run: cd AgileFront && npm run prettier
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
+  build:
+      name: Build app
+      runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        actions: read 
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: Install node
+          uses: actions/setup-node@v4.0.0
+          with:
+            node-version: "20.9.0"
+            cache: 'npm'
+        #- name: Install Angular
+        #  run: npm install -g @angular/cli
+        - name: Install dependencies
+          run: cd AgileFront && npm install
+        - name: Build
+          run: cd AgileFront && npm run build
+          
+            
+        
