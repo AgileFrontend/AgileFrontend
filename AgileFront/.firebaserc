@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "agilebackend-9e4d6": {
+      "hosting": {
+        "AgileFront": [
+          "agilefrontend"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "agilebackend-9e4d6"
+  }
+}

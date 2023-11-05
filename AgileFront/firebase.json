@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "AgileFront",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
