@@ -93,6 +93,7 @@ jobs:
           expires: 30d
           projectId: agilebackend-9e4d6
           entryPoint: AgileFront
+          channelId: live
           
             
         
