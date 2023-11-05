@@ -1,5 +1,6 @@
 # AgileFrontend
 [![ESLint](https://github.com/AgileFrontend/AgileFrontend/actions/workflows/eslint.yml/badge.svg)](https://github.com/AgileFrontend/AgileFrontend/actions/workflows/eslint.yml)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
 ## Development server
