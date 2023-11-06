@@ -7,13 +7,13 @@
 # More details at https://github.com/eslint/eslint
 # and https://eslint.org
 
-name: ESLint
+name: lint_build_preview
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 jobs:
   eslint:
     name: Run eslint and prettier
