@@ -85,7 +85,7 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGILEBACKEND }}"
           expires: 30d
           projectId: agilebackend-9e4d6
-          entryPoint: AgileFront
+          entryPoint: /AgileFrontend/AgileFront/
           
             
         
