@@ -60,7 +60,7 @@ jobs:
         - name: Install dependencies
           run: cd AgileFront && npm ci
         - name: Build
-          run: cd AgileFront && ng build --prod
+          run: cd AgileFront && ng build
         - name: Archive Artifacts
           uses: actions/upload-artifact@v3.1.3
           with:
