@@ -55,12 +55,12 @@ jobs:
             node-version: "20.9.0"
             cache: 'npm'
             cache-dependency-path: AgileFront/package-lock.json
-        #- name: Install Angular
-        #  run: npm install -g @angular/cli
+        - name: Install Angular
+          run: npm install -g @angular/cli
         - name: Install dependencies
           run: cd AgileFront && npm install
         - name: Build
-          run: cd AgileFront && npm run build
+          run: cd AgileFront && ng build
         - name: Archive Artifacts
           uses: actions/upload-artifact@v3.1.3
           with:
