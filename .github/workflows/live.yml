@@ -78,7 +78,7 @@ jobs:
         with:
           name: dist
           path: AgileFront/dist
-      - name: Deploy preview
+      - name: Deploy live
         uses: FirebaseExtended/action-hosting-deploy@v0.5-alpha
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
