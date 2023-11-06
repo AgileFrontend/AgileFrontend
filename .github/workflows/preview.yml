@@ -32,7 +32,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: AgileFront/package-lock.json
       - name: Install Eslint
-        run: cd AgileFront && npm install
+        run: cd AgileFront && npm ci
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
       - name: Run prettier
@@ -58,7 +58,7 @@ jobs:
         - name: Install Angular
           run: npm install -g @angular/cli
         - name: Install dependencies
-          run: cd AgileFront && npm install
+          run: cd AgileFront && npm ci
         - name: Build
           run: cd AgileFront && ng build
         - name: Archive Artifacts
