@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'
+
+import {MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreatePostComponent } from './create.post/create.post.component';
 
 @NgModule({
-  declarations: [AppComponent, CreatePostComponent],
+  declarations: [
+    AppComponent,
+    CreatePostComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +36,8 @@ import { CreatePostComponent } from './create.post/create.post.component';
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
