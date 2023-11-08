@@ -1,0 +1,13 @@
+<mat-expansion-panel class="add-post-card mat-elevation-z3">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="fw-bold">
+      Ajouter un post :
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="body">
+      <mat-form-field appearance="standard">
+        <textarea matInput [(ngModel)]="postText"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Poster</button>
+    </div>
+  </mat-expansion-panel>

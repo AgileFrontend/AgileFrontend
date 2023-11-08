@@ -8,9 +8,10 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreatePostComponent } from './create.post/create.post.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CreatePostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
