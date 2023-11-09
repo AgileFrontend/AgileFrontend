@@ -23,7 +23,6 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppComponent,
     LoginComponent,
     HomepageComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
