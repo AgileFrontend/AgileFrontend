@@ -1,2 +1,15 @@
 <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="sign-up-form">
-    
+    <label for="email">Email :</label>
+    <input type="email" placeholder="email@example.com" formControlName="email">
+    <span *ngIf="email?.invalid && email?.touched">
+        Incorrect email format
+    </span>
+    <label for="password">Password :</label>
+    <input type="password" formControlName="password">
+    <span *ngIf="password?.invalid && password?.touched">
+        A password should contain at least one letter and one digit
+    </span>
+    <button type="submit">Sign up</button>
+      <p>You have already an account ?</p>
+      <a routerLink="">Log in</a>
+</form>    
