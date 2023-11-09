@@ -1,0 +1,20 @@
+
+<h1>Login</h1>
+<div class="loginform">
+<mat-form-field class="email-field">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput 
+            placeholder="Ex.dupont@example.com" [(ngModel)]="email">
+    </mat-form-field>
+    <br>
+<mat-form-field class="password-field">
+    <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+</mat-form-field>
+<br>
+<button mat-button [disabled]="!email || !password" (click)="signIn();">Sign In</button>
+<button mat-button (click)="signUp();">Sign Up</button>
+</div>
