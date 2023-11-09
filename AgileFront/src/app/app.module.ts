@@ -9,12 +9,14 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, HomepageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NavbarComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
