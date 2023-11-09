@@ -19,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomepageComponent, RegisterComponent],
   imports: [
