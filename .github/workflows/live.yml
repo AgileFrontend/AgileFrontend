@@ -11,9 +11,7 @@ name: lint_build_live
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: main
 jobs:
   eslint:
     name: Run eslint and prettier
