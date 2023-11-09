@@ -19,11 +19,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     LoginComponent,
     HomepageComponent,
-    NavbarComponent
-],
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
