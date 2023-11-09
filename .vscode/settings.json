@@ -4,5 +4,5 @@
     "editor.insertSpaces": true,
     "editor.wordWrap": "on",
     "editor.autoIndent": "full",
-    "files.eol": "\r\n",
+    "files.eol": "\n",
 }
