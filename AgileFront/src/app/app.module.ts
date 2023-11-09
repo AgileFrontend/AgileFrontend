@@ -19,11 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomepageComponent,
-  ],
+  declarations: [AppComponent, LoginComponent, HomepageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
