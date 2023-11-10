@@ -1,15 +1,33 @@
-<form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="sign-up-form">
-    <label for="email">Email :</label>
-    <input type="email" placeholder="email@example.com" formControlName="email">
-    <span *ngIf="email?.invalid && email?.touched">
-        Incorrect email format
-    </span>
-    <label for="password">Password :</label>
-    <input type="password" formControlName="password">
-    <span *ngIf="password?.invalid && password?.touched">
-        A password should contain at least one letter and one digit
-    </span>
-    <button type="submit">Sign up</button>
-      <p>You have already an account ?</p>
-      <a routerLink="">Log in</a>
-</form>    
+<h1>Register</h1>
+<div class="registerform">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmitForm()">
+    <mat-form-field class="email-field">
+        <mat-label for="email">Email :</mat-label>
+        <input id="email" type="email" [formControl]="email">
+        <p>Value: {{ email.value }}</p>
+        <mat-error *ngIf="email?.invalid && email?.touched">
+            Incorrect email format
+        </mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="password-field">
+    <mat-label for="password">Password :</mat-label>
+    <input id="password" type="password" [formControl]="password">
+    <mat-error *ngIf="password?.invalid && password?.touched">
+        Your password should contain at least one digit
+    </mat-error>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    </mat-form-field>
+    <br />
+    <button mat-button type="submit" [disabled]="!registerForm.valid">Sign up</button>
+</form>  
+<p>You already have an account ?</p>
+<a mat-button routerLink="">Login</a>

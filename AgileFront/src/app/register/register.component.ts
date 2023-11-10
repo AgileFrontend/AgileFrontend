@@ -1,38 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {RegisterService} from "../services/register/register.service";
-import {FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
-  //@ts-ignore
-  signUpForm : FormGroup;
+export class RegisterComponent {
+  email = new FormControl('', [Validators.required, Validators.email])
+  password =new FormControl('',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'), Validators.minLength(8),
+  Validators.maxLength(100)])
+  registerForm = new FormGroup([this.email, this.password])
+  hide = true;
 
-  constructor(
-    private fb : FormBuilder,
-    private reg : RegisterService,
-  ){}
+  constructor(private reg : RegisterService, ){} 
 
-  ngOnInit() {
-    this.signUpForm = this.fb.group({
-      email: ['',
-    [Validators.required, Validators.email]],
-    password: ['',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]]
-    })
-  }
-
-  get email(){
-    return this.signUpForm.get('email');
-  }
-
-  get password(){
-    return this.signUpForm.get('password');
-  }
-
-  submitForm(){
-    this.reg.createUserWithEmailAndPassword(this.signUpForm.value.email, this.signUpForm.value.password).then(r => console.log(r));
+  onSubmitForm(){
+    if (this.email.value != null && this.password.value != null) {
+      this.reg.createUserWithEmailAndPassword(this.email.value, this.password.value).then(r => console.log(r));
+    }
   }
 }
