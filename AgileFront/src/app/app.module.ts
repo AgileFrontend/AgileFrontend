@@ -14,14 +14,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 
-
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomepageComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomepageComponent,
+    RegisterComponent,
+  ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
@@ -48,7 +52,7 @@ import { RegisterComponent } from './register/register.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
