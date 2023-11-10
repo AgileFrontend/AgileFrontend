@@ -1,20 +1,30 @@
 <mat-expansion-panel class="add-post-card mat-elevation-z3">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="fw-bold">
-            Create a new post:
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <form [formGroup]="addPostForm" class="add-post-card" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
-            <input matInput placeholder="Your project Title" formControlName="title">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Describe your idea</mat-label>
-            <textarea matInput formControlName="body"></textarea>
-        </mat-form-field>
-        <h2>Add an image ?</h2> <!--To be truned into checkbox later-->
-        <input type="file" formControlName="file">
-        <button mat-stroked-button type="submit" color="primary" [disabled]="!addPostForm.valid">Create Post</button>
-    </form>
+  <mat-expansion-panel-header>
+    <mat-panel-title class="fw-bold"> Create a new post: </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="addPostForm" class="add-post-card" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Your project Title"
+        formControlName="title"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Describe your idea</mat-label>
+      <textarea matInput formControlName="body"></textarea>
+    </mat-form-field>
+    <h2>Add an image ?</h2>
+    <!--To be truned into checkbox later-->
+    <input type="file" formControlName="file" />
+    <button
+      mat-stroked-button
+      type="submit"
+      color="primary"
+      [disabled]="!addPostForm.valid"
+    >
+      Create Post
+    </button>
+  </form>
 </mat-expansion-panel>
