@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Install node
         uses: actions/setup-node@v4.0.0
         with:
@@ -37,8 +39,6 @@ jobs:
         run: cd AgileFront && npm run prettier
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   build:
       name: Build app
       runs-on: ubuntu-latest
