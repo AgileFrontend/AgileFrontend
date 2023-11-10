@@ -18,7 +18,9 @@ export class RegisterComponent {
 
   onSubmitForm(){
     if (this.email.value != null && this.password.value != null) {
-      this.reg.createUserWithEmailAndPassword(this.email.value, this.password.value).then(r => console.log(r));
+      this.reg.createUserWithEmailAndPassword(this.email.value, this.password.value)
+      .then((user) => console.log(user))
+      .catch((err) => console.warn(err))
     }
   }
 }

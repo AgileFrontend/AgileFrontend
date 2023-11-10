@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
@@ -47,6 +48,7 @@ import { RegisterComponent } from './register/register.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

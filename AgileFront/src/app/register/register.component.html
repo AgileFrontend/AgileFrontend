@@ -1,10 +1,9 @@
 <h1>Register</h1>
 <div class="registerform">
-<form [formGroup]="registerForm" (ngSubmit)="onSubmitForm()">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmitForm()" class="registerform">
     <mat-form-field class="email-field">
         <mat-label for="email">Email :</mat-label>
-        <input id="email" type="email" [formControl]="email">
-        <p>Value: {{ email.value }}</p>
+        <input matInput id="email" type="email" [formControl]="email">
         <mat-error *ngIf="email?.invalid && email?.touched">
             Incorrect email format
         </mat-error>
@@ -12,7 +11,7 @@
     <br/>
     <mat-form-field class="password-field">
     <mat-label for="password">Password :</mat-label>
-    <input id="password" type="password" [formControl]="password">
+    <input matInput id="password" type="password" [formControl]="password" [type]="hide ? 'password' : 'text'">
     <mat-error *ngIf="password?.invalid && password?.touched">
         Your password should contain at least one digit
     </mat-error>
@@ -26,8 +25,11 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
     </mat-form-field>
-    <br />
-    <button mat-button type="submit" [disabled]="!registerForm.valid">Sign up</button>
+    <br/>
+    <br/>
+    <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Sign up</button>
 </form>  
+<br/>
 <p>You already have an account ?</p>
-<a mat-button routerLink="">Login</a>
+<a mat-raised-button routerLink="">Login</a>
+</div>
