@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Post } from "../services/post"
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { StorageService } from '../services/storage/storage.service';
-import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-create.post',
@@ -9,28 +8,30 @@ import { user } from '@angular/fire/auth';
   styleUrls: ['./create.post.component.scss'],
 })
 export class CreatePostComponent {
-
-  title: string;
-  body: string;
-  photoURL: string;
-  userId: string;
-  postId: string;
+  addPostForm = new FormGroup(
+    {
+    title: new FormControl<string>('',{
+      nonNullable : true,
+      validators :[
+      Validators.required,
+      Validators.maxLength(150)
+    ]}),
+    body: new FormControl<string>('',{
+      nonNullable : true,
+      validators :[
+      Validators.required,
+      Validators.maxLength(500)
+    ]}),
+    file: new FormControl<Blob|null>(null),
+    }
+  );
 
   constructor(public storageService: StorageService) {
-    this.title ='';
-    this.body='';
-    this.photoURL='';
-    this.userId='';
-    this.postId='';
-   }
 
-  addPost(title: string,body: string,photoURL: string,userId: string, postId:string){
-    this.storageService.addPost({
-      title,
-      body,
-      photoURL,
-      userId,
-      postId
-    })
   }
+
+  onSubmit() {
+    console.log(this.addPostForm.value)
+    this.storageService.addPost(this.addPostForm.value)
+ }
 }
