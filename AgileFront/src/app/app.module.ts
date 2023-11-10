@@ -15,12 +15,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, HomepageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NavbarComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
