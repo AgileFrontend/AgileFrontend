@@ -10,13 +10,8 @@
 name: lint_build_preview_pr
 
 on:
-  push:
-    branches:
-    - '*'
-    - '!dev'
-    - '!main'
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev","main" ]
 jobs:
   eslint:
     name: Run eslint and prettier
@@ -28,13 +23,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Install node
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
           cache: 'npm'
           cache-dependency-path: AgileFront/package-lock.json
-      - name: Install Eslint
+      - name: Install depencies
         run: cd AgileFront && npm ci
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
