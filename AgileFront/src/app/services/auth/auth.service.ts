@@ -30,16 +30,19 @@ export class AuthService{
     return new Promise((resolve) => {
       this.auth.onAuthStateChanged((user) => {
         if(user) {
-          console.log(user)
           resolve(true)
         }
         else {
-          console.warn("not logged in")
           this.router.navigate(['login'])
           resolve(false)
         }
       })
     });
+  }
+
+  //Provide a way to log out the currently logged in user
+  logOut() {
+    this.auth.signOut()
   }
 }
 
