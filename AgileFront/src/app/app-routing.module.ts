@@ -11,8 +11,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent }, // route to the login page
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent},
-  { path: 'my-project-page', component: MyProjectPageComponent}
-  { path: 'create.post', component: CreatePostComponent, canActivate: [authGuard] }
+  { path: 'my-project-page', component: MyProjectPageComponent},
+  {
+    path: 'create.post',
+    component: CreatePostComponent,
+    canActivate: [authGuard],
+  }
 ];
 
 @NgModule({
