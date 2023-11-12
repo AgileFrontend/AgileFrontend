@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -15,9 +16,15 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
  * @authors samaritan-mt & pacmaybz
  */
 export class LoginComponent implements OnInit {
-  @Input() email = ''; // email of the user
-  @Input() password = ''; // password of the user
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+    Validators.minLength(8),
+    Validators.maxLength(100),
+  ]);
   hide = true;
+  loginForm = new FormGroup([this.email,this.password]);
 
   /**
    * Constructor of the login component
@@ -29,7 +36,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
-  ) {}
+  ) {
+  }
 
   /**
    * Method called when the component is initialized
@@ -47,14 +55,14 @@ export class LoginComponent implements OnInit {
    * If the login is not successful, it displays an alert with the error code and the error message
    */
   signIn() {
-    if (this.email && this.password) {
-      this.email = sanitize(this.email);
-      this.password = sanitize(this.password);
-      signInWithEmailAndPassword(this.auth, this.email, this.password) // firebase authentication service call
+    if (this.loginForm.valid && (this.email.value && this.password.value))  {
+      const credemail = this.email.value; 
+      const credpass = this.password.value;
+      signInWithEmailAndPassword(this.auth, credemail, credpass) // firebase authentication service call
         .then((usercredential) => {
           const user = usercredential.user; // on success, we get the user
           this.router.navigate(['homepage'], {
-            queryParams: { sessionToken: user.getIdToken() },
+            queryParams: {token: user.uid}
           }); //we redirect the user to the homepage with the session token as a query parameter
         })
         .catch((error) => {
@@ -70,24 +78,8 @@ export class LoginComponent implements OnInit {
    * It redirects the user to the registration page
    */
   signUp() {
-    this.router.navigate(['registration']);
+    this.router.navigate(['register']);
   }
 }
 
-/**
- * Method used to sanitize a string to avoid XSS attacks
- * @param string : string to sanitize
- * @returns string with the escaped special characters replaced by their html code
- */
-function sanitize(string: string): string {
-  const map = new Map<string, string>();
-  map.set('&', '&amp;');
-  map.set('<', '&lt;');
-  map.set('>', '&gt;');
-  map.set('"', '&quot;');
-  map.set("'", '&#x27;');
-  map.set('/', '&#x2F;');
 
-  const reg = /[&<>"'/]/gi;
-  return string.replace(reg, (match) => map.get(match) || '');
-}
