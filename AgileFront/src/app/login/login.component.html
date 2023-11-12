@@ -1,22 +1,25 @@
-<h1>Login</h1>
 <div class="loginform">
+<form class = "loginform" [formGroup]="loginForm">
   <mat-form-field class="email-field">
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      placeholder="Ex.dupont@example.com"
-      [(ngModel)]="email"
-    />
+    <mat-label for="email">Email :</mat-label>
+    <input matInput id="email" type="email" [formControl]="email" />
+    <mat-error *ngIf="email?.invalid && email?.touched">
+      Incorrect email format
+    </mat-error>
   </mat-form-field>
   <br />
   <mat-form-field class="password-field">
-    <mat-label>Enter your password</mat-label>
+    <mat-label for="password">Password :</mat-label>
     <input
       matInput
+      id="password"
+      type="password"
+      [formControl]="password"
       [type]="hide ? 'password' : 'text'"
-      [(ngModel)]="password"
     />
+    <mat-error *ngIf="password?.invalid && password?.touched">
+      Your password should contain at least one digit
+    </mat-error>
     <button
       mat-icon-button
       matSuffix
@@ -27,9 +30,9 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
   </mat-form-field>
+  <button mat-button (click)="signIn()">Login</button>
+</form>
   <br />
-  <button mat-button [disabled]="!email || !password" (click)="signIn()">
-    Sign In
-  </button>
+  <p>New to our website ?</p>
   <button mat-button (click)="signUp()">Sign Up</button>
 </div>
