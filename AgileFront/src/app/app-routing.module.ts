@@ -16,7 +16,8 @@ const routes: Routes = [
     path: 'create.post',
     component: CreatePostComponent,
     canActivate: [authGuard],
-  }
+  },
+  { path: 'homepage', component: HomepageComponent },
 ];
 
 @NgModule({
