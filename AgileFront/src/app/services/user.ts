@@ -4,7 +4,7 @@ export interface User {
   surname?: string;
   phoneNumber?: string;
   email: string;
-  bio?: string
+  bio?: string;
   photoURL?: string;
   address?: string;
   town?: string;
