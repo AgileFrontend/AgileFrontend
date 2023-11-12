@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     Validators.maxLength(100),
   ]);
   hide = true;
-  loginForm = new FormGroup([this.email,this.password]);
+  loginForm = new FormGroup([this.email, this.password]);
 
   /**
    * Constructor of the login component
@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
-  ) {
-  }
+  ) {}
 
   /**
    * Method called when the component is initialized
@@ -55,14 +54,14 @@ export class LoginComponent implements OnInit {
    * If the login is not successful, it displays an alert with the error code and the error message
    */
   signIn() {
-    if (this.loginForm.valid && (this.email.value && this.password.value))  {
-      const credemail = this.email.value; 
+    if (this.loginForm.valid && this.email.value && this.password.value) {
+      const credemail = this.email.value;
       const credpass = this.password.value;
       signInWithEmailAndPassword(this.auth, credemail, credpass) // firebase authentication service call
         .then((usercredential) => {
           const user = usercredential.user; // on success, we get the user
           this.router.navigate(['homepage'], {
-            queryParams: {token: user.uid}
+            queryParams: { token: user.uid },
           }); //we redirect the user to the homepage with the session token as a query parameter
         })
         .catch((error) => {
@@ -81,5 +80,3 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 }
-
-

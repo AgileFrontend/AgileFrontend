@@ -12,7 +12,5 @@ import { Router } from '@angular/router';
   imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class NavbarComponent {
-
-  constructor(protected router : Router) {
-  }
+  constructor(protected router: Router) {}
 }

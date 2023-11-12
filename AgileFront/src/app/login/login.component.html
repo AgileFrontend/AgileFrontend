@@ -1,37 +1,39 @@
 <div class="loginform">
-<form class = "loginform" [formGroup]="loginForm">
-  <mat-form-field class="email-field">
-    <mat-label for="email">Email :</mat-label>
-    <input matInput id="email" type="email" [formControl]="email" />
-    <mat-error *ngIf="email?.invalid && email?.touched">
-      Incorrect email format
-    </mat-error>
-  </mat-form-field>
-  <br />
-  <mat-form-field class="password-field">
-    <mat-label for="password">Password :</mat-label>
-    <input
-      matInput
-      id="password"
-      type="password"
-      [formControl]="password"
-      [type]="hide ? 'password' : 'text'"
-    />
-    <mat-error *ngIf="password?.invalid && password?.touched">
-      Your password should contain at least one digit
-    </mat-error>
-    <button
-      mat-icon-button
-      matSuffix
-      (click)="hide = !hide"
-      [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide"
-    >
-      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+  <form class="loginform" [formGroup]="loginForm">
+    <mat-form-field class="email-field">
+      <mat-label for="email">Email :</mat-label>
+      <input matInput id="email" type="email" [formControl]="email" />
+      <mat-error *ngIf="email?.invalid && email?.touched">
+        Incorrect email format
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="password-field">
+      <mat-label for="password">Password :</mat-label>
+      <input
+        matInput
+        id="password"
+        type="password"
+        [formControl]="password"
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-error *ngIf="password?.invalid && password?.touched">
+        Your password should contain at least one digit
+      </mat-error>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-button (click)="signIn()" [disabled]="!this.loginForm.valid">
+      Login
     </button>
-  </mat-form-field>
-  <button mat-button (click)="signIn()" [disabled]="!this.loginForm.valid">Login</button>
-</form>
+  </form>
   <br />
   <p>New to our website ?</p>
   <button mat-button (click)="signUp()">Sign Up</button>
