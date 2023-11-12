@@ -12,6 +12,11 @@ name: lint_build_preview_dev
 on:
   push:
     branches: dev
+    
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   eslint:
     name: Run eslint and prettier
