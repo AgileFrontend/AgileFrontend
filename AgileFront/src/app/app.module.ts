@@ -21,6 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
+import { MyProjectPageComponent } from './my-project-page/my-project-page.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { RegisterComponent } from './register/register.component';
     HomepageComponent,
     RegisterComponent,
     CreatePostComponent,
+    MyProjectPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavbarComponent,
+    ProjectComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
