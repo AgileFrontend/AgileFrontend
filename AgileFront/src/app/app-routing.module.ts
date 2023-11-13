@@ -7,7 +7,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { authGuard } from './services/auth/auth.service';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent }, // route to the login page
+  { path: 'login', component: LoginComponent, canActivate: [authGuard]}, // route to the login page
   { path: 'register', component: RegisterComponent },
   {
     path: 'create.post',
