@@ -37,7 +37,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: AgileFront/package-lock.json
       - name: Install depencies
-        run: cd AgileFront && npm ci
+        run: cd AgileFront && npm install --save-dev eslint && npm install eslint --save-dev @typescript-eslint/recommended @angular-eslint/recommended @angular-eslint/template/process-inline-templates
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
       - name: Run prettier
