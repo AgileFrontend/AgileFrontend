@@ -61,7 +61,7 @@ jobs:
         - name: Install Angular
           run: npm install -g @angular/cli
         - name: Install dependencies
-          run: cd AgileFront && npm ci
+          run: cd AgileFront && npm install
         - name: Build
           run: cd AgileFront && ng build
         - name: Archive Artifacts
