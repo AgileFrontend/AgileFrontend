@@ -1,4 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
+a# This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
@@ -34,8 +34,8 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
-      - name: Install depencies
-        run: cd AgileFront && npm install --save-dev eslint && npm install eslint --save-dev @typescript-eslint/recommended @angular-eslint/recommended
+      - name: Install dependencies
+        run: cd AgileFront && npm install --only=development
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
       - name: Run prettier
