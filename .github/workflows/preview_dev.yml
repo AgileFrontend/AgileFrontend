@@ -34,8 +34,6 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
-          cache: 'npm'
-          cache-dependency-path: AgileFront/package-lock.json
       - name: Install dependencies
         run: cd AgileFront && mv package.json package.bak && npm install --save-dev eslint @typescript-eslint/eslint-plugin @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template@latest @angular-eslint/template-parser && mv package.bak package.json
       - name: Run ESlint
