@@ -34,10 +34,8 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
-          cache: 'npm'
-          cache-dependency-path: AgileFront/package-lock.json
       - name: Install depencies
-        run: cd AgileFront && npm install --save-dev eslint && npm install eslint --save-dev @typescript-eslint/recommended @angular-eslint/recommended @angular-eslint/template/process-inline-templates
+        run: cd AgileFront && npm install --save-dev eslint && npm install eslint --save-dev @typescript-eslint/recommended @angular-eslint/recommended
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
       - name: Run prettier
