@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
     HomepageComponent,
     RegisterComponent,
     CreatePostComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
