@@ -1,18 +1,23 @@
 <p>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      
       <div *ngIf="isLogged">
-        <a mat-button routerLink="homepage"><mat-icon>home</mat-icon> Homepage</a>
-      <a mat-button><mat-icon> layers</mat-icon> Posts</a>
-        <a mat-button routerLink="my-project-page"><mat-icon>queue</mat-icon>My Projects</a>
+        <a mat-button routerLink="homepage"
+          ><mat-icon>home</mat-icon> Homepage</a
+        >
+        <a mat-button><mat-icon> layers</mat-icon> Posts</a>
+        <a mat-button routerLink="my-project-page"
+          ><mat-icon>queue</mat-icon>My Projects</a
+        >
         <span class="example-spacer"></span>
         <a mat-button><mat-icon>exit_to_app</mat-icon>Deconection</a>
       </div>
       <a mat-button routerLink="homepage"><mat-icon>home</mat-icon> Homepage</a>
-      <a mat-button><mat-icon> layers</mat-icon> Posts</a>     
+      <a mat-button><mat-icon> layers</mat-icon> Posts</a>
       <span class="example-spacer"></span>
-      <a mat-button routerLink="login"><mat-icon>person</mat-icon> My Profile/Connection</a>
+      <a mat-button routerLink="login"
+        ><mat-icon>person</mat-icon> My Profile/Connection</a
+      >
     </mat-toolbar-row>
   </mat-toolbar>
 </p>
