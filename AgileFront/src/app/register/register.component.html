@@ -23,7 +23,7 @@
         [type]="hide ? 'password' : 'text'"
       />
       <mat-error *ngIf="password?.invalid && password?.touched">
-        Your password should contain at least one digit
+        Your password should contain at least one digit and 8 characters
       </mat-error>
       <button
         mat-icon-button
@@ -43,5 +43,5 @@
   </form>
   <br />
   <p>You already have an account ?</p>
-  <a mat-raised-button routerLink="">Login</a>
+  <a mat-raised-button routerLink="/login">Login</a>
 </div>
