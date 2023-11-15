@@ -34,10 +34,8 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "20.9.0"
-          cache: 'npm'
-          cache-dependency-path: AgileFront/package-lock.json
-      - name: Install depencies
-        run: cd AgileFront && npm ci
+      - name: Install dependencies
+        run: cd AgileFront && mv package.json package.bak && npm install --save-dev eslint @typescript-eslint/eslint-plugin @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template@latest @angular-eslint/template-parser && mv package.bak package.json
       - name: Run ESlint
         run: cd AgileFront && npm run eslint
       - name: Run prettier
@@ -63,7 +61,7 @@ jobs:
         - name: Install Angular
           run: npm install -g @angular/cli
         - name: Install dependencies
-          run: cd AgileFront && npm ci
+          run: cd AgileFront && npm install
         - name: Build
           run: cd AgileFront && ng build
         - name: Archive Artifacts
