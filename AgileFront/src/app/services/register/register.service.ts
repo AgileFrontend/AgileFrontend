@@ -13,21 +13,21 @@ export class RegisterService {
   async createUserWithEmailAndPassword(
     email: string,
     password: string,
-  ): Promise<User | Error | undefined> {
-    try {
-      const result = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password,
-      );
-      const user = result.user;
-      return user;
-    } catch (error) {
-      if (error instanceof Error) {
-        return error;
-      } else {
-        return undefined;
+  ): Promise<User> {
+    const result = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password,
+    );
+    return new Promise((resolve, reject) => {
+      try {
+        const user = result.user;
+        resolve(user);
+      } catch (error) {
+        if (error) {
+          reject(error);
+        }
       }
-    }
+    })
   }
 }
