@@ -24,7 +24,7 @@ import { MyProjectPageComponent } from './my-project-page/my-project-page.compon
 import { ProjectComponent } from './project/project.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -36,7 +36,7 @@ import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
     RegisterComponent,
     CreatePostComponent,
     MyProjectPageComponent,
-    NavbarMenuComponent,
+    NavbarComponent,
     
   ],
   imports: [
