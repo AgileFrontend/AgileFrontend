@@ -1,8 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { InstantMessagingService } from './instant-messaging.service';
-import { Firestore } from '@angular/fire/firestore/firebase';
-import { DocumentReference } from '@angular/fire/firestore/firebase';
+import { Firestore } from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { AppComponent } from 'src/app/app.component';
+import { FirebaseApp } from '@angular/fire/app';
 
 interface FirestoreMock {
   collection: jasmine.Spy<jasmine.Func>;
@@ -27,6 +30,8 @@ describe('InstantMessagingService', () => {
         { provide: Firestore, useValue: firestoreMock },
         InstantMessagingService,
         { provide: Router, useValue: {} }, // Mock the Router if needed
+        { provide: Auth, useValue:{}},
+        {provide: FirebaseApp, useValue:{}}
       ],
     });
 

@@ -9,13 +9,16 @@ import {
   deleteDoc,
   getDoc,
   updateDoc,  } from '@angular/fire/firestore'; //Doublecheck this import statement
-import { AuthService } from '../auth/auth.service'
+import { Auth,getAuth } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire/app';
 @Injectable({
   providedIn: 'root'
 })
 export class InstantMessagingService {
-
-  constructor(private firestore :Firestore, private auth : AuthService) { }
+  auth: Auth
+  constructor(private firestore :Firestore, private afApp: FirebaseApp) {
+    this.auth = getAuth(this.afApp);
+   }
 
   async createMessage(message : Message){
     return await addDoc(collection(this.firestore,"conversations"),message) 
