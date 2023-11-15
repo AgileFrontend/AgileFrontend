@@ -28,6 +28,6 @@ export class RegisterService {
           reject(error);
         }
       }
-    })
+    });
   }
 }

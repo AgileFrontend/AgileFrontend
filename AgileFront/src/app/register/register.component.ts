@@ -19,14 +19,17 @@ export class RegisterComponent {
   registerForm = new FormGroup([this.email, this.password]);
   hide = true;
 
-  constructor(private reg: RegisterService, private router: Router) {}
+  constructor(
+    private reg: RegisterService,
+    private router: Router,
+  ) {}
 
   onSubmitForm() {
     if (this.email.value != null && this.password.value != null) {
       this.reg
         .createUserWithEmailAndPassword(this.email.value, this.password.value)
         .then((user) => {
-          if(user) {
+          if (user) {
             this.router.navigate(['homepage']);
           }
         })
