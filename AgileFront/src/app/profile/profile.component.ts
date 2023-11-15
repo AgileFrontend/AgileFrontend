@@ -1,12 +1,12 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { StorageService } from "../services/storage/storage.service";
 import { User } from "../services/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { from, Observable, Observer } from 'rxjs';
 import { DocumentSnapshot } from 'firebase/firestore';
 import { DocumentData } from '@angular/fire/firestore';
+import { ProfileService } from '../services/profile/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,11 +24,11 @@ export class ProfileComponent implements OnInit {
     email: ''
   };
   checked = false;
-  content: any; // Add this line
+  content: any;
 
   constructor(
     private fb: FormBuilder,
-    private storage: StorageService,
+    private profile: ProfileService,
     private snackBack: MatSnackBar) {
   }
 
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if (userString) {
       const uid = JSON.parse(userString).uid;
-      this.storage.updateUserData(this.profilForm?.value, uid).then(
+      this.profile.updateUserData(this.profilForm?.value, uid).then(
         () => {
           this.snackBack.open("Your profile has been successfully updated!", "Ok");
           this.ngOnInit();
@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
         }
       );
       if (this.profileImage !== undefined) {
-        this.storage.uploadProfilePicture(this.profileImage)
+        this.profile.uploadProfilePicture(this.profileImage)
       }
     }
   }
@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
       const uid = JSON.parse(userString).uid;
   
       // Convert the Promise to an Observable using 'from'
-      const userObservable: Observable<DocumentSnapshot<DocumentData, DocumentData>> = from(this.storage.getUserWithUID(uid));
+      const userObservable: Observable<DocumentSnapshot<DocumentData, DocumentData>> = from(this.profile.getUserWithUID(uid));
   
       // Subscribe to the Observable
       userObservable.subscribe(observer);

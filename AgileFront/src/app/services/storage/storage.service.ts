@@ -4,9 +4,6 @@ import {
   Firestore,
   addDoc,
   collection,
-  doc,
-  getDoc,
-  setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
 import {
@@ -15,8 +12,6 @@ import {
   ref,
   uploadBytes,
 } from '@angular/fire/storage';
-import { User } from "../user";
-
 
 @Injectable({
   providedIn: 'root',
@@ -26,28 +21,6 @@ export class StorageService {
     public firestore: Firestore,
     public storage: Storage,
   ) { }
-
-  updateUserData(userData: any, uid: any) { //not using User type as some part might not be updated
-    const userDocRef = doc(this.firestore, 'users', uid);
-    return setDoc(userDocRef, userData, { merge: true });
-  }
-
-  getUserWithUID(uid: string) {
-    return getDoc(doc(this.firestore, 'users', uid));
-  }
-
-  uploadProfilePicture(img: File) {
-    const userString = localStorage.getItem('user');
-    if (userString) {
-      const user: { uid: string } = JSON.parse(userString);
-      // TODO
-    }
-  }
-
-  private updateUserPhotoURL(uid: string, downloadURL: string): Promise<void> {
-    const userDocRef = doc(this.firestore, 'users', uid);
-    return setDoc(userDocRef, { photoURL: downloadURL }, { merge: true });
-  }
 
   async addFile(file: Blob, filename: string) {
     const storageRef = ref(this.storage, filename);

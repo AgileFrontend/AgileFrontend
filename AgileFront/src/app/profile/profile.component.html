@@ -1,6 +1,8 @@
+<!-- when ngIf removed, only mat spinner appears-->
 <ng-container *ngIf="oldUserData === undefined; else content">
   <mat-spinner style="margin: auto auto;" color="warn"></mat-spinner>
 
+<!-- content appears only when outside of </ng-container> -->
   <ng-template #content>
     <div class="container rounded bg-white mt-5 mb-5">
       <form [formGroup]="profilForm" (ngSubmit)="profilOnSubmit()">
@@ -10,6 +12,7 @@
               <img class="rounded-circle mt-5" width="150px" [src]="" alt="User Profile Image">
               <span class="font-weight-bold"><!--{{oldUserData.name}}--></span>
               <span class="text-black-50"><!--{{oldUserData.email}}--></span>
+              <!-- Need to fix oldUserData object, not detected currently -->
             </div>
           </div>
 
