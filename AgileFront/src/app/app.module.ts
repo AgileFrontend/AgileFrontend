@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +57,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
