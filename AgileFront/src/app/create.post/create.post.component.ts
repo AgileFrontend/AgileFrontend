@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StorageService } from '../services/storage/storage.service';
+import { PostService } from '../services/post/post.service';
 
 @Component({
   selector: 'app-create.post',
@@ -20,10 +20,10 @@ export class CreatePostComponent {
     file: new FormControl<Blob | null>(null),
   });
 
-  constructor(public storageService: StorageService) {}
+  constructor(public postService: PostService) {}
 
   onSubmit() {
     console.log(this.addPostForm.value);
-    this.storageService.addPost(this.addPostForm.value);
+    this.postService.addPost(this.addPostForm.value);
   }
 }
