@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private authGuard : AuthService
   ) {}
 
   /**
@@ -46,6 +48,15 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.hide = true;
+    this.authGuard.isLoggedIn().then((bool) => {
+      if (bool) {
+        this.toast.info("You are already logged in, redirecting you to homepage");
+        this.router.navigate(['homepage']);
+        return;
+      }else {
+        return;
+      }
+    })
   }
 
   /**
@@ -56,6 +67,7 @@ export class LoginComponent implements OnInit {
    * If the login is not successful, it displays an alert with the error code and the error message
    */
   signIn() {
+    
     if (this.loginForm.valid && this.email.value && this.password.value) {
       const credemail = this.email.value;
       const credpass = this.password.value;
