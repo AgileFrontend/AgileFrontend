@@ -82,5 +82,6 @@ export class PostService {
       }
     } else {
       console.log('The user is not logged in!');
+    }
   }
 }
