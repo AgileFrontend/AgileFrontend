@@ -25,24 +25,25 @@ import { ProjectComponent } from './project/project.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatListModule } from '@angular/material/list';
 import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreatePostComponent,
     LoginComponent,
     HomepageComponent,
     RegisterComponent,
-    CreatePostComponent,
     MyProjectPageComponent,
     NavbarComponent,
+    ProjectComponent,
     MessageComponent,
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    ProjectComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
@@ -69,8 +70,7 @@ import { MessageComponent } from './message/message.component';
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
