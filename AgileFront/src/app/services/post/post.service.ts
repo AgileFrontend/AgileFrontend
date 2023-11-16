@@ -25,17 +25,18 @@ export class PostService {
     return await getDoc(messageRef)
   }
 
-  async updatePost(messageRef : DocumentReference,post : Post){
-    return await updateDoc(messageRef,{post})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async updatePost(messageRef : DocumentReference,field: any){
+    return await updateDoc(messageRef,field)
   }
 
   async deleatePost(messageRef: DocumentReference){
     return await deleteDoc(messageRef)
   }
 
-  //Will check later, for no it works
+ 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async addPost(addPostValue: any) {
+  async addPost(addPostValue: any, postImage: Blob | null) {
     this.authService.getCurrentUser().then( async(currentUser) => { //Check current user
       if (currentUser != undefined) {
 
@@ -47,10 +48,10 @@ export class PostService {
         };
         const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
 
-        if (addPostValue.file != null) { //Check if it had a file
-          const uploadResult = await this.storageService.createFile(addPostValue.file, 'posts/' + postRef.id.toString)
+        if (postImage != null) { //Check if it had a file
+          const uploadResult = await this.storageService.createFile(postImage, 'posts/' + postRef.id.toString())
           post.photoURL = await this.storageService.readFileFromRef(uploadResult.ref)
-          await this.updatePost(postRef,post)
+          await this.updatePost(postRef,{"photoURL" : post.photoURL.toString()})
           return
         } else {return}
         

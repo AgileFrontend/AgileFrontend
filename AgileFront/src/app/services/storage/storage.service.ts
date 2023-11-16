@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Post } from '../post';
 import {
   Firestore,
-  addDoc,
-  collection,
-  updateDoc,
 } from '@angular/fire/firestore';
 import {
   Storage,
