@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
+    private toast: ToastrService
   ) {}
 
   /**
@@ -60,15 +62,13 @@ export class LoginComponent implements OnInit {
       signInWithEmailAndPassword(this.auth, credemail, credpass) // firebase authentication service call
         .then((usercredential) => {
           const user = usercredential.user; // on success, we get the user
-          this.router.navigate(['homepage'], {
-            queryParams: { token: user.uid },
-          }); //we redirect the user to the homepage with the session token as a query parameter
+          this.router.navigate(['homepage']); //we redirect the user to the homepage with the session token as a query parameter
         })
         .catch((error) => {
           // Error handling alert
           const errorcode = error.code;
           const errormessage = error.message;
-          alert('Error while login : ' + errorcode + '\n' + errormessage);
+          this.toast.error('Error while login : ' + '\n' + errormessage);
         });
     }
   }
