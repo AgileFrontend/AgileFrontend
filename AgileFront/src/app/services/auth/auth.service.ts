@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, User} from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { CanActivateFn, Router } from '@angular/router';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
   async getCurrentUser(): Promise<User | null> {
     await this.auth.authStateReady();
     const user = this.auth.currentUser;
-    return user
+    return user;
   }
 
   // Provide a way to check if a user is currently or not
