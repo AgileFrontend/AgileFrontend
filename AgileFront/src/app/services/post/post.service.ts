@@ -6,16 +6,13 @@ import {
   deleteDoc,
   collection,
   DocumentReference,
-
   collectionData,
-
   getDoc,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
 import { StorageService } from '../storage/storage.service';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root',
@@ -31,18 +28,15 @@ export class PostService {
     return await addDoc(collection(this.firestore, 'posts'), post);
   }
 
-  readAllPost(){
-
+  readAllPost() {
     const postsCollection = collection(this.firestore, 'posts');
     return collectionData(postsCollection) as Observable<Post[]>;
-
   }
   async readPost(messageRef: DocumentReference) {
     return await getDoc(messageRef);
   }
 
   async updatePost(messageRef: DocumentReference, field: object) {
-
     return await updateDoc(messageRef, field);
   }
 

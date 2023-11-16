@@ -25,7 +25,7 @@ import { ProjectComponent } from './project/project.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import {MatListModule} from '@angular/material/list';
     CreatePostComponent,
     MyProjectPageComponent,
     NavbarComponent,
-    ProjectComponent
+    ProjectComponent,
   ],
   imports: [
     RouterModule,

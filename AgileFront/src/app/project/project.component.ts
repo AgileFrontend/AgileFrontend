@@ -6,20 +6,13 @@ import { PostService } from '../services/post/post.service';
 @Injectable({
   providedIn: 'root',
 })
-
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
 })
-
-
-
 export class ProjectComponent {
+  constructor(private storagePost: PostService) {}
 
-  constructor(private storagePost: PostService){}
-  
   @Input() post!: Post;
-
-
 }
