@@ -36,12 +36,12 @@ import {MatListModule} from '@angular/material/list';
     CreatePostComponent,
     MyProjectPageComponent,
     NavbarComponent,
+    ProjectComponent
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    ProjectComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
@@ -68,8 +68,6 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     MatListModule,
   ],
   providers: [],

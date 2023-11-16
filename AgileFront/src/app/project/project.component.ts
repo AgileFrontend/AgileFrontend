@@ -1,16 +1,16 @@
+import { Injectable } from '@angular/core';
 import { Component, Input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 import { Post } from '../services/post';
 import { PostService } from '../services/post/post.service';
+
+@Injectable({
+  providedIn: 'root',
+})
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
-  standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
 })
 
 

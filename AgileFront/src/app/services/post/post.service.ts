@@ -22,9 +22,6 @@ export class PostService {
     public firestore: Firestore,
     public authService: AuthService,
     public storageService: StorageService,
-
-    public posts$: Observable<Post[]>,
-
   ) {}
 
   async createPost(post: Post) {
