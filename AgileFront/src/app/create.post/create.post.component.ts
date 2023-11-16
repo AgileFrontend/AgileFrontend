@@ -18,12 +18,15 @@ export class CreatePostComponent {
       validators: [Validators.required, Validators.maxLength(500)],
     }),
   });
-  postImage = null;
+  postImage : File | null = null;
 
   
-  onFileSelected(event: { target: { files: null[]; } | null; }): void {
-    if (event.target != null) {
-      this.postImage = event.target.files[0];
+  onFileSelected(event: Event): void {
+    if (event != null) {
+      const target = (event.target as HTMLInputElement)
+      if (target.files != null){
+        this.postImage = target.files[0];
+      }
     }
   }
 
