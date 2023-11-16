@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StorageService } from '../services/storage/storage.service';
+import { PostService } from '../services/post/post.service';
 
 @Component({
   selector: 'app-create.post',
@@ -17,13 +17,21 @@ export class CreatePostComponent {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(500)],
     }),
-    file: new FormControl<Blob | null>(null),
   });
+  postImage: File | null = null;
 
-  constructor(public storageService: StorageService) {}
+  onFileSelected(event: Event): void {
+    if (event != null) {
+      const target = event.target as HTMLInputElement;
+      if (target.files != null) {
+        this.postImage = target.files[0];
+      }
+    }
+  }
+
+  constructor(public postService: PostService) {}
 
   onSubmit() {
-    console.log(this.addPostForm.value);
-    this.storageService.addPost(this.addPostForm.value);
+    this.postService.addPost(this.addPostForm.value, this.postImage);
   }
 }
