@@ -3,7 +3,6 @@ import { PostService } from '../services/post/post.service';
 import { Post } from '../services/post';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -11,10 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HomepageComponent {
   posts$: Observable<Post[]>;
-  constructor(
-    private postService: PostService,
-
-  ) {
+  constructor(private postService: PostService) {
     this.posts$ = this.postService.readAllPost();
   }
 }
