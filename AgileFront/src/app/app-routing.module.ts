@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreatePostComponent } from './create.post/create.post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { authGuard } from './services/auth/auth.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MyProjectPageComponent } from './my-project-page/my-project-page.component';
+import { authGuard } from './services/auth/auth.service';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [authGuard] }, // route to the login page
+  
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent },
   {
@@ -16,6 +16,7 @@ const routes: Routes = [
     component: MyProjectPageComponent,
     canActivate: [authGuard],
   },
+  { path: 'login', component: LoginComponent}, // route to the login page
   {
     path: 'create.post',
     component: CreatePostComponent,
