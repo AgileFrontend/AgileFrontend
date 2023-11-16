@@ -1,13 +1,21 @@
-<p>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button mat-button><mat-icon>home</mat-icon> Homepage</button>
-      <button mat-button><mat-icon> layers</mat-icon> Posts</button>
-      <button mat-button><mat-icon>queue</mat-icon>My Projects</button>
-      <span class="example-spacer"></span>
-      <button mat-button (click)="router.navigate(['login'])">
-        <mat-icon>person</mat-icon> My Profile/Connection
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="homepage"><mat-icon>home</mat-icon> Homepage</a>
+    <div *ngIf="!isLoggedIn">
+      <span class="spacer"></span>
+      <a mat-button *ngIf="!isLoggedIn" routerLink="login"
+        ><mat-icon>person</mat-icon> Log In</a
+      >
+    </div>
+    <div *ngIf="isLoggedIn">
+      <a mat-button><mat-icon> layers</mat-icon> Posts</a>
+      <a mat-button routerLink="my-project-page"
+        ><mat-icon>queue</mat-icon>My Projects</a
+      >
+      <span class="spacer"></span>
+      <button mat-button (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>Log Out
       </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-</p>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
