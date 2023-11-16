@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StorageService } from '../services/storage/storage.service';
+import { PostService } from '../services/post/post.service';
 
 @Component({
   selector: 'app-create.post',
@@ -17,13 +17,18 @@ export class CreatePostComponent {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(500)],
     }),
-    file: new FormControl<Blob | null>(null),
   });
+  postImage = null;
 
-  constructor(public storageService: StorageService) {}
+  //I know this isn't the best way to do it, couldn't make it otherwise sooooo
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onFileSelected(event: any): void {
+    this.postImage = event.target.files[0];
+  }
+
+  constructor(public postService: PostService) {}
 
   onSubmit() {
-    console.log(this.addPostForm.value);
-    this.storageService.addPost(this.addPostForm.value);
+    this.postService.addPost(this.addPostForm.value, this.postImage);
   }
 }

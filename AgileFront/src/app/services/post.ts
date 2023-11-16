@@ -3,5 +3,4 @@ export interface Post {
   body: string;
   photoURL: string;
   userId: string;
-  postId: string;
 }
