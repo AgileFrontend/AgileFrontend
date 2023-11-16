@@ -6,22 +6,26 @@ import { AuthService } from '../services/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent{
+export class NavbarComponent {
   isLoggedIn = false;
-  constructor(private afAuth: Auth, private zone : NgZone, private auth : AuthService) {
-    this.checkUserStatus()
-}
+  constructor(
+    private afAuth: Auth,
+    private zone: NgZone,
+    private auth: AuthService,
+  ) {
+    this.checkUserStatus();
+  }
 
   checkUserStatus() {
     this.zone.run(() => {
       this.afAuth.onAuthStateChanged((user) => {
-        if(user){
-          this.isLoggedIn = true
+        if (user) {
+          this.isLoggedIn = true;
         } else {
-          this.isLoggedIn = false
+          this.isLoggedIn = false;
         }
-      })
-    })
+      });
+    });
   }
 
   logOut() {
