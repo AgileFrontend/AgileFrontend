@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
-export class NavbarComponent {
-  constructor(protected router: Router) {}
+export class NavbarComponent implements OnInit {
+  isLoggedIn = false;
+  constructor(private auth: AuthService) {}
+
+  ngOnInit(): void {
+    this.checkLogState();
+  }
+
+  checkLogState() {
+    this.auth.isLoggedIn().then((logState) => {
+      this.isLoggedIn = logState;
+    });
+    return this.isLoggedIn;
+  }
 }
