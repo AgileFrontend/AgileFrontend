@@ -1,27 +1,21 @@
 import { Injectable, inject } from '@angular/core';
-import { User } from '../user';
-import { Auth } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { CanActivateFn, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  currentUser: User | undefined;
   constructor(
     private auth: Auth,
     private router: Router,
   ) {}
 
   // Returns a user if logged in, else return undefined
-  async getCurrentUser(): Promise<User | undefined> {
+  async getCurrentUser(): Promise<User | null> {
     await this.auth.authStateReady();
     const user = this.auth.currentUser;
-    if (user) {
-      return user as User;
-    } else {
-      return undefined;
-    }
+    return user;
   }
 
   // Provide a way to check if a user is currently or not
