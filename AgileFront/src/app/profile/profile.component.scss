@@ -1,28 +1,9 @@
-.main {
-  margin-left: 2em;
-  margin-right: 4em;
-  align-content: center;
+.field {
+  align-self: center;
+}
+
+.profileform {
   display: flex;
-  justify-content: center;
-}
-
-.upload-button {
-  margin-bottom: 5%;
-  margin-top: 5%;
-}
-
-.rounded-circle {
-  margin-top: -30px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 120px;
-  width: 120px;
-}
-
-.bio {
-  margin-top: 1em;
-}
-
-.mat-form-bio {
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }

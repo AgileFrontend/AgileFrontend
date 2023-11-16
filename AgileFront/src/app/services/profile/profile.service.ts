@@ -4,27 +4,25 @@ import {
   doc,
   getDoc,
   setDoc,
+  updateDoc,
 } from '@angular/fire/firestore';
 import {
   Storage,
-  getDownloadURL,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
 } from '@angular/fire/storage';
+import { User } from '../user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
   constructor(
-    public firestore: Firestore,
-    public storage: Storage,
+    private firestore: Firestore,
+    private storage: Storage
   ) { }
 
-  updateUserData(userData: any, uid: any) { //not using User type as some part might not be updated
+  updateUserData(userData: User, uid: string) {
     const userDocRef = doc(this.firestore, 'users', uid);
-    return setDoc(userDocRef, userData, { merge: true });
+    return updateDoc(userDocRef, {...userData});
   }
 
   getUserWithUID(uid: string) {
