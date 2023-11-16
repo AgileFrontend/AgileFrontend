@@ -31,6 +31,18 @@ export class AuthService {
         if (user) {
           resolve(true);
         } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  authGuardFn(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          resolve(true);
+        } else {
           this.router.navigate(['login']);
           resolve(false);
         }
@@ -46,5 +58,5 @@ export class AuthService {
 
 // Provide a way to prevent any anonymous user to access user-tied pages via the canActivate parameter in Routes
 export const authGuard: CanActivateFn = () => {
-  return inject(AuthService).isLoggedIn();
+  return inject(AuthService).authGuardFn();
 };
