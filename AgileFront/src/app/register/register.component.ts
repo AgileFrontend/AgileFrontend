@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RegisterService } from '../services/register/register.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,19 +14,26 @@ export class RegisterComponent {
     Validators.required,
     Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
     Validators.minLength(8),
-    Validators.maxLength(100),
+    Validators.maxLength(20),
   ]);
   registerForm = new FormGroup([this.email, this.password]);
   hide = true;
 
-  constructor(private reg: RegisterService) {}
+  constructor(
+    private reg: RegisterService,
+    private router: Router,
+  ) {}
 
   onSubmitForm() {
     if (this.email.value != null && this.password.value != null) {
       this.reg
         .createUserWithEmailAndPassword(this.email.value, this.password.value)
-        .then((user) => console.log(user))
-        .catch((err) => console.warn(err));
+        .then((user) => {
+          if (user) {
+            this.router.navigate(['homepage']);
+          }
+        })
+        .catch((err) => console.error(err));
     }
   }
 }
