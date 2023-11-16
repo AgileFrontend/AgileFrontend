@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../user';
 import { Auth } from '@angular/fire/auth';
-import { CanActivateFn, Router, UrlTree } from '@angular/router';
-import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
+import { CanActivateFn, Router} from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
