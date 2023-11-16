@@ -27,7 +27,6 @@ export class NavbarComponent {
       });
     });
   }
-
   logOut() {
     this.auth.logOut();
     this.isLoggedIn = false;
