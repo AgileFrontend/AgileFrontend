@@ -56,7 +56,7 @@ export class PostService {
       const post: Post = {
         title: addPostValue.title,
         body: addPostValue.body,
-        photoURL: '',
+        imageURL: '',
         userId: currentUser.uid,
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
@@ -71,7 +71,7 @@ export class PostService {
           uploadResult.ref,
         );
         await this.updatePost(postRef, {
-          imageURL: post.photoURL.toString(),
+          imageURL: post.imageURL.toString(),
         });
       }
     } else {
