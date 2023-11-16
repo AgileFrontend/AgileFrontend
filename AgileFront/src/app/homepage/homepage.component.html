@@ -1,3 +1,7 @@
 <div class="content-wrapper">
+  <app-create-post></app-create-post>
+</div>
+
+<div class="content-wrapper">
   <app-project *ngFor="let post of posts$ | async" [post]="post"> </app-project>
 </div>

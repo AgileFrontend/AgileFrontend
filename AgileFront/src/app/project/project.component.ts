@@ -1,11 +1,7 @@
-import { Injectable } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { Post } from '../services/post';
 import { PostService } from '../services/post/post.service';
 
-@Injectable({
-  providedIn: 'root',
-})
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
