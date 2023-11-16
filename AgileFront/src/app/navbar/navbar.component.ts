@@ -1,22 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   isLoggedIn = false;
-  constructor(private auth: AuthService) {}
-
-  ngOnInit(): void {
-    this.checkLogState();
+  constructor(
+    private afAuth: Auth,
+    private zone: NgZone,
+    private auth: AuthService,
+  ) {
+    this.checkUserStatus();
   }
 
-  checkLogState() {
-    this.auth.isLoggedIn().then((logState) => {
-      this.isLoggedIn = logState;
+  checkUserStatus() {
+    this.zone.run(() => {
+      this.afAuth.onAuthStateChanged((user) => {
+        if (user) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      });
     });
-    return this.isLoggedIn;
+  }
+
+  logOut() {
+    this.auth.logOut();
+    this.isLoggedIn = false;
   }
 }
