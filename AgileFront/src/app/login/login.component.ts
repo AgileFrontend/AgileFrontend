@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.hide = true;
+    // Fetching the authguard to check if the user is loggedin to avoid him accessing login page via URL  
     this.authGuard.isLoggedIn().then((logged) => {
       if (logged) {
         this.toast.info("You are already logged in, redirecting you to homepage");
