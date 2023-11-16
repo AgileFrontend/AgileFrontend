@@ -1,9 +1,8 @@
 <p>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <div *ngIf="isLogged">
-        <a mat-button routerLink="homepage"
-          ><mat-icon>home</mat-icon> Homepage</a
+      <div *ngIf="this.isLoggedIn">
+        <a mat-button routerLink="homepage"><mat-icon>home</mat-icon> Homepage</a
         >
         <a mat-button><mat-icon> layers</mat-icon> Posts</a>
         <a mat-button routerLink="my-project-page"
