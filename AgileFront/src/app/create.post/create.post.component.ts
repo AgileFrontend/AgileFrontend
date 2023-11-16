@@ -18,17 +18,17 @@ export class CreatePostComponent {
       validators: [Validators.required, Validators.maxLength(500)],
     }),
   });
-  postImage = null 
+  postImage = null;
 
   //I know this isn't the best way to do it, couldn't make it otherwise sooooo
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFileSelected(event:any): void {
+  onFileSelected(event: any): void {
     this.postImage = event.target.files[0];
   }
 
   constructor(public postService: PostService) {}
 
   onSubmit() {
-    this.postService.addPost(this.addPostForm.value,this.postImage);
+    this.postService.addPost(this.addPostForm.value, this.postImage);
   }
 }
