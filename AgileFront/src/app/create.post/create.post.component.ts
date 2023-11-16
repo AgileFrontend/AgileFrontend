@@ -20,8 +20,7 @@ export class CreatePostComponent {
   });
   postImage = null;
 
-  
-  onFileSelected(event: { target: { files: null[]; } | null; }): void {
+  onFileSelected(event: { target: { files: null[] } | null }): void {
     if (event.target != null) {
       this.postImage = event.target.files[0];
     }
