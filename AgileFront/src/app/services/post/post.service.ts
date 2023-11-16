@@ -6,11 +6,13 @@ import {
   deleteDoc,
   collection,
   DocumentReference,
+  collectionData,
   getDoc,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
 import { StorageService } from '../storage/storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +28,10 @@ export class PostService {
     return await addDoc(collection(this.firestore, 'posts'), post);
   }
 
+  readAllPost() {
+    const postsCollection = collection(this.firestore, 'posts');
+    return collectionData(postsCollection) as Observable<Post[]>;
+  }
   async readPost(messageRef: DocumentReference) {
     return await getDoc(messageRef);
   }
@@ -50,7 +56,7 @@ export class PostService {
       const post: Post = {
         title: addPostValue.title,
         body: addPostValue.body,
-        photoURL: '',
+        imageURL: '',
         userId: currentUser.uid,
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
@@ -61,11 +67,11 @@ export class PostService {
           postImage,
           'posts/' + postRef.id.toString(),
         );
-        post.photoURL = await this.storageService.readFileFromRef(
+        post.imageURL = await this.storageService.readFileFromRef(
           uploadResult.ref,
         );
         await this.updatePost(postRef, {
-          photoURL: post.photoURL.toString(),
+          imageURL: post.imageURL.toString(),
         });
       }
     } else {
