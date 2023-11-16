@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     private auth: Auth,
     private router: Router,
-  ) {  }
+  ) {}
 
   // Returns a user if logged in, else return undefined
   async getCurrentUser(): Promise<User | undefined> {
