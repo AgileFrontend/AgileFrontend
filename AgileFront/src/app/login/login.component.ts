@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.hide = true;
-    this.authGuard.isLoggedIn().then((bool) => {
-      if (bool) {
+    this.authGuard.isLoggedIn().then((logged) => {
+      if (logged) {
         this.toast.info("You are already logged in, redirecting you to homepage");
         this.router.navigate(['homepage']);
         return;
