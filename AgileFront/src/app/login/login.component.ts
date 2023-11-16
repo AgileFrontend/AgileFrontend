@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
     Validators.minLength(8),
-    Validators.maxLength(100),
+    Validators.maxLength(20),
   ]);
   hide = true;
   loginForm = new FormGroup([this.email, this.password]);
