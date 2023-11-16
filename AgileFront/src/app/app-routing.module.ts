@@ -8,7 +8,6 @@ import { MyProjectPageComponent } from './my-project-page/my-project-page.compon
 import { authGuard } from './services/auth/auth.service';
 
 const routes: Routes = [
-  
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent },
   {
@@ -16,7 +15,7 @@ const routes: Routes = [
     component: MyProjectPageComponent,
     canActivate: [authGuard],
   },
-  { path: 'login', component: LoginComponent}, // route to the login page
+  { path: 'login', component: LoginComponent }, // route to the login page
   {
     path: 'create.post',
     component: CreatePostComponent,

@@ -6,17 +6,17 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn = false
+  isLoggedIn = false;
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.checkLogState()
+    this.checkLogState();
   }
 
-  checkLogState(){
-    this.auth.isLoggedIn().then((logState) =>{
-      this.isLoggedIn = logState
-    })
-    return this.isLoggedIn
+  checkLogState() {
+    this.auth.isLoggedIn().then((logState) => {
+      this.isLoggedIn = logState;
+    });
+    return this.isLoggedIn;
   }
-} 
+}
