@@ -10,4 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatCardModule, MatButtonModule, MatIconModule],
 })
-export class ProjectComponent {}
+export class ProjectComponent {
+  
+}

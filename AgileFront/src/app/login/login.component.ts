@@ -3,7 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
