@@ -30,8 +30,7 @@ export class PostService {
     return await getDoc(messageRef);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async updatePost(messageRef: DocumentReference, field: any) {
+  async updatePost(messageRef: DocumentReference, field: object) {
     return await updateDoc(messageRef, field);
   }
 
@@ -39,11 +38,12 @@ export class PostService {
     return await deleteDoc(messageRef);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async addPost(addPostValue: any, postImage: Blob | null) {
-    this.authService.getCurrentUser().then(async (currentUser) => {
-      //Check current user
-      if (currentUser != undefined) {
+  async addPost(addPostValue: Partial<{
+    title: string;
+    body: string;
+}>, postImage: Blob | null) {
+    const currentUser = await this.authService.getCurrentUser()
+      if (currentUser !== null) {
         const post: Post = {
           title: addPostValue.title,
           body: addPostValue.body,
@@ -64,13 +64,9 @@ export class PostService {
           await this.updatePost(postRef, {
             photoURL: post.photoURL.toString(),
           });
-          return;
-        } else {
-          return;
         }
       } else {
         console.log('The user is not logged in!');
       }
-    });
   }
 }
