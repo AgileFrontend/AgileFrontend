@@ -1,3 +1,9 @@
 <div class="content-wrapper">
-  <app-project></app-project>
+  <app-project class="content-wrapper"></app-project>
+  <!-- <app-project *ngFor="let currentProject of projectList," [project]="currentProject">
+  </app-project> -->
+  
+  <app-project *ngFor="let i of [1,2,3,4]" >
+  </app-project>
+
 </div>

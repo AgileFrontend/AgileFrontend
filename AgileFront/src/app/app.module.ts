@@ -25,6 +25,7 @@ import { ProjectComponent } from './project/project.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
