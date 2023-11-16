@@ -20,9 +20,13 @@ import { CreatePostComponent } from './create.post/create.post.component';
 import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
+import { MyProjectPageComponent } from './my-project-page/my-project-page.component';
+import { ProjectComponent } from './project/project.component';
+import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -32,12 +36,15 @@ import { ProfileComponent } from './profile/profile.component';
     HomepageComponent,
     RegisterComponent,
     CreatePostComponent,
+    MyProjectPageComponent,
+    NavbarComponent,
     ProfileComponent,
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
-    NavbarComponent,
+    ProjectComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',
@@ -65,6 +72,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

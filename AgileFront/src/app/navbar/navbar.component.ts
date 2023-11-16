@@ -1,16 +1,35 @@
-import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
-
+import { Component, NgZone } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class NavbarComponent {
-  constructor(protected router: Router) {}
+  isLoggedIn = false;
+  constructor(
+    private afAuth: Auth,
+    private zone: NgZone,
+    private auth: AuthService,
+  ) {
+    this.checkUserStatus();
+  }
+
+  checkUserStatus() {
+    this.zone.run(() => {
+      this.afAuth.onAuthStateChanged((user) => {
+        if (user) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      });
+    });
+  }
+
+  logOut() {
+    this.auth.logOut();
+    this.isLoggedIn = false;
+  }
 }
