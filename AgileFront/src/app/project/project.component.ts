@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { Post } from '../services/post';
+import { PostService } from '../services/post/post.service';
 
 @Component({
   selector: 'app-project',
@@ -10,12 +12,14 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatCardModule, MatButtonModule, MatIconModule],
 })
+
+
+
 export class ProjectComponent {
 
-  title = '';
-  name = '';
-  date = '';
-  img : unknown;
-  post_content = '';  
+  constructor(private storagePost: PostService){}
+  
+  @Input() post!: Post;
+
 
 }
