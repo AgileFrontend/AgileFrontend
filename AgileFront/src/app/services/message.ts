@@ -1,6 +1,8 @@
+import { Timestamp } from "@firebase/firestore";
+
 export interface Message {
   senderID: string;
   recieverIDs: string[];
-  sentDate: string;
+  sentDate: Timestamp;
   content: string;
 }

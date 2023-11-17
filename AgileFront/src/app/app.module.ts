@@ -26,7 +26,9 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
-import { MessageComponent } from './message/message.component';
+import { MessageComponent } from './messaging-page/message/message.component';
+import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { MessageComponent } from './message/message.component';
     NavbarComponent,
     ProjectComponent,
     MessageComponent,
+    MessagingPageComponent,
+    ConversationComponent,
   ],
   imports: [
     RouterModule,
