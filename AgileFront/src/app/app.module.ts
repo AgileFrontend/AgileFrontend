@@ -25,6 +25,7 @@ import { ProjectComponent } from './project/project.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatListModule } from '@angular/material/list';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -70,6 +71,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     ToastrModule
   ],
   providers: [],
