@@ -17,7 +17,7 @@ export class StorageService {
   constructor(
     public firestore: Firestore,
     public storage: Storage,
-  ) { }
+  ) {}
 
   // Return a promise that resolve if the file is created correctly, retrun an error otherwiser
   async createFile(file: Blob, path: string) {
@@ -46,7 +46,7 @@ export class StorageService {
 }
 
 export function requiredFileType(types: string[]): ValidatorFn {
-  return (control:AbstractControl) : ValidationErrors | null => {
+  return (control: AbstractControl): ValidationErrors | null => {
     const file = control.value;
     if (file) {
       const fileName = file.name as string;
@@ -54,9 +54,9 @@ export function requiredFileType(types: string[]): ValidatorFn {
 
       if (!extension || !types.includes(extension)) {
         return {
-          requiredFileType: true
+          requiredFileType: true,
         };
-      }  
+      }
       return null;
     }
 
