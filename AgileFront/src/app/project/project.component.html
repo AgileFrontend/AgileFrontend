@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="this.post">
   <mat-card-header>
     <mat-card-title>{{ this.post.title }}</mat-card-title>
   </mat-card-header>
@@ -11,6 +11,6 @@
   <mat-card-actions>
     <button mat-button><mat-icon>favorite</mat-icon> LIKE</button>
     <button mat-button><mat-icon> comment</mat-icon> COMMENT</button>
-    <button mat-button><mat-icon>send</mat-icon> SEND</button>
+    <button mat-button (click)="copyToClipboard();"><mat-icon>send</mat-icon> SEND</button>
   </mat-card-actions>
 </mat-card>
