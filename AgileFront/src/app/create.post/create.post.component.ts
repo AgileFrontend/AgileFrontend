@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../services/post/post.service';
 
 @Component({
-  selector: 'app-create.post',
+  selector: 'app-create-post',
   templateUrl: './create.post.component.html',
   styleUrls: ['./create.post.component.scss'],
 })

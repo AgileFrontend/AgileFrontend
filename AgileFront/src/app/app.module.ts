@@ -31,18 +31,18 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
+    CreatePostComponent,
     LoginComponent,
     HomepageComponent,
     RegisterComponent,
-    CreatePostComponent,
     MyProjectPageComponent,
     NavbarComponent,
+    ProjectComponent,
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    ProjectComponent,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'agilebackend-9e4d6',

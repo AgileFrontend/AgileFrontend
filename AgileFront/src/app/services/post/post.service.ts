@@ -6,11 +6,13 @@ import {
   deleteDoc,
   collection,
   DocumentReference,
+  collectionData,
   getDoc,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
 import { StorageService } from '../storage/storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +28,15 @@ export class PostService {
     return await addDoc(collection(this.firestore, 'posts'), post);
   }
 
+  readAllPost() {
+    const postsCollection = collection(this.firestore, 'posts');
+    return collectionData(postsCollection) as Observable<Post[]>;
+  }
   async readPost(messageRef: DocumentReference) {
     return await getDoc(messageRef);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async updatePost(messageRef: DocumentReference, field: any) {
+  async updatePost(messageRef: DocumentReference, field: object) {
     return await updateDoc(messageRef, field);
   }
 
@@ -39,38 +44,38 @@ export class PostService {
     return await deleteDoc(messageRef);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async addPost(addPostValue: any, postImage: Blob | null) {
-    this.authService.getCurrentUser().then(async (currentUser) => {
-      //Check current user
-      if (currentUser != undefined) {
-        const post: Post = {
-          title: addPostValue.title,
-          body: addPostValue.body,
-          photoURL: '',
-          userId: currentUser.uid,
-        };
-        const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
+  async addPost(
+    addPostValue: Partial<{
+      title: string;
+      body: string;
+    }>,
+    postImage: Blob | null,
+  ) {
+    const currentUser = await this.authService.getCurrentUser();
+    if (currentUser !== null) {
+      const post: Post = {
+        title: addPostValue.title,
+        body: addPostValue.body,
+        imageURL: '',
+        userId: currentUser.uid,
+      };
+      const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
 
-        if (postImage != null) {
-          //Check if it had a file
-          const uploadResult = await this.storageService.createFile(
-            postImage,
-            'posts/' + postRef.id.toString(),
-          );
-          post.photoURL = await this.storageService.readFileFromRef(
-            uploadResult.ref,
-          );
-          await this.updatePost(postRef, {
-            photoURL: post.photoURL.toString(),
-          });
-          return;
-        } else {
-          return;
-        }
-      } else {
-        console.log('The user is not logged in!');
+      if (postImage != null) {
+        //Check if it had a file
+        const uploadResult = await this.storageService.createFile(
+          postImage,
+          'posts/' + postRef.id.toString(),
+        );
+        post.imageURL = await this.storageService.readFileFromRef(
+          uploadResult.ref,
+        );
+        await this.updatePost(postRef, {
+          imageURL: post.imageURL.toString(),
+        });
       }
-    });
+    } else {
+      console.log('The user is not logged in!');
+    }
   }
 }
