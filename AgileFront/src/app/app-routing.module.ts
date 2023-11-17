@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MyProjectPageComponent } from './my-project-page/my-project-page.component';
 import { authGuard } from './services/auth/auth.service';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),ToastrModule.forRoot()],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
