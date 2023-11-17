@@ -30,9 +30,13 @@ export class ProjectComponent {
    */
   ngOnInit() {
     const identifier = this.route.snapshot.queryParamMap.get('id');
-    if (identifier) {
+    let fullURL = "";
+    this.route.url.subscribe((seg)=> {
+      fullURL = seg.map(segment => segment.path).join('/');
+    });
+    if (identifier && fullURL === 'post') {
       this.fetchPost(identifier);
-    } else {
+    } else if (fullURL === 'post' && !identifier) {
       this.toast.error("No specified ID on URL","ID Error");
     }
   }
