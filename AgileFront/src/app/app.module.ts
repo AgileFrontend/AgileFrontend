@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,9 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
+import { ProfileComponent } from './profile/profile.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,8 @@ import { MatListModule } from '@angular/material/list';
     MyProjectPageComponent,
     NavbarComponent,
     ProjectComponent,
+    ProfileComponent,
+    FileUploadComponent,
   ],
   imports: [
     RouterModule,
@@ -61,6 +68,8 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -69,6 +78,7 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatToolbarModule,
     MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
