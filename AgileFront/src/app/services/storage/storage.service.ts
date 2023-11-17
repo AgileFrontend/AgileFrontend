@@ -8,6 +8,7 @@ import {
   deleteObject,
   StorageReference,
 } from '@angular/fire/storage';
+import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -42,4 +43,23 @@ export class StorageService {
   }
 
   //Todo check for the update ?
+}
+
+export function requiredFileType(types: string[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const file = control.value;
+    if (file) {
+      const fileName = file.name as string;
+      const extension = fileName.split('.').pop()?.toLowerCase();
+
+      if (!extension || !types.includes(extension)) {
+        return {
+          requiredFileType: true,
+        };
+      }
+      return null;
+    }
+
+    return null;
+  };
 }
