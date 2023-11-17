@@ -3,5 +3,5 @@ export interface Post {
   body?: string;
   imageURL: string;
   userId: string;
-  postId? : string;
+  postId?: string;
 }

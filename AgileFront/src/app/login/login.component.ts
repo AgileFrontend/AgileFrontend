@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: Auth,
     private toast: ToastrService,
-    private authGuard : AuthService
+    private authGuard: AuthService,
   ) {}
 
   /**
@@ -48,16 +48,18 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.hide = true;
-    // Fetching the authguard to check if the user is loggedin to avoid him accessing login page via URL  
+    // Fetching the authguard to check if the user is loggedin to avoid him accessing login page via URL
     this.authGuard.isLoggedIn().then((logged) => {
       if (logged) {
-        this.toast.info("You are already logged in, redirecting you to homepage");
+        this.toast.info(
+          'You are already logged in, redirecting you to homepage',
+        );
         this.router.navigate(['homepage']);
         return;
-      }else {
+      } else {
         return;
       }
-    })
+    });
   }
 
   /**
@@ -68,7 +70,6 @@ export class LoginComponent implements OnInit {
    * If the login is not successful, it displays an alert with the error code and the error message
    */
   signIn() {
-    
     if (this.loginForm.valid && this.email.value && this.password.value) {
       const credemail = this.email.value;
       const credpass = this.password.value;
@@ -79,7 +80,10 @@ export class LoginComponent implements OnInit {
         .catch((error) => {
           // Error handling alert
           const errormessage = error.message;
-          this.toast.error('Error while login : ' + '\n' + errormessage,"Login Error");
+          this.toast.error(
+            'Error while login : ' + '\n' + errormessage,
+            'Login Error',
+          );
         });
     }
   }

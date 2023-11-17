@@ -25,15 +25,15 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path : 'post',
-    component : ProjectComponent,
-    canActivate : [authGuard]
+    path: 'post',
+    component: ProjectComponent,
+    canActivate: [authGuard],
   },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),ToastrModule.forRoot()],
+  imports: [RouterModule.forRoot(routes), ToastrModule.forRoot()],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
