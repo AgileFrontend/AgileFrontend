@@ -1,49 +1,46 @@
-<div class="profileform">
   <form
     [formGroup]="profileForm"
     (ngSubmit)="onSubmitForm()"
-    class="registerform"
+    class="profileform"
   >
-    <mat-form-field class="field">
-      <mat-label for="email">Email</mat-label>
-      <input matInput id="email" type="email" [formControl]="email" />
-    </mat-form-field>
-    <br />
+  <div class="profile-column">
+    
+
     <mat-form-field class="field">
       <mat-label for="name">Name</mat-label>
       <input matInput id="name" type="name" [formControl]="name" />
     </mat-form-field>
-    <br />
+
     <mat-form-field class="field">
       <mat-label for="surname">Surname</mat-label>
       <input matInput id="surname" type="surname" [formControl]="surname" />
     </mat-form-field>
-    <br />
+
+    <mat-form-field class="field">
+      <mat-label for="email">Email</mat-label>
+      <input matInput id="email" type="email" [formControl]="email" />
+    </mat-form-field>
+    
     <mat-form-field class="field">
       <mat-label for="phoneNumber">Phone Number</mat-label>
       <input matInput id="phoneNumber" type="phoneNumber" [formControl]="phoneNumber"/>
     </mat-form-field>
-    <br />
-    <mat-form-field class="field">
-      <mat-label for="bio">Biography</mat-label>
-      <input matInput id="bio" type="bio" [formControl]="bio" />
-    </mat-form-field>
-    <br />
-    <mat-form-field class="field">
-      <mat-label for="photo">Photo</mat-label>
-      <input matInput id="photo" type="photo" [formControl]="photo" />
-    </mat-form-field>
-    <br />
-    <mat-form-field class="field">
-      <mat-label for="bio">Biography</mat-label>
-      <input matInput id="bio" type="bio" [formControl]="bio" />
-    </mat-form-field>
-    <br />
+  
+      <img class="field" [src]="this.profilePicture"
+  alt="" id="profilePicture" width="210" 
+  height="210"/>
+      <app-file-upload class="field" [formControl]="photo" (change)="onFileSelected($event)"></app-file-upload>
+    </div>
+    <div class="profile-column">
+      <mat-form-field class="field">
+        <mat-label for="bio">Biography</mat-label>
+        <textarea matInput id="bio" type="bio" [formControl]="bio"></textarea>
+      </mat-form-field>
     <mat-form-field class="field">
       <mat-label for="address">Address</mat-label>
       <input matInput id="address" type="address" [formControl]="address" />
     </mat-form-field>
-    <br />
+    
     <mat-form-field class="field">
       <mat-label for="town">Town</mat-label>
       <input matInput id="town" type="town" [formControl]="town" />
@@ -53,10 +50,14 @@
       <mat-label for="postalCode">Postal Code</mat-label>
       <input matInput id="postalCode" type="postalCode" [formControl]="postalCode" />
     </mat-form-field>
-    <br />
-    <br />
+
+    
+    
+    
+ 
     <button mat-raised-button type="submit" [disabled]="!profileForm.valid">
       Update Profile
     </button>
+    </div>
+
   </form>
-</div>

@@ -22,7 +22,7 @@ const routes: Routes = [
     component: CreatePostComponent,
     canActivate: [authGuard],
   },
-  { path: 'profile', component: ProfileComponent }, // route to the profile page
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page
 ];
 
 @NgModule({

@@ -29,6 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
 import { ProfileComponent } from './profile/profile.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavbarComponent,
     ProjectComponent,
     ProfileComponent,
+    FileUploadComponent,
   ],
   imports: [
     RouterModule,
@@ -75,6 +78,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatDialogModule,
     MatToolbarModule,
     MatListModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

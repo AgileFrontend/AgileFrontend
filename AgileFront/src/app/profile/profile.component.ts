@@ -4,6 +4,7 @@ import { User } from "../services/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ProfileService } from '../services/profile/profile.service';
 import { AuthService } from '../services/auth/auth.service';
+import { StorageService, requiredFileType } from '../services/storage/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,20 +17,33 @@ export class ProfileComponent {
   phoneNumber = new FormControl('', [Validators.pattern('^[0-9]+$'),Validators.minLength(10),Validators.maxLength(10)])
   email = new FormControl('', [Validators.email,Validators.maxLength(50)])
   bio = new FormControl('', [Validators.maxLength(500)])
-  photo =  new FormControl('', Validators.maxLength(500))
+  photo =  new FormControl(null, [requiredFileType(['png','jpg','jpeg'])])
   address = new FormControl('', [Validators.maxLength(100)])
   town = new FormControl('', [Validators.maxLength(50)])
   postalCode = new FormControl('', [Validators.maxLength(5)])
+  imageSrc: File | null = null;
+  imageUrl = '';
+  profilePicture = '';
 
-  profileForm = new FormGroup([this.name,this.surname,this.phoneNumber,this.email,this.bio, this.photo, this.address, this.town, this.postalCode])
+  profileForm = new FormGroup({
+    name: this.name,
+    surname: this.surname,
+    phoneNumber: this.phoneNumber,
+    email: this.email,
+    bio: this.bio,
+    photo: this.photo,
+    address: this.address,
+    town: this.town,
+    postalCode: this.postalCode
+  });
 
   constructor(
     private profile: ProfileService,
     private auth : AuthService,
+    private storage : StorageService,
     private snackBar: MatSnackBar) {
+      this.pushCurrentUserDataToView()
   }
-
-
 
   formatProfileForm() {
     const user: User = {
@@ -38,7 +52,7 @@ export class ProfileComponent {
       phoneNumber: !this.phoneNumber.value ? '' : this.phoneNumber.value,
       email: !this.email.value ? '' : this.email.value,
       bio: !this.bio.value ? '' : this.bio.value,
-      photoURL: !this.photo.value ? '' : this.photo.value,
+      photoURL: !this.imageUrl ? '' : this.imageUrl,
       address: !this.address.value ? '' : this.address.value,
       town: !this.town.value ? '' : this.town.value,
       postalCode: !this.postalCode.value ? '' : this.postalCode.value,
@@ -48,6 +62,7 @@ export class ProfileComponent {
 
   async onSubmitForm() {
     const userData = this.formatProfileForm()
+    console.log(userData)
     const currentUser = await this.auth.getCurrentUser()
     if(currentUser){
       await this.profile.updateUserData(userData, currentUser.uid)
@@ -56,44 +71,33 @@ export class ProfileComponent {
   }
 
 
-  // onFileSelected(event: any): void {
-  //   this.profileImage = event.target.files[0];
-  // }
+  async onFileSelected(event: Event) {
+    const currentUser = await this.auth.getCurrentUser()
+    if (event !== null && currentUser !== null) {
+      const target = event.target as HTMLInputElement;
+      if (target.files != null) {
+        this.imageSrc = target.files[0];
+        const uploadResult = await this.storage.createFile(this.imageSrc,'profile-pictures/'+ currentUser.uid)
+        this.imageUrl = await this.storage.readFileFromRef(uploadResult.ref)
+        this.profilePicture = this.imageUrl
+      }
+    }
+  }
 
-  // getUserData() {
-  //   const observer: Partial<Observer<DocumentSnapshot<DocumentData, DocumentData>>> = {
-  //     next: (userSnapshot: DocumentSnapshot<DocumentData, DocumentData>) => {
-  //       const user = userSnapshot.data() as User;
-  //       this.oldUserData = user;
-  //       this.pushUserDataToView(user);
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err);
-  //     }
-  //   };
-  
-  //   const userString = localStorage.getItem('user');
-  
-  //   if (userString) {
-  //     const uid = JSON.parse(userString).uid;
-  
-  //     // Convert the Promise to an Observable using 'from'
-  //     const userObservable: Observable<DocumentSnapshot<DocumentData, DocumentData>> = from(this.profile.getUserWithUID(uid));
-  
-  //     // Subscribe to the Observable
-  //     userObservable.subscribe(observer);
-  //   }
-  // }
-
-  // pushUserDataToView(user: User) {
-  //   this.profilForm?.get('name')?.setValue(user.name);
-  //   this.profilForm?.get('surname')?.setValue(user.surname);
-  //   this.profilForm?.get('phoneNumber')?.setValue(user.phoneNumber);
-  //   this.profilForm?.get('email')?.setValue(user.email);
-  //   this.profilForm?.get('bio')?.setValue(user.bio);
-  //   //this.pictureUrl? = user.photoURL;
-  //   this.profilForm?.get('town')?.setValue(user.town);
-  //   this.profilForm?.get('address')?.setValue(user.address);
-  //   this.profilForm?.get('postalCode')?.setValue(user.postalCode);
-  // }
+  async pushCurrentUserDataToView() {
+    const currentUser = await this.auth.getCurrentUser()
+    if(currentUser !== null){
+    const documentSnapshot = await this.profile.getUserWithUID(currentUser.uid)
+    const userData = documentSnapshot.data() as User
+    this.profileForm?.get('name')?.setValue(userData.name);
+    this.profileForm?.get('surname')?.setValue(userData.surname);
+    this.profileForm?.get('phoneNumber')?.setValue(userData.phoneNumber);
+    this.profileForm?.get('email')?.setValue(userData.email);
+    this.profileForm?.get('bio')?.setValue(userData.bio);
+    this.profileForm?.get('town')?.setValue(userData.town);
+    this.profileForm?.get('address')?.setValue(userData.address);
+    this.profileForm?.get('postalCode')?.setValue(userData.postalCode);
+    this.profilePicture = userData.photoURL;
+    }
+  }
 }
