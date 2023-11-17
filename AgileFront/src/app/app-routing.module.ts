@@ -28,8 +28,7 @@ const routes: Routes = [
     path : 'post',
     component : ProjectComponent,
     canActivate : [authGuard]
-  }
-]
+  },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page
 ];
 
