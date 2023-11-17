@@ -73,15 +73,13 @@ export class LoginComponent implements OnInit {
       const credemail = this.email.value;
       const credpass = this.password.value;
       signInWithEmailAndPassword(this.auth, credemail, credpass) // firebase authentication service call
-        .then((usercredential) => {
-          const user = usercredential.user; // on success, we get the user
+        .then(() => {
           this.router.navigate(['homepage']); //we redirect the user to the homepage with the session token as a query parameter
         })
         .catch((error) => {
           // Error handling alert
-          const errorcode = error.code;
           const errormessage = error.message;
-          this.toast.error('Error while login : ' + '\n' + errormessage);
+          this.toast.error('Error while login : ' + '\n' + errormessage,"Login Error");
         });
     }
   }

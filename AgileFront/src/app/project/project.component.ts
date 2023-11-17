@@ -1,8 +1,4 @@
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../services/post';
 import {Clipboard} from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +9,7 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit {
   /**
    * Constructor of the project component
    * @param clip : Clipboard service to copy the URL to the clipboard
@@ -28,13 +24,14 @@ export class ProjectComponent {
    * It calls the async method fetchPost to fetch the post from the database if the id is specified in the URL
    * If the id is not specified, it displays an error message
    */
-  ngOnInit() {
+  ngOnInit() : void {
     const identifier = this.route.snapshot.queryParamMap.get('id');
     let fullURL = "";
     this.route.url.subscribe((seg)=> {
       fullURL = seg.map(segment => segment.path).join('/');
     });
     if (identifier && fullURL === 'post') {
+      console.log("fetching post");
       this.fetchPost(identifier);
     } else if (fullURL === 'post' && !identifier) {
       this.toast.error("No specified ID on URL","ID Error");
