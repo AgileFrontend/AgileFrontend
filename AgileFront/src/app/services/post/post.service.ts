@@ -58,9 +58,10 @@ export class PostService {
         body: addPostValue.body,
         imageURL: '',
         userId: currentUser.uid,
+        postId: '',
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
-
+      await this.updatePost(postRef, { postId: postRef.id.toString() });
       if (postImage != null) {
         //Check if it had a file
         const uploadResult = await this.storageService.createFile(
@@ -70,6 +71,7 @@ export class PostService {
         post.imageURL = await this.storageService.readFileFromRef(
           uploadResult.ref,
         );
+
         await this.updatePost(postRef, {
           imageURL: post.imageURL.toString(),
         });

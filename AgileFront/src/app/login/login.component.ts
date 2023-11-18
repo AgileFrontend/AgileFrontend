@@ -3,6 +3,8 @@ import { Auth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
     Validators.minLength(8),
-    Validators.maxLength(100),
+    Validators.maxLength(20),
   ]);
   hide = true;
   loginForm = new FormGroup([this.email, this.password]);
@@ -36,6 +38,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
+    private toast: ToastrService,
+    private authGuard: AuthService,
   ) {}
 
   /**
@@ -44,6 +48,18 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.hide = true;
+    // Fetching the authguard to check if the user is loggedin to avoid him accessing login page via URL
+    this.authGuard.isLoggedIn().then((logged) => {
+      if (logged) {
+        this.toast.info(
+          'You are already logged in, redirecting you to homepage',
+        );
+        this.router.navigate(['homepage']);
+        return;
+      } else {
+        return;
+      }
+    });
   }
 
   /**
@@ -58,17 +74,16 @@ export class LoginComponent implements OnInit {
       const credemail = this.email.value;
       const credpass = this.password.value;
       signInWithEmailAndPassword(this.auth, credemail, credpass) // firebase authentication service call
-        .then((usercredential) => {
-          const user = usercredential.user; // on success, we get the user
-          this.router.navigate(['homepage'], {
-            queryParams: { token: user.uid },
-          }); //we redirect the user to the homepage with the session token as a query parameter
+        .then(() => {
+          this.router.navigate(['homepage']); //we redirect the user to the homepage with the session token as a query parameter
         })
         .catch((error) => {
           // Error handling alert
-          const errorcode = error.code;
           const errormessage = error.message;
-          alert('Error while login : ' + errorcode + '\n' + errormessage);
+          this.toast.error(
+            'Error while login : ' + '\n' + errormessage,
+            'Login Error',
+          );
         });
     }
   }

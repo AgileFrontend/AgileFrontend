@@ -28,6 +28,7 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
+import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './profile/profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -77,7 +78,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
     MatListModule,
+    ToastrModule,
     MatGridListModule,
   ],
   providers: [],
