@@ -22,9 +22,7 @@ import { Observable } from 'rxjs';
 export class InstantMessagingService {
 
   constructor(private firestore :Firestore, private auth : AuthService) {
-   
    }
-  
   
   //Create a new conversation
   async createConversation(conversation: Conversation){
@@ -54,7 +52,7 @@ export class InstantMessagingService {
     return await getDoc(messageRef)
   }
 
-  //Update a give message
+  //Update a give message+45
   async updateMessage(messageRef : DocumentReference,field : object){
     return await updateDoc(messageRef,field)
   }
