@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Conversation } from 'src/app/services/conversation';
 
 @Component({
