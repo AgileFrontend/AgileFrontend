@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Conversation } from '../services/conversation';
+import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-messaging-page',
@@ -7,4 +11,16 @@ import { Component } from '@angular/core';
 })
 export class MessagingPageComponent {
 
+  conversation$: Observable<Conversation[]> = new Observable<Conversation[]>
+
+  constructor(private messagingService : InstantMessagingService,private authService: AuthService){
+    this.fetchUserConv()
+  }
+
+  async fetchUserConv(){
+    const currentUser = await this.authService.getCurrentUser()
+    if(currentUser != null){
+      this.conversation$ = this.messagingService.readAllCurrentUserConversation(currentUser.uid)
+    }
+  }
 }

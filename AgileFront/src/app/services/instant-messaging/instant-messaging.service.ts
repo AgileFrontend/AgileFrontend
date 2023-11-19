@@ -62,14 +62,9 @@ export class InstantMessagingService {
     return await deleteDoc(messageRef)
   }
 
-  async readAllCurrentUserConversation(){
-    const currentUser = await this.auth.getCurrentUser()
-    let userID = ''
-    if (currentUser != null){
-      userID = currentUser.uid
-    }  
+  readAllCurrentUserConversation(userID : string){
     const q = query(collection(this.firestore,"conversations"),where("userIDs","array-contains",userID))
-      return collectionData(q) as Observable<Conversation[]>   
+    return collectionData(q) as Observable<Conversation[]>   
   }
 
 
