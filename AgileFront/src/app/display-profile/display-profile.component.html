@@ -39,6 +39,14 @@
               {{this.user.bio}}
             </div>
           </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div>
+            <h2 class="projects"> Projects : </h2>
+            <ng-container *ngFor="let post of postsTitleAndURL">            
+              <a mat-raised-button [href]="post.url" class="projects">
+                <span class="projects-title">{{post.title}}</span></a>
+            </ng-container>
+          </div>
         </div>
       </mat-list>
     </mat-card-content>
