@@ -6,7 +6,7 @@ import { User } from '../user';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class EditProfileService {
   constructor(
     private firestore: Firestore,
     private storage: Storage,

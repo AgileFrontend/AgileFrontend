@@ -31,6 +31,7 @@ export class RegisterService {
           email: user.email == null ? '' : user.email,
           name: '',
           surname: '',
+          occupation: '',
           phoneNumber: '',
           bio: '',
           photoURL: '',

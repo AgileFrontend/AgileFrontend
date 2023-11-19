@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../services/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProfileService } from '../services/profile/profile.service';
+import { EditProfileService } from '../services/edit-profile/edit-profile.service';
 import { AuthService } from '../services/auth/auth.service';
 import {
   StorageService,
@@ -10,17 +10,22 @@ import {
 } from '../services/storage/storage.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss'],
 })
-export class ProfileComponent {
+export class EditProfileComponent {
   name = new FormControl('', [
     Validators.required,
     Validators.minLength(1),
     Validators.maxLength(50),
   ]);
   surname = new FormControl('', [
+    Validators.required,
+    Validators.minLength(1),
+    Validators.maxLength(50),
+  ]);
+  occupation = new FormControl('', [
     Validators.required,
     Validators.minLength(1),
     Validators.maxLength(50),
@@ -43,6 +48,7 @@ export class ProfileComponent {
   profileForm = new FormGroup({
     name: this.name,
     surname: this.surname,
+    occupation: this.occupation,
     phoneNumber: this.phoneNumber,
     email: this.email,
     bio: this.bio,
@@ -53,7 +59,7 @@ export class ProfileComponent {
   });
 
   constructor(
-    private profile: ProfileService,
+    private profile: EditProfileService,
     private auth: AuthService,
     private storage: StorageService,
     private snackBar: MatSnackBar,
@@ -65,6 +71,7 @@ export class ProfileComponent {
     const user: User = {
       name: !this.name.value ? '' : this.name.value,
       surname: !this.surname.value ? '' : this.surname.value,
+      occupation: !this.occupation.value ? '' : this.occupation.value,
       phoneNumber: !this.phoneNumber.value ? '' : this.phoneNumber.value,
       email: !this.email.value ? '' : this.email.value,
       bio: !this.bio.value ? '' : this.bio.value,
@@ -111,6 +118,7 @@ export class ProfileComponent {
       const userData = documentSnapshot.data() as User;
       this.profileForm?.get('name')?.setValue(userData.name);
       this.profileForm?.get('surname')?.setValue(userData.surname);
+      this.profileForm?.get('occupation')?.setValue(userData.occupation);
       this.profileForm?.get('phoneNumber')?.setValue(userData.phoneNumber);
       this.profileForm?.get('email')?.setValue(userData.email);
       this.profileForm?.get('bio')?.setValue(userData.bio);

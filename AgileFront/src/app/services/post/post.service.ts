@@ -8,6 +8,8 @@ import {
   DocumentReference,
   collectionData,
   getDoc,
+  query,
+  where,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
@@ -31,6 +33,12 @@ export class PostService {
   readAllPost() {
     const postsCollection = collection(this.firestore, 'posts');
     return collectionData(postsCollection) as Observable<Post[]>;
+  }
+
+  readAllPostWithUserID(userId: string) {
+    const postsCollection = collection(this.firestore, 'posts');
+    const postsQuery = query(postsCollection, where('userId', '==', userId));
+    return collectionData(postsQuery) as Observable<Post[]>;
   }
 
   async retrieveUserId() {
