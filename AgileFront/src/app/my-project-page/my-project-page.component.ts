@@ -12,9 +12,9 @@ export class MyProjectPageComponent {
   posts$: Observable<Post[]>;
   currentUserId: string;
   constructor(private postService: PostService) {
-    this.posts$ = this.postService.readAllPost()
-    this.currentUserId = ''
-    this.init()
+    this.posts$ = this.postService.readAllPost();
+    this.currentUserId = '';
+    this.init();
   }
 
   async init() {
