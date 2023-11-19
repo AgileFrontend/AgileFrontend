@@ -35,11 +35,17 @@ export class PostService {
     return collectionData(postsCollection) as Observable<Post[]>;
   }
 
+
   readAllPostWithUserID(userId: string) {
     const postsCollection = collection(this.firestore, 'posts');
     const postsQuery = query(postsCollection, where('userId', '==', userId));
     return collectionData(postsQuery) as Observable<Post[]>;
   }
+
+  async retrieveUserId() {
+    return await this.authService.getCurrentUser();
+  }
+
   async readPost(messageRef: DocumentReference) {
     return await getDoc(messageRef);
   }
