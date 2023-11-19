@@ -1,0 +1,46 @@
+<div class="profile-container">
+  <mat-card class="profile">
+    <mat-card-header>
+      <img [src]="this.user.photoURL" alt="" class="profile-picture"/>
+      <div class="profile-header">
+        <h1 class="profile-name">{{user.name}} {{user.surname}}</h1>
+        <h2 class="occupation">{{user.occupation}}</h2>
+      </div>
+      <a mat-raised-button routerLink="../edit" class="edit-button"><mat-icon>edit</mat-icon>Edit Profile</a>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list role="list">
+        <div class="profile-information">
+          <div>
+            <mat-list-item role="listitem">
+              <mat-icon matListItemIcon>mail</mat-icon>
+              Email : {{this.user.email}}
+            </mat-list-item>
+            <mat-list-item role="listitem"><mat-icon matListItemIcon>call</mat-icon>
+              Phone Number : {{this.user.phoneNumber}}
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon matListItemIcon>home</mat-icon>
+              Address : {{this.user.address}}
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon matListItemIcon>location_city</mat-icon>
+              Town : {{this.user.town}}
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon matListItemIcon>local_post_office</mat-icon>
+              Postal Code : {{this.user.postalCode}}
+            </mat-list-item>
+          </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div>
+            <h2 class="profile-bio">Biography : </h2>
+            <div class="profile-bio">
+              {{this.user.bio}}
+            </div>
+          </div>
+        </div>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

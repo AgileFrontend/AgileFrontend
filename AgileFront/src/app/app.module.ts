@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './profile/profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { DisplayProfileComponent } from './display-profile/display-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ProjectComponent,
     ProfileComponent,
     FileUploadComponent,
+    DisplayProfileComponent,
   ],
   imports: [
     RouterModule,

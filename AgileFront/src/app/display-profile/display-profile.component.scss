@@ -1,0 +1,40 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh; /* Adjust the height as needed */
+}
+
+.profile {
+  width: 80%;
+}
+.profile-picture {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+}
+.profile-name {
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+}
+.occupation {
+  color: gray;
+  padding-left: 1.1rem;
+}
+.profile-information {
+  display: flex;
+  justify-content:flex-start
+}
+.profile-bio {
+  margin-right: 1rem; /* Adjust this based on your spacing preference */
+  margin-left: 1rem;
+  white-space: normal; /* or white-space: pre-line; */
+}
+
+.edit-button {
+  margin-left: auto; /* Push the button to the right */
+}
+
+.profile-header {
+  display: block;
+}

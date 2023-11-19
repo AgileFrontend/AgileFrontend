@@ -25,6 +25,11 @@ export class ProfileComponent {
     Validators.minLength(1),
     Validators.maxLength(50),
   ]);
+  occupation = new FormControl('', [
+    Validators.required,
+    Validators.minLength(1),
+    Validators.maxLength(50),
+  ]);
   phoneNumber = new FormControl('', [
     Validators.pattern('^[0-9]+$'),
     Validators.minLength(10),
@@ -43,6 +48,7 @@ export class ProfileComponent {
   profileForm = new FormGroup({
     name: this.name,
     surname: this.surname,
+    occupation: this.occupation,
     phoneNumber: this.phoneNumber,
     email: this.email,
     bio: this.bio,
@@ -65,6 +71,7 @@ export class ProfileComponent {
     const user: User = {
       name: !this.name.value ? '' : this.name.value,
       surname: !this.surname.value ? '' : this.surname.value,
+      occupation: !this.occupation.value ? '' : this.occupation.value,
       phoneNumber: !this.phoneNumber.value ? '' : this.phoneNumber.value,
       email: !this.email.value ? '' : this.email.value,
       bio: !this.bio.value ? '' : this.bio.value,
@@ -111,6 +118,7 @@ export class ProfileComponent {
       const userData = documentSnapshot.data() as User;
       this.profileForm?.get('name')?.setValue(userData.name);
       this.profileForm?.get('surname')?.setValue(userData.surname);
+      this.profileForm?.get('occupation')?.setValue(userData.occupation);
       this.profileForm?.get('phoneNumber')?.setValue(userData.phoneNumber);
       this.profileForm?.get('email')?.setValue(userData.email);
       this.profileForm?.get('bio')?.setValue(userData.bio);

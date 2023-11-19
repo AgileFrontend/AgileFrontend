@@ -9,6 +9,7 @@ import { MyProjectPageComponent } from './my-project-page/my-project-page.compon
 import { authGuard } from './services/auth/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ProjectComponent } from './project/project.component';
+import { DisplayProfileComponent } from './display-profile/display-profile.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     component: ProjectComponent,
     canActivate: [authGuard],
   },
-  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page
+  { path: 'profile/edit', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page,
+  { path: 'profile/:id', component: DisplayProfileComponent }
 ];
 
 @NgModule({
