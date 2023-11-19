@@ -1,8 +1,8 @@
 .profile-container {
+  margin-top:5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75vh; /* Adjust the height as needed */
 }
 
 .profile {
@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  max-width: 20rem;
+  max-width: 18rem;
   min-height: 3rem;
   height:fit-content;
   white-space: normal;
@@ -54,6 +54,6 @@
 
 .projects-title{
   word-wrap: break-word;
-  max-width: 19rem; /* Adjust the value based on your desired maximum width */
+  max-width: 17rem; /* Adjust the value based on your desired maximum width */
   display: inline-block;
 }

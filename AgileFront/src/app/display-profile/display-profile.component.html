@@ -6,7 +6,7 @@
         <h1 class="profile-name">{{user.name}} {{user.surname}}</h1>
         <h2 class="occupation">{{user.occupation}}</h2>
       </div>
-      <a mat-raised-button routerLink="../edit" class="edit-button"><mat-icon>edit</mat-icon>Edit Profile</a>
+      <a mat-raised-button routerLink="../edit" class="edit-button" [hidden]="!editButtonAvailable"><mat-icon>edit</mat-icon>Edit Profile</a>
     </mat-card-header>
     <mat-card-content>
       <mat-list role="list">

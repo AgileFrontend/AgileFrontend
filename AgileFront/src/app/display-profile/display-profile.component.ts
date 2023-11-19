@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
 })
 
 export class DisplayProfileComponent {
+  editButtonAvailable = false;
   user: User = {
     name: '',
     surname: '',
@@ -30,6 +31,7 @@ export class DisplayProfileComponent {
   constructor(private auth: AuthService, private displayProfile : DisplayProfileService, private post: PostService,private route : ActivatedRoute){
     const userID = this.route.snapshot.paramMap.get('id');
     if (userID == "me") {
+      this.editButtonAvailable = true;
       this.auth.getCurrentUser()
       .then((user) => {
         if(user) {
@@ -41,7 +43,8 @@ export class DisplayProfileComponent {
       }
       )
     }
-    if (userID) {
+    if (userID && userID !== "me") {
+      this.editButtonAvailable = false;
       this.pushUserDataToView(userID)
       this.pushPostsToView(userID).subscribe(posts => {
         this.postsTitleAndURL = posts;
