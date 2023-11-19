@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../services/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProfileService } from '../services/profile/profile.service';
+import { EditProfileService } from '../services/edit-profile/edit-profile.service';
 import { AuthService } from '../services/auth/auth.service';
 import {
   StorageService,
@@ -10,11 +10,11 @@ import {
 } from '../services/storage/storage.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.scss'],
 })
-export class ProfileComponent {
+export class EditProfileComponent {
   name = new FormControl('', [
     Validators.required,
     Validators.minLength(1),
@@ -59,7 +59,7 @@ export class ProfileComponent {
   });
 
   constructor(
-    private profile: ProfileService,
+    private profile: EditProfileService,
     private auth: AuthService,
     private storage: StorageService,
     private snackBar: MatSnackBar,
