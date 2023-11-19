@@ -11,6 +11,16 @@
     </mat-form-field>
 
     <mat-form-field class="field">
+      <mat-label for="occupation">Occupation</mat-label>
+      <input
+        matInput
+        id="occupation"
+        type="occupation"
+        [formControl]="occupation"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="field">
       <mat-label for="email">Email</mat-label>
       <input matInput id="email" type="email" [formControl]="email" />
     </mat-form-field>

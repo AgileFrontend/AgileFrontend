@@ -29,9 +29,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
 import { ToastrModule } from 'ngx-toastr';
-import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { DisplayProfileComponent } from './display-profile/display-profile.component';
 import { MessageComponent } from './messaging-page/message/message.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
@@ -46,8 +47,9 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
     MyProjectPageComponent,
     NavbarComponent,
     ProjectComponent,
-    ProfileComponent,
+    EditProfileComponent,
     FileUploadComponent,
+    DisplayProfileComponent,
     MessageComponent,
     MessagingPageComponent,
     ConversationComponent,
