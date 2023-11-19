@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,10 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
+import { ToastrModule } from 'ngx-toastr';
+import { ProfileComponent } from './profile/profile.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MessageComponent } from './messaging-page/message/message.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
@@ -40,6 +46,8 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
     MyProjectPageComponent,
     NavbarComponent,
     ProjectComponent,
+    ProfileComponent,
+    FileUploadComponent,
     MessageComponent,
     MessagingPageComponent,
     ConversationComponent,
@@ -67,6 +75,8 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -74,7 +84,11 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
     MatListModule,
+    ToastrModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

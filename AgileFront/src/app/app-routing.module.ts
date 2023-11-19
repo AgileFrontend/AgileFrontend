@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreatePostComponent } from './create.post/create.post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MyProjectPageComponent } from './my-project-page/my-project-page.component';
 import { authGuard } from './services/auth/auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { ProjectComponent } from './project/project.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 
 const routes: Routes = [
@@ -23,6 +26,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'post',
+    component: ProjectComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] }, // route to the profile page
+  {
     path: 'messaging',
     component: MessagingPageComponent,
     canActivate: [authGuard],
@@ -30,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ToastrModule.forRoot()],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
