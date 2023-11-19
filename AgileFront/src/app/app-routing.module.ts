@@ -30,8 +30,12 @@ const routes: Routes = [
     component: ProjectComponent,
     canActivate: [authGuard],
   },
-  { path: 'profile/edit', component: EditProfileComponent, canActivate: [authGuard] }, // route to the profile page,
-  { path: 'profile/:id', component: DisplayProfileComponent }
+  {
+    path: 'profile/edit',
+    component: EditProfileComponent,
+    canActivate: [authGuard],
+  }, // route to the profile page,
+  { path: 'profile/:id', component: DisplayProfileComponent },
 ];
 
 @NgModule({

@@ -1,12 +1,18 @@
 <div class="profile-container">
   <mat-card class="profile">
     <mat-card-header>
-      <img [src]="this.user.photoURL" alt="" class="profile-picture"/>
+      <img [src]="this.user.photoURL" alt="" class="profile-picture" />
       <div class="profile-header">
-        <h1 class="profile-name">{{user.name}} {{user.surname}}</h1>
-        <h2 class="occupation">{{user.occupation}}</h2>
+        <h1 class="profile-name">{{ user.name }} {{ user.surname }}</h1>
+        <h2 class="occupation">{{ user.occupation }}</h2>
       </div>
-      <a mat-raised-button routerLink="../edit" class="edit-button" [hidden]="!editButtonAvailable"><mat-icon>edit</mat-icon>Edit Profile</a>
+      <a
+        mat-raised-button
+        routerLink="../edit"
+        class="edit-button"
+        [hidden]="!editButtonAvailable"
+        ><mat-icon>edit</mat-icon>Edit Profile</a
+      >
     </mat-card-header>
     <mat-card-content>
       <mat-list role="list">
@@ -14,37 +20,39 @@
           <div>
             <mat-list-item role="listitem">
               <mat-icon matListItemIcon>mail</mat-icon>
-              Email : {{this.user.email}}
+              Email : {{ this.user.email }}
             </mat-list-item>
-            <mat-list-item role="listitem"><mat-icon matListItemIcon>call</mat-icon>
-              Phone Number : {{this.user.phoneNumber}}
+            <mat-list-item role="listitem"
+              ><mat-icon matListItemIcon>call</mat-icon> Phone Number :
+              {{ this.user.phoneNumber }}
             </mat-list-item>
             <mat-list-item role="listitem">
               <mat-icon matListItemIcon>home</mat-icon>
-              Address : {{this.user.address}}
+              Address : {{ this.user.address }}
             </mat-list-item>
             <mat-list-item role="listitem">
               <mat-icon matListItemIcon>location_city</mat-icon>
-              Town : {{this.user.town}}
+              Town : {{ this.user.town }}
             </mat-list-item>
             <mat-list-item role="listitem">
               <mat-icon matListItemIcon>local_post_office</mat-icon>
-              Postal Code : {{this.user.postalCode}}
+              Postal Code : {{ this.user.postalCode }}
             </mat-list-item>
           </div>
           <mat-divider [vertical]="true"></mat-divider>
           <div>
-            <h2 class="profile-bio">Biography : </h2>
+            <h2 class="profile-bio">Biography :</h2>
             <div class="profile-bio">
-              {{this.user.bio}}
+              {{ this.user.bio }}
             </div>
           </div>
           <mat-divider [vertical]="true"></mat-divider>
           <div>
-            <h2 class="projects"> Projects : </h2>
-            <ng-container *ngFor="let post of postsTitleAndURL">            
+            <h2 class="projects">Projects :</h2>
+            <ng-container *ngFor="let post of postsTitleAndURL">
               <a mat-raised-button [href]="post.url" class="projects">
-                <span class="projects-title">{{post.title}}</span></a>
+                <span class="projects-title">{{ post.title }}</span></a
+              >
             </ng-container>
           </div>
         </div>

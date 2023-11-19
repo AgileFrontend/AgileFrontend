@@ -35,7 +35,6 @@ export class PostService {
     return collectionData(postsCollection) as Observable<Post[]>;
   }
 
-
   readAllPostWithUserID(userId: string) {
     const postsCollection = collection(this.firestore, 'posts');
     const postsQuery = query(postsCollection, where('userId', '==', userId));

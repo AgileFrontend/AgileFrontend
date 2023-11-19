@@ -1,5 +1,5 @@
 .profile-container {
-  margin-top:5rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@
 }
 .profile-information {
   display: flex;
-  justify-content:flex-start
+  justify-content: flex-start;
 }
 .profile-bio {
   margin-right: 1rem; /* Adjust this based on your spacing preference */
@@ -48,11 +48,11 @@
   width: fit-content;
   max-width: 18rem;
   min-height: 3rem;
-  height:fit-content;
+  height: fit-content;
   white-space: normal;
 }
 
-.projects-title{
+.projects-title {
   word-wrap: break-word;
   max-width: 17rem; /* Adjust the value based on your desired maximum width */
   display: inline-block;
