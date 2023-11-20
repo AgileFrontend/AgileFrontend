@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProjectComponent } from './project/project.component';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -40,6 +41,12 @@ const routes: Routes = [
   {
     path: 'messaging',
     component: MessagingPageComponent,
+    canActivate: [authGuard],
+  },
+  //To be removed
+  {
+    path: 'conversation',
+    component: ConversationComponent,
     canActivate: [authGuard],
   }
 ];

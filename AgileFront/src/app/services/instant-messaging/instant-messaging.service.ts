@@ -11,10 +11,12 @@ import {
   updateDoc,
   query,
   where,  
-  collectionData} from '@angular/fire/firestore'; //Doublecheck this import statement
+  collectionData,
+  CollectionReference,
+  DocumentData,
+  getDocs} from '@angular/fire/firestore'; //Doublecheck this import statement
 
 import {AuthService} from '../auth/auth.service'
-import { get } from 'http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -62,9 +64,15 @@ export class InstantMessagingService {
     return await deleteDoc(messageRef)
   }
 
-  readAllCurrentUserConversation(userID : string){
+  async readAllUserConversation(userID : string){
     const q = query(collection(this.firestore,"conversations"),where("userIDs","array-contains",userID))
-    return collectionData(q) as Observable<Conversation[]>   
+    return await getDocs(q)
+  }
+
+  readAllMessagesFromConversationID(ConversationID : string){
+    console.log("conversation ID:" + ConversationID)
+    const messagesRef = collection(this.firestore,"conversations/" + ConversationID + "/messages")
+    return collectionData(messagesRef) as Observable<Message[]>
   }
 
 

@@ -1,9 +1,10 @@
 <div class="messaging-container">
   <mat-card class="messaging">
-    <mat-list *ngFor="let conversation of conversations$ | async">
+    <mat-list *ngFor="let conversation of conversationsData">
       <div mat-subheader *ngIf="conversation.conversationName !== null; else displayuuid">{{conversation.conversationName}}</div>
       <ng-template mat-subheader #displayuuid>{{conversation.userIDs}}</ng-template>
-      <div matListItemLine>User list</div>
     </mat-list>
   </mat-card>
 </div>
+
+<app-conversation *ngFor="let conversationID of conversationsID" [conversationID]="conversationID">{{conversationID}}</app-conversation>

@@ -9,5 +9,10 @@ import { Message } from 'src/app/services/message';
 export class MessageComponent {
 
   @Input() message!: Message;
+
+  constructor(){
+    console.log("chat")
+    console.log(this.message)
+  }
   
 }
