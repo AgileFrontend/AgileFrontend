@@ -1,11 +1,25 @@
-<mat-card class="message-card">
-  <mat-card-header>
-    <mat-card-title>{{ this.message.senderID }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{ this.message.content }}
-    </p>
-  </mat-card-content>
-</mat-card>
+<div class="message-container">
+  <div *ngIf="this.message.senderID === this.currentUser.uid">
+  <mat-card class="message-yourself">
+    <mat-card-content class="message-content">
+      <p>
+        {{ this.message.content }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  </div>
+  <div *ngIf="this.message.senderID !== this.currentUser.uid">
+    <mat-card class="message-others">
+      <mat-card-header class="sender-name">
+          {{this.message.senderID}}
+      </mat-card-header>
+      <mat-divider style="width:80%; margin-left:0.5rem"></mat-divider>
+      <mat-card-content class="message-content">
+        <p>
+          {{this.message.content}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 
