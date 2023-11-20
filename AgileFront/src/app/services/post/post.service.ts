@@ -11,6 +11,7 @@ import {
   query,
   where,
   Timestamp,
+  orderBy,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
