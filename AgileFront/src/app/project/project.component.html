@@ -1,7 +1,8 @@
 <mat-card class="example-card" *ngIf="this.post">
   <mat-card-title class="title">{{ this.post.title }}</mat-card-title>
   <mat-card-subtitle>{{
-    this.post.date * 1000 | date: "short"}}</mat-card-subtitle>
+    this.post.date * 1000 | date: "short"
+  }}</mat-card-subtitle>
   <img mat-card-image src="{{ this.post.imageURL }}" alt="" />
   <mat-card-content>
     <br />
