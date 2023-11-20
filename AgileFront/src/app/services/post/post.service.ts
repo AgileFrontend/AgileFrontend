@@ -32,7 +32,7 @@ export class PostService {
   }
 
   readAllPost() {
-    const postsCollection = collection(this.firestore, 'posts')
+    const postsCollection = collection(this.firestore, 'posts');
     const postsQuery = query(postsCollection, orderBy('date'));
     return collectionData(postsQuery) as Observable<Post[]>;
   }
