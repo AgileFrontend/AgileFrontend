@@ -10,6 +10,7 @@ import {
   getDoc,
   query,
   where,
+  Timestamp,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
@@ -72,6 +73,7 @@ export class PostService {
         imageURL: '',
         userId: currentUser.uid,
         postId: '',
+        date: Timestamp.now().seconds,
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
       await this.updatePost(postRef, { postId: postRef.id.toString() });
