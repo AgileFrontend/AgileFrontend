@@ -1,9 +1,31 @@
-<div class="messaging-container">
-  <mat-card class="messaging">
-    <mat-list *ngFor="let conversation of conversations$ | async">
-      <div mat-subheader *ngIf="conversation.conversationName !== null; else displayuuid">{{conversation.conversationName}}</div>
-      <ng-template mat-subheader #displayuuid>{{conversation.userIDs}}</ng-template>
-      <div matListItemLine>User list</div>
-    </mat-list>
+<div class="parent">
+  <mat-card class="messaging-container">
+    <div class="conversation-tab">
+      <h1 mat-subheader>Conversations : </h1>
+      <mat-divider></mat-divider>
+      <mat-list *ngFor="let conversation of conversations$ | async" >
+        <div mat-subheader *ngIf="conversation.conversationName !== undefined; else displayUserIDs">{{conversation.conversationName}}</div>
+        <ng-template mat-subheader #displayUserIDs>{{conversation.userIDs}}</ng-template> 
+        <mat-divider></mat-divider>      
+      </mat-list>
+    </div>
+    <mat-divider [vertical]="true" class="mat-divider-vertical"></mat-divider>   
+    <div class="conversation-container">
+      <div class="messages">
+      </div>
+      <mat-divider></mat-divider>
+      <div class="message-input-container">
+        <form [formGroup]="messageForm">
+        <mat-form-field class="message-input">
+          <input matInput id="messageToSend" type="messageToSend" [formControl="messageToSend" placeholder="Start messaging..."/>
+        </mat-form-field>
+        <button mat-button
+        class="message-send-button"
+        type="submit"
+        ><mat-icon>send</mat-icon></button
+      >
+      </form>
+      </div>
+    </div>
   </mat-card>
 </div>

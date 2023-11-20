@@ -1,4 +1,27 @@
-.message-card {
-  max-width: 400px;
-  margin-bottom: 8px;
+.message-container {
+  max-width: 20rem;
+  height: fit-content;
+}
+
+.message-yourself {
+  background-color: blue;
+}
+
+.message-others {
+  background-color: lightgrey;
+}
+
+.message-yourself,
+.message-others {
+  max-width: 100%; /* Allow the card to expand to its container's width */
+  word-wrap: break-word; /* Break words to prevent overflow */
+}
+
+.sender-name {
+  font-weight: bold;
+
+}
+
+.message-content {
+  margin-top:0.7rem;
 }

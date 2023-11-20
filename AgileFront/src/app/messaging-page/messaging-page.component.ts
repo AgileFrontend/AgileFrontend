@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Conversation } from '../services/conversation';
 import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 import { AuthService } from '../services/auth/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-messaging-page',
@@ -10,7 +11,14 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./messaging-page.component.scss']
 })
 export class MessagingPageComponent {
+  messageToSend = new FormControl('', [
+    Validators.minLength(1),
+    Validators.maxLength(200),
+  ]);
 
+  messageForm = new FormGroup({
+    messageToSend: this.messageToSend
+  })
   conversations$: Observable<Conversation[]> = new Observable<Conversation[]>
 
   constructor(private messagingService : InstantMessagingService,private authService: AuthService){
@@ -19,7 +27,7 @@ export class MessagingPageComponent {
 
   async fetchUserConv(){
     const currentUser = await this.authService.getCurrentUser()
-    if(currentUser != null){
+    if(currentUser !== null){
       this.conversations$ = this.messagingService.readAllCurrentUserConversation(currentUser.uid)
     }
   }
