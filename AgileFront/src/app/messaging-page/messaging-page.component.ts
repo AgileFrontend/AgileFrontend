@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class MessagingPageComponent {
 
-  conversation$: Observable<Conversation[]> = new Observable<Conversation[]>
+  conversations$: Observable<Conversation[]> = new Observable<Conversation[]>
 
   constructor(private messagingService : InstantMessagingService,private authService: AuthService){
     this.fetchUserConv()
@@ -20,7 +20,7 @@ export class MessagingPageComponent {
   async fetchUserConv(){
     const currentUser = await this.authService.getCurrentUser()
     if(currentUser != null){
-      this.conversation$ = this.messagingService.readAllCurrentUserConversation(currentUser.uid)
+      this.conversations$ = this.messagingService.readAllCurrentUserConversation(currentUser.uid)
     }
   }
 }
