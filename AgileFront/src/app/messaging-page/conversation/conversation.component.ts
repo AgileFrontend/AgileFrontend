@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnChanges, Output} from '@angular/core';
 import { Observable } from 'rxjs';
 import { InstantMessagingService } from 'src/app/services/instant-messaging/instant-messaging.service';
 import { Message } from 'src/app/services/message';
@@ -8,17 +8,16 @@ import { Message } from 'src/app/services/message';
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.scss']
 })
-export class ConversationComponent{
+export class ConversationComponent implements OnChanges{
 
   @Input() conversationID!: string;
-  messages$ : Observable<Message[]> = new Observable<Message[]>
+  @Input() @Output() currentUserID! : string
+  @Output() messages$ : Observable<Message[]> = new Observable<Message[]>
 
   constructor(private messagingService : InstantMessagingService){
-    console.log(this.conversationID)
-    this.fetchAllMessage()
-  }
-
-  fetchAllMessage(){
+    }
+  
+  ngOnChanges(): void {
     this.messages$ = this.messagingService.readAllMessagesFromConversationID(this.conversationID)
-  }
-}
+  }    
+}    

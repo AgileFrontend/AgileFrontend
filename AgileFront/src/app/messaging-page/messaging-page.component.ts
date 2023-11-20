@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Conversation } from '../services/conversation';
 import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 import { AuthService } from '../services/auth/auth.service';
@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './messaging-page.component.html',
   styleUrls: ['./messaging-page.component.scss']
 })
+    
 export class MessagingPageComponent {
   messageToSend = new FormControl('', [
     Validators.minLength(1),
@@ -18,22 +19,27 @@ export class MessagingPageComponent {
   messageForm = new FormGroup({
     messageToSend: this.messageToSend
   })
-  conversationsID : string[] = []
-  conversationsData : Conversation[] = []
 
+  conversationDictionary: Record<string,Conversation> = {};
+  @Output() chosenConversation! : string
+  @Output() currentUserID! : string
   constructor(private messagingService : InstantMessagingService,private authService: AuthService){ 
     this.fetchUserConv()
   }
 
   async fetchUserConv(){
     const currentUser = await this.authService.getCurrentUser()
-    if(currentUser !== null){
+    if(currentUser){
+      this.currentUserID = currentUser.uid
       this.messagingService.readAllUserConversation(currentUser.uid).then((querySnap) =>{
         querySnap.forEach((doc)=> {
-          this.conversationsID.push(doc.id)
-          this.conversationsData.push(doc.data() as Conversation)
+          this.conversationDictionary[doc.id] = doc.data() as Conversation;
         })
       })
     }
-  } 
+  }
+
+  onClickConversation(conversationKey : string){
+    this.chosenConversation = conversationKey
+  }
 }

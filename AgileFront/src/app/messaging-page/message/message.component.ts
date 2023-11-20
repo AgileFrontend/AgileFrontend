@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Message } from 'src/app/services/message';
 
 @Component({
@@ -6,13 +6,9 @@ import { Message } from 'src/app/services/message';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent {
+export class MessageComponent{
 
   @Input() message!: Message;
-
-  constructor(){
-    console.log("chat")
-    console.log(this.message)
-  }
+  @Input() currentUserID! :string
   
 }

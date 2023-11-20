@@ -70,8 +70,7 @@ export class InstantMessagingService {
   }
 
   readAllMessagesFromConversationID(ConversationID : string){
-    console.log("conversation ID:" + ConversationID)
-    const messagesRef = collection(this.firestore,"conversations/" + ConversationID + "/messages")
+    const messagesRef = collection(this.firestore,"/conversations/" + ConversationID + "/messages")
     return collectionData(messagesRef) as Observable<Message[]>
   }
 

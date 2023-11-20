@@ -1,33 +1,30 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <div class="parent">
   <mat-card class="messaging-container">
     <div class="conversation-tab">
       <h1 mat-subheader>Conversations : </h1>
       <mat-divider></mat-divider>
-      <mat-list *ngFor="let conversation of conversations$ | async" >
-        <div mat-subheader *ngIf="conversation.conversationName !== undefined; else displayUserIDs">{{conversation.conversationName}}</div>
-        <ng-template mat-subheader #displayUserIDs>{{conversation.userIDs}}</ng-template> 
-        <mat-divider></mat-divider>      
-      </mat-list>
+      <mat-button-toggle-group vertical name="conversations" aria-label="Conversations" class="conversation-toggle-group">
+        <mat-button-toggle *ngFor="let conversation of conversationDictionary | keyvalue" [value]="conversation.key" (click)="onClickConversation(conversation.key)">{{conversation.value.conversationName}}</mat-button-toggle>
+        <mat-divider></mat-divider>
+      </mat-button-toggle-group>
     </div>
     <mat-divider [vertical]="true" class="mat-divider-vertical"></mat-divider>   
-    <div class="conversation-container">
-      <div class="messages">
-      </div>
+    <div *ngIf="chosenConversation" class="conversation-container">
+        <app-conversation [conversationID]="chosenConversation" [currentUserID]="currentUserID"></app-conversation>
       <mat-divider></mat-divider>
       <div class="message-input-container">
         <form [formGroup]="messageForm">
         <mat-form-field class="message-input">
-          <input matInput id="messageToSend" type="messageToSend" [formControl="messageToSend" placeholder="Start messaging..."/>
+          <input matInput id="messageToSend" type="messageToSend" [formControl]="messageToSend" placeholder="Start messaging..."/>
         </mat-form-field>
         <button mat-button
         class="message-send-button"
         type="submit"
-        ><mat-icon>send</mat-icon></button
-      >
+        ><mat-icon>send</mat-icon></button>
       </form>
       </div>
     </div>
   </mat-card>
 </div>
-
-<app-conversation *ngFor="let conversationID of conversationsID" [conversationID]="conversationID">{{conversationID}}</app-conversation>

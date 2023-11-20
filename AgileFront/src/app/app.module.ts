@@ -36,6 +36,7 @@ import { DisplayProfileComponent } from './display-profile/display-profile.compo
 import { MessageComponent } from './messaging-page/message/message.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     MatCardModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,
