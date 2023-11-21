@@ -10,6 +10,8 @@ import {
   getDoc,
   query,
   where,
+  Timestamp,
+  orderBy,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
@@ -32,7 +34,8 @@ export class PostService {
 
   readAllPost() {
     const postsCollection = collection(this.firestore, 'posts');
-    return collectionData(postsCollection) as Observable<Post[]>;
+    const postsQuery = query(postsCollection, orderBy('date'));
+    return collectionData(postsQuery) as Observable<Post[]>;
   }
 
   readAllPostWithUserID(userId: string) {
@@ -68,6 +71,8 @@ export class PostService {
         imageURL: '',
         userId: currentUser.uid,
         postId: '',
+        date: Timestamp.now().seconds,
+        likes: new Array<string>(),
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
       await this.updatePost(postRef, { postId: postRef.id.toString() });
