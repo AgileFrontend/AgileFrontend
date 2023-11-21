@@ -4,6 +4,8 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { User } from '../services/user';
+import { DisplayProfileService } from '../services/display-profile/display-profile.service';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -22,7 +24,21 @@ export class ProjectComponent implements OnInit {
     private toast: ToastrService,
     private route: ActivatedRoute,
     private firestore: Firestore,
+    private displayService : DisplayProfileService,
   ) {}
+
+  user: User = {
+    name: '',
+    surname: '',
+    occupation: '',
+    phoneNumber: '',
+    email: '',
+    bio: '',
+    photoURL: '',
+    address: '',
+    town: '',
+    postalCode: '',
+  };
 
   /**
    * Method called when the component is initialized
@@ -41,6 +57,12 @@ export class ProjectComponent implements OnInit {
     } else if (fullURL === 'post' && !identifier) {
       this.toast.error('No specified ID on URL', 'ID Error');
     }
+
+    if (this.post.userId) {
+      this.pushUserDataForPost(this.post.userId);
+    }
+
+
   }
   /**
    * Method to fetch the post from the database
@@ -69,6 +91,8 @@ export class ProjectComponent implements OnInit {
     );
   }
 
+
+
   /**
    * Post object to display in the component template
    */
@@ -84,5 +108,20 @@ export class ProjectComponent implements OnInit {
     console.log(url);
     this.clip.copy(url);
     this.toast.show('Copied URL to clipboard : \n' + url, 'Generated link');
+  }
+
+  async pushUserDataForPost(userID: string) {
+    const documentSnapshot = await this.displayService.getUserWithUID(userID);
+    const userData = documentSnapshot.data() as User;
+    this.user.name = userData.name;
+    this.user.surname = userData.surname;
+    this.user.occupation = userData.occupation;
+    this.user.phoneNumber = userData.phoneNumber;
+    this.user.email = userData.email;
+    this.user.bio = userData.bio;
+    this.user.town = userData.town;
+    this.user.address = userData.address;
+    this.user.postalCode = userData.postalCode;
+    this.user.photoURL = userData.photoURL;
   }
 }
