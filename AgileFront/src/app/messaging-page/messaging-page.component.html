@@ -13,7 +13,8 @@
     <mat-divider [vertical]="true" class="mat-divider-vertical"></mat-divider>   
     <div *ngIf="chosenConversation" class="conversation-container">
         <app-conversation [conversationID]="chosenConversation" [currentUserID]="currentUserID" class="messages"></app-conversation>
-      <mat-divider></mat-divider>
+          <mat-divider></mat-divider>
+          <app-create-message [conversationID]="chosenConversation" [conversationData]="conversationDictionary[chosenConversation]" ></app-create-message>
     </div>
   </mat-card>
 </div>

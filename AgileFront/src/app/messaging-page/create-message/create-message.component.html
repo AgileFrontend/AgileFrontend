@@ -1,11 +1,12 @@
 <div class="message-input-container">
-  <form [formGroup]="messageForm">
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="message-input">
       <input matInput id="messageToSend" type="messageToSend" [formControl]="messageToSend" placeholder="Start messaging..."/>
     </mat-form-field>
     <button mat-button
     class="message-send-button"
     type="submit"
+    [disabled]="messageToSend.invalid"
     ><mat-icon>send</mat-icon></button>
   </form>
 </div>

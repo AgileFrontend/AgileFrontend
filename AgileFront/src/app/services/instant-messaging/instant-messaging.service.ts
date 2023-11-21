@@ -12,9 +12,8 @@ import {
   query,
   where,  
   collectionData,
-  CollectionReference,
-  DocumentData,
-  getDocs} from '@angular/fire/firestore'; //Doublecheck this import statement
+  getDocs,
+  Timestamp} from '@angular/fire/firestore'; //Doublecheck this import statement
 
 import {AuthService} from '../auth/auth.service'
 import { Observable } from 'rxjs';
@@ -45,8 +44,8 @@ export class InstantMessagingService {
   }
  
   //Create a new message in a given conversation
-  async createMessage(message : Message, conversationRef: DocumentReference){
-    return await addDoc(collection(conversationRef,"messages"),message) 
+  async createMessage(message : Message, conversationID: string){
+    return await addDoc(collection(this.firestore,"/conversations/" + conversationID + "/messages"),message) 
   }
 
   //Read a given message
@@ -74,6 +73,20 @@ export class InstantMessagingService {
     return collectionData(messagesRef) as Observable<Message[]>
   }
 
+
+  async AddMessageToConv(messageValue: { messageToSend: string }, conversationID:string, conversationData : Conversation){
+
+    const currentUser = await this.auth.getCurrentUser();
+    if (currentUser !== null) {
+      const message = {
+        senderID: currentUser.uid,
+        recieverIDs: conversationData.userIDs.filter(userIds =>{ return userIds !== currentUser.uid}),
+        sentDate: Timestamp.now(),
+        content: messageValue.messageToSend,
+      }
+      this.createMessage(message,conversationID)
+    }
+  }
 
 
 
