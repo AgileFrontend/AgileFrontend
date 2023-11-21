@@ -76,7 +76,7 @@ export class PostService {
         userId: currentUser.uid,
         postId: '',
         date: Timestamp.now().seconds,
-        likes: new Array<string>()
+        likes: new Array<string>(),
       };
       const postRef = await addDoc(collection(this.firestore, 'posts'), post); //Create the post
       await this.updatePost(postRef, { postId: postRef.id.toString() });

@@ -10,11 +10,13 @@
       {{ this.post.body }}
     </p>
     <mat-card-subtitle id="likes-number">
-      {{this.post.likes.length}} user/s liked this post
+      {{ this.post.likes.length }} user/s liked this post
     </mat-card-subtitle>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="likePost()"><mat-icon>favorite</mat-icon> LIKE</button>
+    <button mat-button (click)="likePost()">
+      <mat-icon>favorite</mat-icon> LIKE
+    </button>
     <button mat-button><mat-icon> comment</mat-icon> COMMENT</button>
     <button mat-button (click)="copyToClipboard()">
       <mat-icon>send</mat-icon> SEND

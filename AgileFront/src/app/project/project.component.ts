@@ -12,7 +12,7 @@ import { PostService } from '../services/post/post.service';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  static likes : Map<string,Array<Post>>;
+  static likes: Map<string, Array<Post>>;
 
   /**
    * Constructor of the project component
@@ -26,10 +26,10 @@ export class ProjectComponent implements OnInit {
     private toast: ToastrService,
     private route: ActivatedRoute,
     private firestore: Firestore,
-    private authService : AuthService,
-    private postServ : PostService
+    private authService: AuthService,
+    private postServ: PostService,
   ) {
-    ProjectComponent.likes = new Map<string,Array<Post>>();
+    ProjectComponent.likes = new Map<string, Array<Post>>();
   }
 
   /**
@@ -58,7 +58,7 @@ export class ProjectComponent implements OnInit {
   async fetchPost(identifier: string) {
     //console.log(querySnapshot.docs);
     //console.log("id : "+identifier);
-   
+
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
     if (querySnapshot.exists()) {
@@ -69,7 +69,7 @@ export class ProjectComponent implements OnInit {
         imageURL: querySnapshot.get('imageURL'),
         title: querySnapshot.get('title'),
         date: querySnapshot.get('date'),
-        likes: querySnapshot.get('likes')
+        likes: querySnapshot.get('likes'),
       };
       return;
     }
@@ -96,33 +96,34 @@ export class ProjectComponent implements OnInit {
     this.toast.show('Copied URL to clipboard : \n' + url, 'Generated link');
   }
 
-
   /**
    * Like button handler function
    */
-  async likePost()  {
+  async likePost() {
     const currentUser = await this.authService.getCurrentUser();
     if (currentUser?.uid) {
-      if(!this.post.likes.includes(currentUser.uid)){
+      if (!this.post.likes.includes(currentUser.uid)) {
         console.log(currentUser.uid);
         this.post.likes.push(currentUser.uid);
-        await this.updateLikes(this.post.postId ? this.post.postId : "");
+        await this.updateLikes(this.post.postId ? this.post.postId : '');
         return;
       } else {
-        this.post.likes = this.post.likes.filter(element => !(element === currentUser.uid));
-        await this.updateLikes(this.post.postId ? this.post.postId : "");
-        this.toast.info("Unliked post successfully","Unlike");
+        this.post.likes = this.post.likes.filter(
+          (element) => !(element === currentUser.uid),
+        );
+        await this.updateLikes(this.post.postId ? this.post.postId : '');
+        this.toast.info('Unliked post successfully', 'Unlike');
         return;
       }
     }
   }
   /**
-   * 
+   *
    * @param identifier id of the post
    */
-  async updateLikes(identifier : string)  {
+  async updateLikes(identifier: string) {
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
-    this.postServ.updatePost(querySnapshot.ref,{likes : this.post.likes});
+    this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
   }
 }
