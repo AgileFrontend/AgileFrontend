@@ -14,7 +14,6 @@ import { DisplayProfileService } from '../services/display-profile/display-profi
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-
   /**
    * Constructor of the project component
    * @param clip : Clipboard service to copy the URL to the clipboard
@@ -29,10 +28,9 @@ export class ProjectComponent implements OnInit {
     private firestore: Firestore,
     private authService: AuthService,
     private postServ: PostService,
-    private displayService: DisplayProfileService
+    private displayService: DisplayProfileService,
   ) {}
 
-  
   user: User = {
     name: '',
     surname: '',
@@ -143,8 +141,7 @@ export class ProjectComponent implements OnInit {
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
     this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
-
-  }  
+  }
   async pushUserDataForPost(userID: string) {
     const documentSnapshot = await this.displayService.getUserWithUID(userID);
     const userData = documentSnapshot.data() as User;
