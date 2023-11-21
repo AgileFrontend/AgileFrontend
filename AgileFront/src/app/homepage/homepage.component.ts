@@ -13,4 +13,9 @@ export class HomepageComponent {
   constructor(private postService: PostService) {
     this.posts$ = this.postService.readAllPost();
   }
+
+  // Function to track posts by post id
+  trackByPost(index: number, post: Post): string {
+    return post.postId ? post.postId : '';
+  }
 }

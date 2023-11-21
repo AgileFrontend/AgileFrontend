@@ -14,6 +14,7 @@ import { DisplayProfileService } from '../services/display-profile/display-profi
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
+  likedPostsMap = new Map<string, boolean>();
 
   /**
    * Constructor of the project component
@@ -76,7 +77,6 @@ export class ProjectComponent implements OnInit {
   async fetchPost(identifier: string) {
     //console.log(querySnapshot.docs);
     //console.log("id : "+identifier);
-
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
     if (querySnapshot.exists()) {
@@ -89,7 +89,6 @@ export class ProjectComponent implements OnInit {
         date: querySnapshot.get('date'),
         likes: querySnapshot.get('likes'),
       };
-      return;
     }
     this.toast.error(
       "Couldn't find the specified ID in the database",
@@ -117,22 +116,25 @@ export class ProjectComponent implements OnInit {
   /**
    * Like button handler function
    */
-  async likePost() {
+  async likePost(event : Event) {
+    event.preventDefault();
     const currentUser = await this.authService.getCurrentUser();
     if (currentUser?.uid) {
+      const postId = this.post.postId ? this.post.postId : '';
       if (!this.post.likes.includes(currentUser.uid)) {
         console.log(currentUser.uid);
         this.post.likes.push(currentUser.uid);
-        await this.updateLikes(this.post.postId ? this.post.postId : '');
-        return;
+        this.likedPostsMap.set(postId, true);
+        
       } else {
         this.post.likes = this.post.likes.filter(
           (element) => !(element === currentUser.uid),
         );
-        await this.updateLikes(this.post.postId ? this.post.postId : '');
         this.toast.info('Unliked post successfully', 'Unlike');
-        return;
+        this.likedPostsMap.set(postId, false);
+        
       }
+      this.updateLikes(postId);
     }
   }
   /**
@@ -143,7 +145,6 @@ export class ProjectComponent implements OnInit {
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
     this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
-
   }  
   async pushUserDataForPost(userID: string) {
     const documentSnapshot = await this.displayService.getUserWithUID(userID);
@@ -158,5 +159,12 @@ export class ProjectComponent implements OnInit {
     this.user.address = userData.address;
     this.user.postalCode = userData.postalCode;
     this.user.photoURL = userData.photoURL;
+    return;
   }
+
+
+  isPostLiked(post: Post): boolean {
+    const postId = post.postId ? post.postId : '';
+    return this.likedPostsMap.get(postId) || false;
+}
 }
