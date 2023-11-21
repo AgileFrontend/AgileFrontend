@@ -13,7 +13,8 @@ import {
   where,  
   collectionData,
   getDocs,
-  Timestamp} from '@angular/fire/firestore'; //Doublecheck this import statement
+  Timestamp,
+  orderBy} from '@angular/fire/firestore'; //Doublecheck this import statement
 
 import {AuthService} from '../auth/auth.service'
 import { Observable } from 'rxjs';
@@ -69,8 +70,8 @@ export class InstantMessagingService {
   }
 
   readAllMessagesFromConversationID(ConversationID : string){
-    const messagesRef = collection(this.firestore,"/conversations/" + ConversationID + "/messages")
-    return collectionData(messagesRef) as Observable<Message[]>
+    const q = query(collection(this.firestore,"/conversations/" + ConversationID + "/messages"),orderBy('sentDate'))
+    return collectionData(q) as Observable<Message[]>
   }
 
 
