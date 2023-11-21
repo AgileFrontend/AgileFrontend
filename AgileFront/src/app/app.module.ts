@@ -29,9 +29,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
 import { ToastrModule } from 'ngx-toastr';
-import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { DisplayProfileComponent } from './display-profile/display-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MyProjectPageComponent,
     NavbarComponent,
     ProjectComponent,
-    ProfileComponent,
+    EditProfileComponent,
     FileUploadComponent,
+    DisplayProfileComponent,
   ],
   imports: [
     RouterModule,

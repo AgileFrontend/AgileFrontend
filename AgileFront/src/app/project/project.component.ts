@@ -59,6 +59,7 @@ export class ProjectComponent implements OnInit {
         postId: querySnapshot.get('postId'),
         imageURL: querySnapshot.get('imageURL'),
         title: querySnapshot.get('title'),
+        date: querySnapshot.get('date'),
       };
       return;
     }

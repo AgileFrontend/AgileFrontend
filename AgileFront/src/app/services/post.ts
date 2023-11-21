@@ -4,4 +4,5 @@ export interface Post {
   imageURL: string;
   userId: string;
   postId?: string;
+  date: number;
 }

@@ -1,0 +1,59 @@
+.profile-container {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  width: 80%;
+}
+.profile-picture {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+}
+.profile-name {
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+.occupation {
+  color: gray;
+  margin-left: 1.1rem;
+}
+.profile-information {
+  display: flex;
+  justify-content: flex-start;
+}
+.profile-bio {
+  margin-right: 1rem; /* Adjust this based on your spacing preference */
+  margin-left: 1rem;
+  white-space: normal; /* or white-space: pre-line; */
+}
+
+.edit-button {
+  margin-left: auto; /* Push the button to the right */
+}
+
+.profile-header {
+  display: block;
+}
+
+.projects {
+  margin-left: 1rem;
+  margin-bottom: 0.8rem;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 18rem;
+  min-height: 3rem;
+  height: fit-content;
+  white-space: normal;
+}
+
+.projects-title {
+  word-wrap: break-word;
+  max-width: 17rem; /* Adjust the value based on your desired maximum width */
+  display: inline-block;
+}
