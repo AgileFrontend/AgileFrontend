@@ -12,7 +12,6 @@ import { PostService } from '../services/post/post.service';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  static likes: Map<string, Array<Post>>;
 
   /**
    * Constructor of the project component
@@ -27,9 +26,8 @@ export class ProjectComponent implements OnInit {
     private route: ActivatedRoute,
     private firestore: Firestore,
     private authService: AuthService,
-    private postServ: PostService,
+    private postServ: PostService
   ) {
-    ProjectComponent.likes = new Map<string, Array<Post>>();
   }
 
   /**
