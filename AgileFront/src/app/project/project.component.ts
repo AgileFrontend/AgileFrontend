@@ -24,7 +24,7 @@ export class ProjectComponent implements OnInit {
     private toast: ToastrService,
     private route: ActivatedRoute,
     private firestore: Firestore,
-    private displayService : DisplayProfileService,
+    private displayService: DisplayProfileService,
   ) {}
 
   user: User = {
@@ -61,8 +61,6 @@ export class ProjectComponent implements OnInit {
     if (this.post.userId) {
       this.pushUserDataForPost(this.post.userId);
     }
-
-
   }
   /**
    * Method to fetch the post from the database
@@ -90,8 +88,6 @@ export class ProjectComponent implements OnInit {
       'ID not found',
     );
   }
-
-
 
   /**
    * Post object to display in the component template
