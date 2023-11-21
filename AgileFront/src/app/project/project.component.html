@@ -22,7 +22,10 @@
   </mat-card-content>
   <mat-card-actions>
     <button type="button" mat-button (click)="likePost($event)">
-      <mat-icon [ngStyle]="{'color' :  isPostLiked(this.post) ? 'red' : 'black'}">favorite</mat-icon> LIKE
+      <mat-icon [ngStyle]="{ color: isPostLiked(this.post) ? 'red' : 'black' }"
+        >favorite</mat-icon
+      >
+      LIKE
     </button>
     <button mat-button><mat-icon> comment</mat-icon> COMMENT</button>
     <button mat-button (click)="copyToClipboard()">

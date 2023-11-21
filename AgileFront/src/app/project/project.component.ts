@@ -30,10 +30,9 @@ export class ProjectComponent implements OnInit {
     private firestore: Firestore,
     private authService: AuthService,
     private postServ: PostService,
-    private displayService: DisplayProfileService
+    private displayService: DisplayProfileService,
   ) {}
 
-  
   user: User = {
     name: '',
     surname: '',
@@ -116,7 +115,7 @@ export class ProjectComponent implements OnInit {
   /**
    * Like button handler function
    */
-  async likePost(event : Event) {
+  async likePost(event: Event) {
     event.preventDefault();
     const currentUser = await this.authService.getCurrentUser();
     if (currentUser?.uid) {
@@ -125,14 +124,12 @@ export class ProjectComponent implements OnInit {
         console.log(currentUser.uid);
         this.post.likes.push(currentUser.uid);
         this.likedPostsMap.set(postId, true);
-        
       } else {
         this.post.likes = this.post.likes.filter(
           (element) => !(element === currentUser.uid),
         );
         this.toast.info('Unliked post successfully', 'Unlike');
         this.likedPostsMap.set(postId, false);
-        
       }
       this.updateLikes(postId);
     }
@@ -145,7 +142,7 @@ export class ProjectComponent implements OnInit {
     const docRef = doc(this.firestore, 'posts/' + identifier);
     const querySnapshot = await getDoc(docRef);
     this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
-  }  
+  }
   async pushUserDataForPost(userID: string) {
     const documentSnapshot = await this.displayService.getUserWithUID(userID);
     const userData = documentSnapshot.data() as User;
@@ -162,9 +159,8 @@ export class ProjectComponent implements OnInit {
     return;
   }
 
-
   isPostLiked(post: Post): boolean {
     const postId = post.postId ? post.postId : '';
     return this.likedPostsMap.get(postId) || false;
-}
+  }
 }
