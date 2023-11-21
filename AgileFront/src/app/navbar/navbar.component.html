@@ -1,24 +1,38 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <a mat-button routerLink="homepage"><mat-icon>home</mat-icon> Homepage</a>
-    <div *ngIf="!isLoggedIn">
-      <span class="spacer"></span>
-      <a mat-button *ngIf="!isLoggedIn" routerLink="login"
-        ><mat-icon>person</mat-icon> Log In</a
-      >
-    </div>
-    <div *ngIf="isLoggedIn">
-      <a mat-button><mat-icon> layers</mat-icon> Posts</a>
-      <a mat-button routerLink="my-project-page"
-        ><mat-icon>queue</mat-icon>My Projects</a
-      >
-      <a mat-button routerLink="profile/me"
-        ><mat-icon>manage_accounts</mat-icon>My Profile</a
-      >
-      <span class="spacer"></span>
-      <button mat-button (click)="logOut()">
+<mat-tab-group color="primary" backgroundColor="primary" (selectedTabChange)="onTabChanged($event)">
+  <mat-tab routerLink="homepage">
+    <ng-template mat-tab-label>
+      <mat-icon>home</mat-icon> Homepage
+    </ng-template>
+  </mat-tab>
+  <div *ngIf="!isLoggedIn">
+    <mat-tab *ngIf="!isLoggedIn" routerLink="login">
+      <ng-template mat-tab-label>
+        <mat-icon>person</mat-icon>
+        Log In
+      </ng-template>
+    </mat-tab>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon> layers</mat-icon>
+        Posts
+      </ng-template>
+    </mat-tab>
+    <mat-tab routerLink="my-project-page">
+      <ng-template mat-tab-label>
+        <mat-icon>queue</mat-icon>My Projects
+      </ng-template>
+    </mat-tab>
+    <mat-tab routerLink="profile/me">
+      <ng-template mat-tab-label>
+        <mat-icon>manage_accounts</mat-icon>My Profile
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         <mat-icon>exit_to_app</mat-icon>Log Out
-      </button>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
+      </ng-template>
+    </mat-tab>
+  </div>
+</mat-tab-group>
