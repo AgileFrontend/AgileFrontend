@@ -4,6 +4,8 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth/auth.service';
+import { PostService } from '../services/post/post.service';
 import { User } from '../services/user';
 import { DisplayProfileService } from '../services/display-profile/display-profile.service';
 @Component({
@@ -12,6 +14,8 @@ import { DisplayProfileService } from '../services/display-profile/display-profi
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
+  likedPostsMap = new Map<string, boolean>();
+
   /**
    * Constructor of the project component
    * @param clip : Clipboard service to copy the URL to the clipboard
@@ -24,6 +28,8 @@ export class ProjectComponent implements OnInit {
     private toast: ToastrService,
     private route: ActivatedRoute,
     private firestore: Firestore,
+    private authService: AuthService,
+    private postServ: PostService,
     private displayService: DisplayProfileService,
   ) {}
 
@@ -80,8 +86,8 @@ export class ProjectComponent implements OnInit {
         imageURL: querySnapshot.get('imageURL'),
         title: querySnapshot.get('title'),
         date: querySnapshot.get('date'),
+        likes: querySnapshot.get('likes'),
       };
-      return;
     }
     this.toast.error(
       "Couldn't find the specified ID in the database",
@@ -101,11 +107,42 @@ export class ProjectComponent implements OnInit {
    */
   copyToClipboard() {
     const url = window.location.origin + '/post?id=' + this.post.postId;
-    console.log(url);
+    //console.log(url);
     this.clip.copy(url);
     this.toast.show('Copied URL to clipboard : \n' + url, 'Generated link');
   }
 
+  /**
+   * Like button handler function
+   */
+  async likePost(event: Event) {
+    event.preventDefault();
+    const currentUser = await this.authService.getCurrentUser();
+    if (currentUser?.uid) {
+      const postId = this.post.postId ? this.post.postId : '';
+      if (!this.post.likes.includes(currentUser.uid)) {
+        console.log(currentUser.uid);
+        this.post.likes.push(currentUser.uid);
+        this.likedPostsMap.set(postId, true);
+      } else {
+        this.post.likes = this.post.likes.filter(
+          (element) => !(element === currentUser.uid),
+        );
+        this.toast.info('Unliked post successfully', 'Unlike');
+        this.likedPostsMap.set(postId, false);
+      }
+      this.updateLikes(postId);
+    }
+  }
+  /**
+   *
+   * @param identifier id of the post
+   */
+  async updateLikes(identifier: string) {
+    const docRef = doc(this.firestore, 'posts/' + identifier);
+    const querySnapshot = await getDoc(docRef);
+    this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
+  }
   async pushUserDataForPost(userID: string) {
     const documentSnapshot = await this.displayService.getUserWithUID(userID);
     const userData = documentSnapshot.data() as User;
@@ -119,5 +156,11 @@ export class ProjectComponent implements OnInit {
     this.user.address = userData.address;
     this.user.postalCode = userData.postalCode;
     this.user.photoURL = userData.photoURL;
+    return;
+  }
+
+  isPostLiked(post: Post): boolean {
+    const postId = post.postId ? post.postId : '';
+    return this.likedPostsMap.get(postId) || false;
   }
 }
