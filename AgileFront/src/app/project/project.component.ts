@@ -144,7 +144,7 @@ export class ProjectComponent implements OnInit {
     const querySnapshot = await getDoc(docRef);
     this.postServ.updatePost(querySnapshot.ref, { likes: this.post.likes });
 
-    
+  }  
   async pushUserDataForPost(userID: string) {
     const documentSnapshot = await this.displayService.getUserWithUID(userID);
     const userData = documentSnapshot.data() as User;
