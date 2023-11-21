@@ -12,19 +12,8 @@
     </div>
     <mat-divider [vertical]="true" class="mat-divider-vertical"></mat-divider>   
     <div *ngIf="chosenConversation" class="conversation-container">
-        <app-conversation [conversationID]="chosenConversation" [currentUserID]="currentUserID"></app-conversation>
+        <app-conversation [conversationID]="chosenConversation" [currentUserID]="currentUserID" class="messages"></app-conversation>
       <mat-divider></mat-divider>
-      <div class="message-input-container">
-        <form [formGroup]="messageForm">
-        <mat-form-field class="message-input">
-          <input matInput id="messageToSend" type="messageToSend" [formControl]="messageToSend" placeholder="Start messaging..."/>
-        </mat-form-field>
-        <button mat-button
-        class="message-send-button"
-        type="submit"
-        ><mat-icon>send</mat-icon></button>
-      </form>
-      </div>
     </div>
   </mat-card>
 </div>

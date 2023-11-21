@@ -13,6 +13,7 @@ import { DisplayProfileComponent } from './display-profile/display-profile.compo
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 import { MessageComponent } from './messaging-page/message/message.component';
+import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'message',
     component: MessageComponent
+  },
+  {
+    path:'create-message',
+    component: CreateMessageComponent
   }
 ];
 

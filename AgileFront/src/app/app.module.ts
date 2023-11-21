@@ -37,6 +37,7 @@ import { MessageComponent } from './messaging-page/message/message.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MessageComponent,
     MessagingPageComponent,
     ConversationComponent,
+    CreateMessageComponent,
   ],
   imports: [
     RouterModule,

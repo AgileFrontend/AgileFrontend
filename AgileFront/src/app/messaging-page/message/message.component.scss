@@ -1,10 +1,13 @@
 .message-container {
-  max-width: 20rem;
+  width:100%;
   height: fit-content;
+  display:flex;
+  margin:1rem;
+
 }
 
 .message-yourself {
-  background-color: blue;
+  background-color: lightblue;
 }
 
 .message-others {

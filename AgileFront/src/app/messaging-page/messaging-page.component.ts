@@ -2,7 +2,6 @@ import { Component, Output } from '@angular/core';
 import { Conversation } from '../services/conversation';
 import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 import { AuthService } from '../services/auth/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-messaging-page',
@@ -11,15 +10,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
     
 export class MessagingPageComponent {
-  messageToSend = new FormControl('', [
-    Validators.minLength(1),
-    Validators.maxLength(200),
-  ]);
-
-  messageForm = new FormGroup({
-    messageToSend: this.messageToSend
-  })
-
   conversationDictionary: Record<string,Conversation> = {};
   @Output() chosenConversation! : string
   @Output() currentUserID! : string
