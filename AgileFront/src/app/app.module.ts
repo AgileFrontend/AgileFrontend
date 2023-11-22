@@ -38,6 +38,7 @@ import { MessagingPageComponent } from './messaging-page/messaging-page.componen
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { CreateMessageComponent } from './messaging-page/create-message/create-m
     MatListModule,
     ToastrModule,
     MatGridListModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
