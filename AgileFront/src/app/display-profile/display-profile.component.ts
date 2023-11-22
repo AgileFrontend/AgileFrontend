@@ -1,11 +1,12 @@
 import { DisplayProfileService } from '../services/display-profile/display-profile.service';
 import { User } from '../services/user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { PostService } from '../services/post/post.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-display-profile',
@@ -32,6 +33,8 @@ export class DisplayProfileComponent {
     private displayProfile: DisplayProfileService,
     private post: PostService,
     private route: ActivatedRoute,
+    private location: Location,
+    private router: Router
   ) {
     const userID = this.route.snapshot.paramMap.get('id');
     if (userID == 'me') {
@@ -79,6 +82,14 @@ export class DisplayProfileComponent {
         return postsTitleAndURL;
       }),
     );
+  }
+
+  previousUrl(): void {
+    return this.location.back();
+  }
+
+  currentUrlIncludes(target: string): boolean {
+    return this.router.url.includes(target);
   }
 }
 

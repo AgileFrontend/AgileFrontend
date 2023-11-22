@@ -1,18 +1,26 @@
 <div class="profile-container">
   <mat-card class="profile">
     <mat-card-header>
+      <div style="display:flex;flex-direction:column;">
+      <div>
+      <button *ngIf="!currentUrlIncludes('/me')" mat-raised-button style="margin-bottom:1rem;" (click)="previousUrl()"><mat-icon>keyboard_return</mat-icon>Go Back</button>
+      </div>
+      <div style="display:flex;flex-direction:row;">
       <img [src]="this.user.photoURL" alt="" class="profile-picture" />
       <div class="profile-header">
         <h1 class="profile-name">{{ user.name }} {{ user.surname }}</h1>
         <h2 class="occupation">{{ user.occupation }}</h2>
       </div>
+    </div>
+  </div>
       <a
         mat-raised-button
         routerLink="../edit"
         class="edit-button"
         [hidden]="!editButtonAvailable"
         ><mat-icon>edit</mat-icon>Edit Profile</a
-      >
+      > 
+    
     </mat-card-header>
     <mat-card-content>
       <mat-list role="list">
