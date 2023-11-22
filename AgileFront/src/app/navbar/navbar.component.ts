@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
   isLoggedIn = false;
@@ -15,7 +15,7 @@ export class NavbarComponent {
     private afAuth: Auth,
     private zone: NgZone,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.checkUserStatus();
   }
@@ -41,7 +41,6 @@ export class NavbarComponent {
    * @param event : MatTabChangeEvent captures in an object the changes of tabs in the navbar
    */
   onTabChanged(event: MatTabChangeEvent) {
-
     if (!this.isLoggedIn) {
       switch (event.index) {
         case 0:
