@@ -57,6 +57,8 @@ export class NavbarComponent {
           this.router.navigate(['homepage']);
           break;
         case 1:
+          this.router.navigate(['homepage']);
+          event.index =0;
           break;
         case 2:
           this.router.navigate(['my-project-page']);
