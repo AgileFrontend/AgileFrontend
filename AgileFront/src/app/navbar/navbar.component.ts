@@ -15,7 +15,7 @@ export class NavbarComponent {
     private afAuth: Auth,
     private zone: NgZone,
     private auth: AuthService,
-    private router : Router
+    private router: Router
   ) {
     this.checkUserStatus();
   }
@@ -36,23 +36,38 @@ export class NavbarComponent {
     this.isLoggedIn = false;
   }
 
+  /**
+   * This function handles the possible routing scenarios in case the user changes tabs on the navbar
+   * @param event : MatTabChangeEvent captures in an object the changes of tabs in the navbar
+   */
+  onTabChanged(event: MatTabChangeEvent) {
 
-  onTabChanged(event : MatTabChangeEvent) {
-    switch(event.index) {
-      case 0 : 
-        this.router.navigate(['homepage']);
-        break;
-      case 1 : 
-        break;
-      case 2 :
-        this.router.navigate(['my-project-page']);
-        break;
-      case 3 : 
-        this.router.navigate(['profile/me/']);
-        break;
-      case 4 : 
-        this.logOut();
-        break;
+    if (!this.isLoggedIn) {
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['login']);
+          break;
+        case 1:
+          this.router.navigate(['login']);
+          break;
+      }
+    } else {
+      switch (event.index) {
+        case 0:
+          this.router.navigate(['homepage']);
+          break;
+        case 1:
+          break;
+        case 2:
+          this.router.navigate(['my-project-page']);
+          break;
+        case 3:
+          this.router.navigate(['profile/me/']);
+          break;
+        case 4:
+          this.logOut();
+          break;
+      }
     }
   }
 }
