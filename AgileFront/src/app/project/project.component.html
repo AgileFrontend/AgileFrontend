@@ -35,5 +35,11 @@
     <button mat-button (click)="copyToClipboard()">
       <mat-icon>send</mat-icon> SEND
     </button>
+    <a
+        mat-raised-button
+        [routerLink]="['../project/edit', this.post.postId]"
+        class="edit-button"
+        *ngIf="this.post.userId === currentUserId"
+        ><mat-icon>edit</mat-icon>EDIT POST</a>
   </mat-card-actions>
 </mat-card>

@@ -14,6 +14,7 @@ import { MessagingPageComponent } from './messaging-page/messaging-page.componen
 import { ConversationComponent } from './messaging-page/conversation/conversation.component';
 import { MessageComponent } from './messaging-page/message/message.component';
 import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: 'post',
     component: ProjectComponent,
     canActivate: [authGuard],
+  }, 
+  {
+    path: 'project/edit/:id',
+    component: EditPostComponent,
   },
   {
     path: 'profile/edit',
