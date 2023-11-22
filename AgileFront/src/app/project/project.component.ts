@@ -86,13 +86,14 @@ export class ProjectComponent implements OnInit {
         imageURL: querySnapshot.get('imageURL'),
         title: querySnapshot.get('title'),
         date: querySnapshot.get('date'),
-        likes: querySnapshot.get('likes'),
+        likes: querySnapshot.get('likes')
       };
-    }
+    } 
+    else {
     this.toast.error(
       "Couldn't find the specified ID in the database",
       'ID not found',
-    );
+    );}
   }
 
   /**
