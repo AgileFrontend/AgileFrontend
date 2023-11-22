@@ -34,7 +34,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
