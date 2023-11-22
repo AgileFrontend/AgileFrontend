@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Message } from 'src/app/services/message';
 
 @Component({
@@ -9,6 +9,6 @@ import { Message } from 'src/app/services/message';
 export class MessageComponent{
 
   @Input() message!: Message;
-  @Input() currentUserID! :string
+  @Input() currentUserID! :string  
   
 }
