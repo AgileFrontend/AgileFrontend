@@ -39,6 +39,7 @@ import { ConversationComponent } from './messaging-page/conversation/conversatio
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MessagingPageComponent,
     ConversationComponent,
     CreateMessageComponent,
+    EditPostComponent,
   ],
   imports: [
     RouterModule,

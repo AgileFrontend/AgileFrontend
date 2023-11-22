@@ -1,0 +1,24 @@
+<form [formGroup]="editPostForm" class="edit-post-card" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label for="title">Title</mat-label>
+    <input
+      matInput
+      formControlName="title"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label for="body">Description</mat-label>
+    <textarea matInput formControlName="body"></textarea>
+  </mat-form-field>
+  <h2>Project Image</h2>
+  <!--To be turned into checkbox later-->
+  <input type="file" accept="image/*" formControlName="photo" (change)="onFileSelected($event)" />
+  <button
+    mat-stroked-button
+    type="submit"
+    color="primary"
+    [disabled]="!editPostForm.valid"
+  >
+    Edit Post
+  </button>
+</form>
