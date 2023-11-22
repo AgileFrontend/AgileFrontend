@@ -6,30 +6,34 @@ import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-messaging-page',
   templateUrl: './messaging-page.component.html',
-  styleUrls: ['./messaging-page.component.scss']
+  styleUrls: ['./messaging-page.component.scss'],
 })
-    
 export class MessagingPageComponent {
-  conversationDictionary: Record<string,Conversation> = {};
-  @Output() chosenConversation! : string
-  @Output() currentUserID! : string
-  constructor(private messagingService : InstantMessagingService,private authService: AuthService){ 
-    this.fetchUserConv()
+  conversationDictionary: Record<string, Conversation> = {};
+  @Output() chosenConversation!: string;
+  @Output() currentUserID!: string;
+  constructor(
+    private messagingService: InstantMessagingService,
+    private authService: AuthService,
+  ) {
+    this.fetchUserConv();
   }
 
-  async fetchUserConv(){
-    const currentUser = await this.authService.getCurrentUser()
-    if(currentUser){
-      this.currentUserID = currentUser.uid
-      this.messagingService.readAllUserConversation(currentUser.uid).then((querySnap) =>{
-        querySnap.forEach((doc)=> {
-          this.conversationDictionary[doc.id] = doc.data() as Conversation;
-        })
-      })
+  async fetchUserConv() {
+    const currentUser = await this.authService.getCurrentUser();
+    if (currentUser) {
+      this.currentUserID = currentUser.uid;
+      this.messagingService
+        .readAllUserConversation(currentUser.uid)
+        .then((querySnap) => {
+          querySnap.forEach((doc) => {
+            this.conversationDictionary[doc.id] = doc.data() as Conversation;
+          });
+        });
     }
   }
 
-  onClickConversation(conversationKey : string){
-    this.chosenConversation = conversationKey
+  onClickConversation(conversationKey: string) {
+    this.chosenConversation = conversationKey;
   }
 }

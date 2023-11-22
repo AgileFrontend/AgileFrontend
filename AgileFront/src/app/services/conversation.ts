@@ -1,7 +1,7 @@
-import { Message } from "./message";
+import { Message } from './message';
 
 export interface Conversation {
-  conversationName? : string
+  conversationName?: string;
   userIDs: string[];
-  messages: Message[]
+  messages: Message[];
 }

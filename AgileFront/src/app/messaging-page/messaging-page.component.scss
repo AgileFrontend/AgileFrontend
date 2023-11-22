@@ -7,32 +7,31 @@
 }
 
 .messaging-container {
-  display:flex;
+  display: flex;
   width: 90%;
-  height : 100%;
+  height: 100%;
   flex-direction: row;
 }
 .conversation-tab {
-  width:20%;
+  width: 20%;
   max-height: 100%;
   overflow-y: auto;
 }
 
 .conversation-container {
-  width:80%;
-  height: 100%; 
-  display:flex;
-  flex-direction:column;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .messages {
-  min-height:90%;
+  min-height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .conversation-toggle-group {
-  min-height:100%;
-  min-width:100%;
+  min-height: 100%;
+  min-width: 100%;
 }
-

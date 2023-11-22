@@ -4,11 +4,9 @@ import { Message } from 'src/app/services/message';
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  styleUrls: ['./message.component.scss'],
 })
-export class MessageComponent{
-
+export class MessageComponent {
   @Input() message!: Message;
-  @Input() currentUserID! :string  
-  
+  @Input() currentUserID!: string;
 }

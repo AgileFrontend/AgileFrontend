@@ -53,12 +53,12 @@ const routes: Routes = [
   },
   {
     path: 'message',
-    component: MessageComponent
+    component: MessageComponent,
   },
   {
-    path:'create-message',
-    component: CreateMessageComponent
-  }
+    path: 'create-message',
+    component: CreateMessageComponent,
+  },
 ];
 
 @NgModule({

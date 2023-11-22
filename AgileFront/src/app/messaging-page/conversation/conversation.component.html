@@ -1,1 +1,5 @@
-<app-message *ngFor="let message of messages$ | async" [message]="message" [currentUserID]="currentUserID"></app-message>
+<app-message
+  *ngFor="let message of messages$ | async"
+  [message]="message"
+  [currentUserID]="currentUserID"
+></app-message>

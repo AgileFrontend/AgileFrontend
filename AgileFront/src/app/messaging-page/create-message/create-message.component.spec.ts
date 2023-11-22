@@ -8,7 +8,7 @@ describe('CreateMessageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CreateMessageComponent]
+      declarations: [CreateMessageComponent],
     });
     fixture = TestBed.createComponent(CreateMessageComponent);
     component = fixture.componentInstance;

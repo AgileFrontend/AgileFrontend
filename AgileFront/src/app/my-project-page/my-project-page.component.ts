@@ -12,7 +12,10 @@ import { AuthService } from '../services/auth/auth.service';
 export class MyProjectPageComponent {
   posts$: Observable<Post[]>;
   currentUserId: string;
-  constructor(private postService: PostService, private authService: AuthService) {
+  constructor(
+    private postService: PostService,
+    private authService: AuthService,
+  ) {
     this.posts$ = this.postService.readAllPost();
     this.currentUserId = '';
     this.init();

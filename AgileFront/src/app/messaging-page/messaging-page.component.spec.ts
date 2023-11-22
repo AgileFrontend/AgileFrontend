@@ -8,7 +8,7 @@ describe('MessagingPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MessagingPageComponent]
+      declarations: [MessagingPageComponent],
     });
     fixture = TestBed.createComponent(MessagingPageComponent);
     component = fixture.componentInstance;
