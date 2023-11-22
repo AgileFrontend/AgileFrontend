@@ -51,22 +51,24 @@ export class ProjectComponent implements OnInit {
    * It calls the async method fetchPost to fetch the post from the database if the id is specified in the URL
    * If the id is not specified, it displays an error message
    */
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const identifier = this.route.snapshot.queryParamMap.get('id');
     let fullURL = '';
     this.route.url.subscribe((seg) => {
       fullURL = seg.map((segment) => segment.path).join('/');
     });
     if (identifier && fullURL === 'post') {
-      console.log('fetching post');
+      //console.log('fetching post');
       this.fetchPost(identifier);
     } else if (fullURL === 'post' && !identifier) {
       this.toast.error('No specified ID on URL', 'ID Error');
     }
-
+    await this.checkUserLikeStatus();
     if (this.post.userId) {
       this.pushUserDataForPost(this.post.userId);
     }
+
+    
   }
   /**
    * Method to fetch the post from the database
@@ -88,6 +90,8 @@ export class ProjectComponent implements OnInit {
         date: querySnapshot.get('date'),
         likes: querySnapshot.get('likes')
       };
+
+      await this.checkUserLikeStatus();
     } 
     else {
     this.toast.error(
@@ -163,5 +167,13 @@ export class ProjectComponent implements OnInit {
   isPostLiked(post: Post): boolean {
     const postId = post.postId ? post.postId : '';
     return this.likedPostsMap.get(postId) || false;
+  }
+
+  async checkUserLikeStatus(): Promise<void> {
+    const currentUser = await this.authService.getCurrentUser();
+    if (currentUser?.uid) {
+      const postId = this.post.postId ? this.post.postId : '';
+      this.likedPostsMap.set(postId, this.post.likes.includes(currentUser.uid));
+    }
   }
 }
