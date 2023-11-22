@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../services/post/post.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-post',
@@ -8,6 +9,8 @@ import { PostService } from '../services/post/post.service';
   styleUrls: ['./create.post.component.scss'],
 })
 export class CreatePostComponent {
+
+  panelOpenState = false;
   addPostForm = new FormGroup({
     title: new FormControl<string>('', {
       nonNullable: true,
@@ -29,9 +32,14 @@ export class CreatePostComponent {
     }
   }
 
-  constructor(public postService: PostService) {}
+  constructor(public postService: PostService, private snackBar : MatSnackBar) {}
 
   onSubmit() {
+    if (this.addPostForm.valid){
     this.postService.addPost(this.addPostForm.value, this.postImage);
+    this.addPostForm.setValue({title : "", body: ""})
+    this.snackBar.open('Your post has been sucessfully created', 'Ok');
+    this.panelOpenState = false;
+    }
   }
 }

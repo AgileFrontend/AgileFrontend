@@ -1,4 +1,6 @@
-<mat-expansion-panel class="add-post-card mat-elevation-z3">
+<mat-expansion-panel class="add-post-card mat-elevation-z3"
+  (opened) = "panelOpenState = true"
+  [expanded] = "panelOpenState === true">
   <mat-expansion-panel-header>
     <mat-panel-title class="fw-bold"> Create a new post: </mat-panel-title>
   </mat-expansion-panel-header>
