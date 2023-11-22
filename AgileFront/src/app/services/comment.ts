@@ -1,6 +1,6 @@
 import { Timestamp } from "@angular/fire/firestore";
 
-export interface Post {
+export interface PostComment {
   content?: string;
   userId: string;
   sentDate: Timestamp;

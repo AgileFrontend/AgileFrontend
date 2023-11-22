@@ -27,10 +27,6 @@ export class CreateMessageComponent {
   }
 
   onSubmit() {
-    console.log(this.messageToSend.status);
-    //TODO create a message
-    //Add it to the back
-    //Clear the field
     if (this.messageForm.valid) {
       this.messagingService.AddMessageToConv(
         this.messageForm.value,

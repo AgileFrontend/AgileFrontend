@@ -1,1 +1,21 @@
-<p>create-comment works!</p>
+<div class="comment-input-container">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="comment-input">
+      <input
+        matInput
+        id="commentToSend"
+        type="commentToSend"
+        [formControl]="commentToSend"
+        placeholder="Start commenting..."
+      />
+    </mat-form-field>
+    <button
+      mat-button
+      class="comment-send-button"
+      type="submit"
+      [disabled]="commentToSend.invalid"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+</div>
