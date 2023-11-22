@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./create.post.component.scss'],
 })
 export class CreatePostComponent {
-
   panelOpenState = false;
   addPostForm = new FormGroup({
     title: new FormControl<string>('', {
@@ -32,14 +31,17 @@ export class CreatePostComponent {
     }
   }
 
-  constructor(public postService: PostService, private snackBar : MatSnackBar) {}
+  constructor(
+    public postService: PostService,
+    private snackBar: MatSnackBar,
+  ) {}
 
   onSubmit() {
-    if (this.addPostForm.valid){
-    this.postService.addPost(this.addPostForm.value, this.postImage);
-    this.addPostForm.setValue({title : "", body: ""})
-    this.snackBar.open('Your post has been sucessfully created', 'Ok');
-    this.panelOpenState = false;
+    if (this.addPostForm.valid) {
+      this.postService.addPost(this.addPostForm.value, this.postImage);
+      this.addPostForm.setValue({ title: '', body: '' });
+      this.snackBar.open('Your post has been sucessfully created', 'Ok');
+      this.panelOpenState = false;
     }
   }
 }

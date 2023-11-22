@@ -13,14 +13,8 @@ import { MessagingPageComponent } from './messaging-page/messaging-page.componen
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'homepage',
-   component: HomepageComponent,
-   canActivate: [authGuard],
-  },
-  { path: '',
-  component: HomepageComponent,
-  canActivate: [authGuard],
-  },
+  { path: 'homepage', component: HomepageComponent, canActivate: [authGuard] },
+  { path: '', component: HomepageComponent, canActivate: [authGuard] },
   {
     path: 'my-project-page',
     component: MyProjectPageComponent,
