@@ -11,7 +11,6 @@ import {
   query,
   where,
   Timestamp,
-  orderBy,
 } from '@angular/fire/firestore';
 import { Post } from '../post';
 import { AuthService } from '../auth/auth.service';
@@ -34,7 +33,7 @@ export class PostService {
 
   readAllPost() {
     const postsCollection = collection(this.firestore, 'posts');
-    const postsQuery = query(postsCollection, orderBy('date'));
+    const postsQuery = query(postsCollection);
     return collectionData(postsQuery) as Observable<Post[]>;
   }
 
@@ -42,10 +41,6 @@ export class PostService {
     const postsCollection = collection(this.firestore, 'posts');
     const postsQuery = query(postsCollection, where('userId', '==', userId));
     return collectionData(postsQuery) as Observable<Post[]>;
-  }
-
-  async retrieveUserId() {
-    return await this.authService.getCurrentUser();
   }
 
   async readPost(messageRef: DocumentReference) {
