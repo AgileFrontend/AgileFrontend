@@ -1,7 +1,7 @@
 <mat-tab-group
   color="primary"
   backgroundColor="primary"
-  (selectedTabChange)="onTabChanged($event)"
+  (selectedTabChange)="onTabChanged($event)" #tabs
 >
   <mat-tab routerLink="homepage">
     <ng-template mat-tab-label>

@@ -1,7 +1,7 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth/auth.service';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
+  @ViewChild('tabs', { static: false }) tabGroup!: MatTabGroup;
   isLoggedIn = false;
   constructor(
     private afAuth: Auth,
@@ -58,6 +59,7 @@ export class NavbarComponent {
         case 1:
           this.router.navigate(['homepage']);
           event.index = 0;
+          this.tabGroup.selectedIndex = 0;
           break;
         case 2:
           this.router.navigate(['my-project-page']);
