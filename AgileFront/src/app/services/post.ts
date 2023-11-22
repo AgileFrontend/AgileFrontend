@@ -5,4 +5,5 @@ export interface Post {
   userId: string;
   postId?: string;
   date: number;
+  likes: Array<string>;
 }
