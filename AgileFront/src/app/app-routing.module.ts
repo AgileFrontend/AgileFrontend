@@ -10,6 +10,10 @@ import { authGuard } from './services/auth/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ProjectComponent } from './project/project.component';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
+import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { ConversationComponent } from './messaging-page/conversation/conversation.component';
+import { MessageComponent } from './messaging-page/message/message.component';
+import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -36,6 +40,25 @@ const routes: Routes = [
     canActivate: [authGuard],
   }, // route to the profile page,
   { path: 'profile/:id', component: DisplayProfileComponent },
+  {
+    path: 'messaging',
+    component: MessagingPageComponent,
+    canActivate: [authGuard],
+  },
+  //To be removed
+  {
+    path: 'conversation',
+    component: ConversationComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'message',
+    component: MessageComponent,
+  },
+  {
+    path: 'create-message',
+    component: CreateMessageComponent,
+  },
 ];
 
 @NgModule({

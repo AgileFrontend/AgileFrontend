@@ -43,10 +43,6 @@ export class PostService {
     return collectionData(postsQuery) as Observable<Post[]>;
   }
 
-  async retrieveUserId() {
-    return await this.authService.getCurrentUser();
-  }
-
   async readPost(messageRef: DocumentReference) {
     return await getDoc(messageRef);
   }
