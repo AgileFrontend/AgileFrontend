@@ -33,6 +33,11 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
+import { MessageComponent } from './messaging-page/message/message.component';
+import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { ConversationComponent } from './messaging-page/conversation/conversation.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
@@ -48,6 +53,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     EditProfileComponent,
     FileUploadComponent,
     DisplayProfileComponent,
+    MessageComponent,
+    MessagingPageComponent,
+    ConversationComponent,
+    CreateMessageComponent,
   ],
   imports: [
     RouterModule,
@@ -69,6 +78,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     MatCardModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatFormFieldModule,
     MatExpansionModule,

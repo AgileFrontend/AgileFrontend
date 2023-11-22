@@ -1,0 +1,28 @@
+.message-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin: 1rem;
+}
+
+.message-yourself {
+  background-color: lightblue;
+}
+
+.message-others {
+  background-color: lightgrey;
+}
+
+.message-yourself,
+.message-others {
+  max-width: 100%; /* Allow the card to expand to its container's width */
+  word-wrap: break-word; /* Break words to prevent overflow */
+}
+
+.sender-name {
+  font-weight: bold;
+}
+
+.message-content {
+  margin-top: 0.7rem;
+}
