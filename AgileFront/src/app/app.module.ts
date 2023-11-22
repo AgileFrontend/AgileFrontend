@@ -33,7 +33,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     ToastrModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
