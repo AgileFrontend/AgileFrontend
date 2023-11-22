@@ -34,7 +34,7 @@ export class DisplayProfileComponent {
     private post: PostService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
   ) {
     const userID = this.route.snapshot.paramMap.get('id');
     if (userID == 'me') {

@@ -2,7 +2,11 @@
   <mat-card-header>
     <img src="{{ this.user.photoURL }}" alt="" class="profile-picture" />
     <div class="profile-header">
-      <a [routerLink]="['/profile/',this.post.userId]"><h1 class="profile-name">{{ this.user.name }} {{ this.user.surname }}</h1></a>
+      <a [routerLink]="['/profile/', this.post.userId]"
+        ><h1 class="profile-name">
+          {{ this.user.name }} {{ this.user.surname }}
+        </h1></a
+      >
       <h2 class="occupation">{{ this.user.occupation }}</h2>
     </div>
   </mat-card-header>
