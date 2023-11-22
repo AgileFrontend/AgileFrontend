@@ -37,7 +37,7 @@ export class CreateMessageComponent {
         this.conversationID,
         this.conversationData,
       );
-      this.messageForm.setValue({messageToSend : ''})
+      this.messageForm.setValue({ messageToSend: '' });
     }
   }
 }
