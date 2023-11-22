@@ -67,8 +67,6 @@ export class ProjectComponent implements OnInit {
     if (this.post.userId) {
       this.pushUserDataForPost(this.post.userId);
     }
-
-    
   }
   /**
    * Method to fetch the post from the database
@@ -88,16 +86,16 @@ export class ProjectComponent implements OnInit {
         imageURL: querySnapshot.get('imageURL'),
         title: querySnapshot.get('title'),
         date: querySnapshot.get('date'),
-        likes: querySnapshot.get('likes')
+        likes: querySnapshot.get('likes'),
       };
 
       await this.checkUserLikeStatus();
-    } 
-    else {
-    this.toast.error(
-      "Couldn't find the specified ID in the database",
-      'ID not found',
-    );}
+    } else {
+      this.toast.error(
+        "Couldn't find the specified ID in the database",
+        'ID not found',
+      );
+    }
   }
 
   /**
