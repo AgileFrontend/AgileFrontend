@@ -2,6 +2,26 @@
   <app-create-post></app-create-post>
 </div>
 
+<div class="filter-button">
+  <mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select [(value)]="sortOption">
+      <mat-option value="desc" (click)="sortDesc()"
+        ><mat-icon>trending_down</mat-icon> New post</mat-option
+      >
+      <mat-option value="asc" (click)="sortAsc()"
+        ><mat-icon>trending_up</mat-icon> Old post</mat-option
+      >
+      <mat-option value="like" (click)="sortLikeDesc()"
+        ><mat-icon>favorite</mat-icon> Most Liked
+      </mat-option>
+      <mat-option value="like" (click)="sortLikeAsc()"
+        ><mat-icon>favorite_border</mat-icon> Least liked</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>
+
 <div class="content-wrapper">
   <app-project
     *ngFor="let post of posts$ | async; trackBy: trackByPost"
