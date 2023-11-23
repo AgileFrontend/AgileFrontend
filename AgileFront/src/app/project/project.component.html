@@ -9,6 +9,14 @@
       >
       <h2 class="occupation">{{ this.user.occupation }}</h2>
     </div>
+    <a
+      style="margin-left: auto"
+      mat-raised-button
+      [routerLink]="['../project/edit', this.post.postId]"
+      class="edit-button"
+      *ngIf="this.post.userId === currentUserId"
+      ><mat-icon>edit</mat-icon>Edit</a
+    >
   </mat-card-header>
   <mat-divider style="width: 80%;margin-top:1rem;margin-left:1rem;"></mat-divider>
   <div class="project-content">

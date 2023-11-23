@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: auto; /* This ensures the container takes the full height of the viewport */
+  padding-top: 2rem;
+}
+.edit-post-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+}
+
+input {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
