@@ -1,12 +1,15 @@
-<mat-card class="message-others">
-  <mat-card-header class="sender-name">
+<div class="comment-container">
+<mat-card>
+  <mat-card-header>
     <img src="{{ this.user.photoURL }}" alt="" class="profile-picture" />
-    <h3><a [routerLink]="['/profile/', this.comment.userId]">
+    <div class="name-container">
+    <a style="text-decoration:none; font-weight: bold;" [routerLink]="['/profile/', this.comment.userId]">
       {{this.user.name}} {{this.user.surname}} 
-  </a></h3>
+    </a>
   <h4 class="occupation">{{ this.user.occupation }}</h4>
+</div>
   </mat-card-header>
-  <mat-card-subtitle>{{
+  <mat-card-subtitle style="margin-left:0.5rem">{{
       this.comment.sentDate.toDate().toLocaleDateString() +
       " at " +
       this.comment.sentDate.toDate().toLocaleTimeString()
@@ -18,3 +21,4 @@
     </p>
   </mat-card-content>
 </mat-card>
+</div>

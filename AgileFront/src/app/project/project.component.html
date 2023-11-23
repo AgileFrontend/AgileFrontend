@@ -2,28 +2,33 @@
   <mat-card-header>
     <img src="{{ this.user.photoURL }}" alt="" class="profile-picture" />
     <div class="profile-header">
-      <a [routerLink]="['/profile/', this.post.userId]"
-        ><h1 class="profile-name">
+      <a [routerLink]="['/profile/', this.post.userId]" style="text-decoration:none;font-weight:bold; font-size:large"
+        >
           {{ this.user.name }} {{ this.user.surname }}
-        </h1></a
+        </a
       >
       <h2 class="occupation">{{ this.user.occupation }}</h2>
     </div>
   </mat-card-header>
+  <mat-divider style="width: 80%;margin-top:1rem;margin-left:1rem;"></mat-divider>
+  <div class="project-content">
   <mat-card-title class="title">{{ this.post.title }}</mat-card-title>
   <mat-card-subtitle class="title">{{
     this.post.date * 1000 | date: "short"
   }}</mat-card-subtitle>
   <img mat-card-image src="{{ this.post.imageURL }}" alt="" />
   <mat-card-content>
-    <br />
     <p>
       {{ this.post.body }}
     </p>
-    <mat-card-subtitle id="likes-number">
+  </mat-card-content>
+
+  </div>
+    <mat-card-subtitle id="likes-number" style="margin-left:0.5rem;">
       {{ this.post.likes.length }} user/s liked this post
     </mat-card-subtitle>
-  </mat-card-content>
+  
+
   <mat-card-actions>
     <button type="button" mat-button (click)="likePost($event)">
       <mat-icon [ngStyle]="{ color: isPostLiked(this.post) ? 'red' : 'black' }"
