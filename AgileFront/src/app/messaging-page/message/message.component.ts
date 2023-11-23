@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { DisplayProfileService } from 'src/app/services/display-profile/display-profile.service';
 import { Message } from 'src/app/services/message';
 import { User } from 'src/app/services/user';
