@@ -3,20 +3,23 @@ import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EditPostService {
-
   constructor(
     private firestore: Firestore,
-    private storage : StorageService
-  ) { }
+    private storage: StorageService,
+  ) {}
 
-  getPostData(postid:string){
+  getPostData(postid: string) {
     return getDoc(doc(this.firestore, 'posts', postid));
   }
 
-  async updatePostData(postData: object, postid: string, postImage: Blob | null) {
+  async updatePostData(
+    postData: object,
+    postid: string,
+    postImage: Blob | null,
+  ) {
     const postDocRef = doc(this.firestore, 'posts', postid);
     if (postImage != null) {
       //Check if it had a file
@@ -24,11 +27,9 @@ export class EditPostService {
         postImage,
         'posts/' + postid,
       );
-      const imageURL = await this.storage.readFileFromRef(
-        uploadResult.ref,
-      );
+      const imageURL = await this.storage.readFileFromRef(uploadResult.ref);
 
-      await setDoc(postDocRef, {imageURL: imageURL}, { merge: true });
+      await setDoc(postDocRef, { imageURL: imageURL }, { merge: true });
     }
     return setDoc(postDocRef, postData, { merge: true });
   }
