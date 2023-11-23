@@ -47,8 +47,8 @@ const routes: Routes = [
   //TODO REMOVE TEST PATH
   {
     path: 'create-comment',
-    component: CreateCommentComponent
-  }
+    component: CreateCommentComponent,
+  },
 ];
 
 @NgModule({

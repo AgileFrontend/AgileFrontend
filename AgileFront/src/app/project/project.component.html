@@ -2,11 +2,12 @@
   <mat-card-header>
     <img src="{{ this.user.photoURL }}" alt="" class="profile-picture" />
     <div class="profile-header">
-      <a [routerLink]="['/profile/', this.post.userId]" style="text-decoration:none;font-weight:bold; font-size:large"
-        >
-          {{ this.user.name }} {{ this.user.surname }}
-        </a
+      <a
+        [routerLink]="['/profile/', this.post.userId]"
+        style="text-decoration: none; font-weight: bold; font-size: large"
       >
+        {{ this.user.name }} {{ this.user.surname }}
+      </a>
       <h2 class="occupation">{{ this.user.occupation }}</h2>
     </div>
     <a
@@ -18,24 +19,24 @@
       ><mat-icon>edit</mat-icon>Edit</a
     >
   </mat-card-header>
-  <mat-divider style="width: 80%;margin-top:1rem;margin-left:1rem;"></mat-divider>
+  <mat-divider
+    style="width: 80%; margin-top: 1rem; margin-left: 1rem"
+  ></mat-divider>
   <div class="project-content">
-  <mat-card-title class="title">{{ this.post.title }}</mat-card-title>
-  <mat-card-subtitle class="title">{{
-    this.post.date * 1000 | date: "short"
-  }}</mat-card-subtitle>
-  <img mat-card-image src="{{ this.post.imageURL }}" alt="" />
-  <mat-card-content>
-    <p>
-      {{ this.post.body }}
-    </p>
-  </mat-card-content>
-
+    <mat-card-title class="title">{{ this.post.title }}</mat-card-title>
+    <mat-card-subtitle class="title">{{
+      this.post.date * 1000 | date: "short"
+    }}</mat-card-subtitle>
+    <img mat-card-image src="{{ this.post.imageURL }}" alt="" />
+    <mat-card-content>
+      <p>
+        {{ this.post.body }}
+      </p>
+    </mat-card-content>
   </div>
-    <mat-card-subtitle id="likes-number" style="margin-left:0.5rem;">
-      {{ this.post.likes.length }} user/s liked this post
-    </mat-card-subtitle>
-  
+  <mat-card-subtitle id="likes-number" style="margin-left: 0.5rem">
+    {{ this.post.likes.length }} user/s liked this post
+  </mat-card-subtitle>
 
   <mat-card-actions>
     <button type="button" mat-button (click)="likePost($event)">
@@ -44,19 +45,22 @@
       >
       LIKE
     </button>
-    <button type="button "mat-button (click)="toggleCommentsSection()">
+    <button type="button " mat-button (click)="toggleCommentsSection()">
       <mat-icon> comment</mat-icon>
-       COMMENT
-      </button>
+      COMMENT
+    </button>
     <button mat-button (click)="copyToClipboard()">
       <mat-icon>send</mat-icon> SEND
     </button>
   </mat-card-actions>
 
-
   <mat-card-footer *ngIf="this.areCommentVisible" class="comment-section">
     <mat-divider></mat-divider>
-    <app-create-comment [postId]="((post.postId !== undefined) ? post.postId : '' )"></app-create-comment>
-    <app-comments [postId]="((post.postId !== undefined) ? post.postId : '' )"></app-comments>
+    <app-create-comment
+      [postId]="post.postId !== undefined ? post.postId : ''"
+    ></app-create-comment>
+    <app-comments
+      [postId]="post.postId !== undefined ? post.postId : ''"
+    ></app-comments>
   </mat-card-footer>
 </mat-card>

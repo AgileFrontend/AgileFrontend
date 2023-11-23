@@ -49,7 +49,7 @@ export class ProjectComponent implements OnInit {
     postalCode: '',
   };
 
-  areCommentVisible = false
+  areCommentVisible = false;
 
   async init() {
     const currentUser = await this.authService.getCurrentUser();
@@ -175,8 +175,8 @@ export class ProjectComponent implements OnInit {
   }
 
   //Called when the comment button is press, change the visibility of comments of a posts
-  toggleCommentsSection(){
-    this.areCommentVisible = !this.areCommentVisible
+  toggleCommentsSection() {
+    this.areCommentVisible = !this.areCommentVisible;
   }
 
   isPostLiked(post: Post): boolean {

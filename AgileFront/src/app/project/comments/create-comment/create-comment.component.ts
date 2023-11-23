@@ -5,16 +5,14 @@ import { CommentService } from 'src/app/services/post/comment/comment.service';
 @Component({
   selector: 'app-create-comment',
   templateUrl: './create-comment.component.html',
-  styleUrls: ['./create-comment.component.scss']
+  styleUrls: ['./create-comment.component.scss'],
 })
 export class CreateCommentComponent {
-
-  @Input() postId! : string
+  @Input() postId!: string;
   commentToSend: FormControl;
   commentForm: FormGroup;
 
-
-  constructor(private commentService : CommentService){
+  constructor(private commentService: CommentService) {
     this.commentToSend = new FormControl('', [
       Validators.minLength(1),
       Validators.maxLength(200),
@@ -30,10 +28,9 @@ export class CreateCommentComponent {
     if (this.commentForm.valid) {
       this.commentService.AddCommentToPost(
         this.commentForm.value,
-        "HIv5wzmYSQyXT2aUyYcB",
+        'HIv5wzmYSQyXT2aUyYcB',
       );
-      this.commentForm.setValue({commentToSend : ""})
+      this.commentForm.setValue({ commentToSend: '' });
     }
   }
-
 }
