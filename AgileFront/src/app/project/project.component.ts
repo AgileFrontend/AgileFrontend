@@ -15,7 +15,7 @@ import { DisplayProfileService } from '../services/display-profile/display-profi
 })
 export class ProjectComponent implements OnInit {
   likedPostsMap = new Map<string, boolean>();
-
+  currentUserId: string;
   /**
    * Constructor of the project component
    * @param clip : Clipboard service to copy the URL to the clipboard
@@ -31,7 +31,10 @@ export class ProjectComponent implements OnInit {
     private authService: AuthService,
     private postServ: PostService,
     private displayService: DisplayProfileService,
-  ) {}
+  ) {
+    this.currentUserId = '';
+    this.init();
+  }
 
   user: User = {
     name: '',
@@ -45,6 +48,13 @@ export class ProjectComponent implements OnInit {
     town: '',
     postalCode: '',
   };
+
+  async init() {
+    const currentUser = await this.authService.getCurrentUser();
+    if (currentUser !== null) {
+      this.currentUserId = currentUser.uid;
+    }
+  }
 
   /**
    * Method called when the component is initialized

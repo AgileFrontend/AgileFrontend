@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProjectComponent } from './project/project.component';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -26,6 +27,10 @@ const routes: Routes = [
     path: 'post',
     component: ProjectComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'project/edit/:id',
+    component: EditPostComponent,
   },
   {
     path: 'profile/edit',
