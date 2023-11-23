@@ -4,7 +4,6 @@
   (selectedTabChange)="onTabChanged($event)"
   #tabs
 >
-  
   <div *ngIf="!isLoggedIn">
     <mat-tab *ngIf="!isLoggedIn" routerLink="login">
       <ng-template mat-tab-label>
