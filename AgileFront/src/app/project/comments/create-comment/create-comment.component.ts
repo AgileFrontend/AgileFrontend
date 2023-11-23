@@ -9,7 +9,7 @@ import { CommentService } from 'src/app/services/post/comment/comment.service';
 })
 export class CreateCommentComponent {
 
-  @Input() postID! : string
+  @Input() postId! : string
   commentToSend: FormControl;
   commentForm: FormGroup;
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, Timestamp, addDoc, collection, deleteDoc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, Timestamp, addDoc, collection, collectionData, deleteDoc, getDoc, orderBy, query, updateDoc } from '@angular/fire/firestore';
 import { AuthService } from '../../auth/auth.service';
 import { PostComment } from '../../comment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,17 @@ async AddCommentToPost(
       };
       this.createComment(comment, postID);
     }
+}
+
+readAllCommentFromPostId(PostId: string) {
+  const q = query(
+    collection(
+      this.firestore,
+      '/posts/' + PostId + '/comments',
+    ),
+    orderBy('sentDate'),
+  );
+  return collectionData(q) as Observable<PostComment[]>;
 }
 
 }

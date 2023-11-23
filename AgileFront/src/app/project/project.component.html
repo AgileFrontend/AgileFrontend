@@ -31,9 +31,19 @@
       >
       LIKE
     </button>
-    <button mat-button><mat-icon> comment</mat-icon> COMMENT</button>
+    <button type="button "mat-button (click)="toggleCommentsSection()">
+      <mat-icon> comment</mat-icon>
+       COMMENT
+      </button>
     <button mat-button (click)="copyToClipboard()">
       <mat-icon>send</mat-icon> SEND
     </button>
   </mat-card-actions>
+
+
+  <mat-card-footer *ngIf="this.areCommentVisible" class="comment-section">
+    <mat-divider></mat-divider>
+    <app-create-comment [postId]="((post.postId !== undefined) ? post.postId : '' )"></app-create-comment>
+    <app-comments [postId]="((post.postId !== undefined) ? post.postId : '' )"></app-comments>
+  </mat-card-footer>
 </mat-card>

@@ -1,1 +1,20 @@
-<p>comment works!</p>
+<mat-card class="message-others">
+  <mat-card-header class="sender-name">
+    <img src="{{ this.user.photoURL }}" alt="" class="profile-picture" />
+    <h3><a [routerLink]="['/profile/', this.comment.userId]">
+      {{this.user.name}} {{this.user.surname}} 
+  </a></h3>
+  <h4 class="occupation">{{ this.user.occupation }}</h4>
+  </mat-card-header>
+  <mat-card-subtitle>{{
+      this.comment.sentDate.toDate().toLocaleDateString() +
+      " at " +
+      this.comment.sentDate.toDate().toLocaleTimeString()
+  }}</mat-card-subtitle>
+  <mat-divider style="width: 80%; margin-left: 0.5rem"></mat-divider>
+  <mat-card-content class="message-content">
+    <p>
+      {{ this.comment.content }}
+    </p>
+  </mat-card-content>
+</mat-card>
