@@ -9,6 +9,12 @@
       >
       <h2 class="occupation">{{ this.user.occupation }}</h2>
     </div>
+    <a style="margin-left:auto"
+        mat-raised-button
+        [routerLink]="['../project/edit', this.post.postId]"
+        class="edit-button"
+        *ngIf="this.post.userId === currentUserId"
+        ><mat-icon>edit</mat-icon>Edit</a>
   </mat-card-header>
   <mat-card-title class="title">{{ this.post.title }}</mat-card-title>
   <mat-card-subtitle class="title">{{
@@ -35,11 +41,5 @@
     <button mat-button (click)="copyToClipboard()">
       <mat-icon>send</mat-icon> SEND
     </button>
-    <a
-        mat-raised-button
-        [routerLink]="['../project/edit', this.post.postId]"
-        class="edit-button"
-        *ngIf="this.post.userId === currentUserId"
-        ><mat-icon>edit</mat-icon>EDIT POST</a>
   </mat-card-actions>
 </mat-card>
