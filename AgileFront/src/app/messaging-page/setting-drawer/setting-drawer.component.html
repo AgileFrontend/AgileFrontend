@@ -23,30 +23,34 @@
     </div>
   </div>
 
-  <div mat-list-item *ngIf="this.settingState === 'addUser'" >
+  <div mat-list-item *ngIf="this.settingState === 'addUser'">
     <button (click)="addUser()" mat-list-item>
       <span matListItemTitle><mat-icon>schedule</mat-icon> Comming soon !</span>
-    </button>    
+    </button>
   </div>
 
-  <div mat-list-item *ngIf="this.settingState === 'removeUser'" >
+  <div mat-list-item *ngIf="this.settingState === 'removeUser'">
     <button (click)="removeUser()" mat-list-item>
       <span matListItemTitle><mat-icon>schedule</mat-icon> Comming soon !</span>
-    </button>   
+    </button>
   </div>
 
-  <div mat-list-item *ngIf="this.settingState === 'deleteConv'" >
+  <div mat-list-item *ngIf="this.settingState === 'deleteConv'">
     <button (click)="deleteConv()" mat-list-item>
       <span matListItemTitle><mat-icon>warning</mat-icon>Are you sure ? </span>
       <span matLine>You will lose all messages of this conversation !</span>
     </button>
   </div>
 
-  <button (click)="toggleChange('menu')" mat-list-item *ngIf="this.settingState !== 'menu'">
+  <button
+    (click)="toggleChange('menu')"
+    mat-list-item
+    *ngIf="this.settingState !== 'menu'"
+  >
     <span matListItemTitle>Return</span>
   </button>
 
-  <div *ngIf="this.settingState === 'menu'" >
+  <div *ngIf="this.settingState === 'menu'">
     <button (click)="toggleChange('changeName')" mat-list-item>
       <span matListItemTitle>Change Name</span>
       <span matLine>Change the conversation name</span>
@@ -62,7 +66,11 @@
       <span matLine>Remove a user from the conversation</span>
     </button>
 
-    <button (click)="toggleChange('deleteConv')" mat-list-item style="background-color: rgb(160, 19, 19)">
+    <button
+      (click)="toggleChange('deleteConv')"
+      mat-list-item
+      style="background-color: rgb(160, 19, 19)"
+    >
       <span matListItemTitle>Delete Conversation</span>
       <span matLine><b>Caution ! This action is permanant !</b></span>
     </button>
@@ -71,5 +79,4 @@
       <span matListItemTitle>Close Setting</span>
     </button>
   </div>
-  
 </mat-action-list>

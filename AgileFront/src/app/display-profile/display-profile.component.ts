@@ -36,7 +36,7 @@ export class DisplayProfileComponent {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private messagingService: InstantMessagingService
+    private messagingService: InstantMessagingService,
   ) {
     const userID = this.route.snapshot.paramMap.get('id');
     if (userID == 'me') {
@@ -94,16 +94,13 @@ export class DisplayProfileComponent {
     return this.router.url.includes(target);
   }
 
-  createNewConversation(){
-    const userId = this.route.snapshot.paramMap.get('id')
-    if(userId != undefined){
-      this.messagingService.createConversationFormUserID(userId, "New conv")
+  createNewConversation() {
+    const userId = this.route.snapshot.paramMap.get('id');
+    if (userId != undefined) {
+      this.messagingService.createConversationFormUserID(userId, 'New conv');
     }
   }
-
 }
-
-
 
 export interface PostTitleAndURL {
   title: string | undefined;

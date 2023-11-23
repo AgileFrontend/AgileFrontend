@@ -42,12 +42,18 @@ export class InstantMessagingService {
     return await getDoc(conversationRef);
   }
 
-  async updateConversationFromRef(conversationRef: DocumentReference, field: object) {
+  async updateConversationFromRef(
+    conversationRef: DocumentReference,
+    field: object,
+  ) {
     return await updateDoc(conversationRef, field);
   }
 
-  async updateConversationFromID(conversationId: string, field: object){
-    return updateDoc(doc(this.firestore, 'conversations', conversationId),field)
+  async updateConversationFromID(conversationId: string, field: object) {
+    return updateDoc(
+      doc(this.firestore, 'conversations', conversationId),
+      field,
+    );
   }
 
   async deleteConversationFromRef(conversationRef: DocumentReference) {
@@ -55,7 +61,9 @@ export class InstantMessagingService {
   }
 
   async deleteConversationFromId(conversationId: string) {
-    return await deleteDoc(doc(this.firestore, 'conversations', conversationId));
+    return await deleteDoc(
+      doc(this.firestore, 'conversations', conversationId),
+    );
   }
 
   //Create a new message in a given conversation
@@ -122,20 +130,16 @@ export class InstantMessagingService {
     }
   }
 
-
-  createConversationFormUserID(userID : string,convName : string){
-    this.auth.getCurrentUser().then(
-      (currentUser) => {
-        if (currentUser != null){
-          const newConv = {
-            conversationName: convName,
-            userIDs: [userID,currentUser.uid],
-            messages: []
-          }
-          this.createConversation(newConv)
-        }
+  createConversationFormUserID(userID: string, convName: string) {
+    this.auth.getCurrentUser().then((currentUser) => {
+      if (currentUser != null) {
+        const newConv = {
+          conversationName: convName,
+          userIDs: [userID, currentUser.uid],
+          messages: [],
+        };
+        this.createConversation(newConv);
       }
-    )
-    
+    });
   }
 }

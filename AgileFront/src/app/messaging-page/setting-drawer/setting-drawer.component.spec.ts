@@ -8,7 +8,7 @@ describe('StettingDrawerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SettingDrawerComponent]
+      declarations: [SettingDrawerComponent],
     });
     fixture = TestBed.createComponent(SettingDrawerComponent);
     component = fixture.componentInstance;

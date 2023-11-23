@@ -3,7 +3,7 @@ import { Conversation } from '../services/conversation';
 import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 import { AuthService } from '../services/auth/auth.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import {SettingDrawerComponent} from './setting-drawer/setting-drawer.component'
+import { SettingDrawerComponent } from './setting-drawer/setting-drawer.component';
 @Component({
   selector: 'app-messaging-page',
   templateUrl: './messaging-page.component.html',
@@ -16,8 +16,7 @@ export class MessagingPageComponent implements OnChanges {
   constructor(
     private messagingService: InstantMessagingService,
     private authService: AuthService,
-    private _bottomSheet: MatBottomSheet
-
+    private _bottomSheet: MatBottomSheet,
   ) {
     this.fetchUserConv();
   }
@@ -44,20 +43,20 @@ export class MessagingPageComponent implements OnChanges {
     this.chosenConversation = conversationKey;
   }
 
-  displayConvSetting(){
-    const bottomSheetRef = this._bottomSheet.open(SettingDrawerComponent,{
-      data : this.chosenConversation,
+  displayConvSetting() {
+    const bottomSheetRef = this._bottomSheet.open(SettingDrawerComponent, {
+      data: this.chosenConversation,
     });
-    bottomSheetRef.afterDismissed().subscribe(
-      (data) => {
-        switch(data.event){
-          case "rename":
-            this.conversationDictionary[this.chosenConversation].conversationName = data.data
-            break;
-          case "remove":
-            console.log("conv removed")
-        }
+    bottomSheetRef.afterDismissed().subscribe((data) => {
+      switch (data.event) {
+        case 'rename':
+          this.conversationDictionary[
+            this.chosenConversation
+          ].conversationName = data.data;
+          break;
+        case 'remove':
+          console.log('conv removed');
       }
-      )
+    });
   }
 }

@@ -12,7 +12,7 @@ export class MessageComponent implements OnChanges {
   @Input() message!: Message;
   @Input() currentUserID!: string;
 
-  senderUser : User = {
+  senderUser: User = {
     name: '',
     surname: '',
     occupation: '',
@@ -25,17 +25,13 @@ export class MessageComponent implements OnChanges {
     postalCode: '',
   };
 
-  constructor(private displayProfileService : DisplayProfileService){
-    
-  }
+  constructor(private displayProfileService: DisplayProfileService) {}
 
   ngOnChanges(): void {
-    this.displayProfileService.getUserWithUID(this.message.senderID).then(
-      (snapshot) =>{
-        this.senderUser = snapshot.data() as User
-      }
-    )
-    
+    this.displayProfileService
+      .getUserWithUID(this.message.senderID)
+      .then((snapshot) => {
+        this.senderUser = snapshot.data() as User;
+      });
   }
-
 }

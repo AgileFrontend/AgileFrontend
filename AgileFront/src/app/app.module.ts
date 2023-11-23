@@ -41,9 +41,7 @@ import { CreateMessageComponent } from './messaging-page/create-message/create-m
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { MatSelectModule } from '@angular/material/select';
-import {
-  MatBottomSheetModule,
-} from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { SettingDrawerComponent } from './messaging-page/setting-drawer/setting-drawer.component';
 @NgModule({
   declarations: [
