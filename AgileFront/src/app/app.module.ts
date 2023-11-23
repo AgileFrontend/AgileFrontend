@@ -40,6 +40,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CreateMessageComponent } from './messaging-page/create-message/create-message.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { EditPostComponent } from './edit-post/edit-post.component';
     ToastrModule,
     MatGridListModule,
     MatTabsModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

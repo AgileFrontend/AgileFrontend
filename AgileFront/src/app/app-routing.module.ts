@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreatePostComponent } from './create.post/create.post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
@@ -18,18 +17,15 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'homepage', component: HomepageComponent },
+  { path: 'homepage', component: HomepageComponent, canActivate: [authGuard] },
+  { path: '', component: HomepageComponent, canActivate: [authGuard] },
   {
     path: 'my-project-page',
     component: MyProjectPageComponent,
     canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent }, // route to the login page
-  {
-    path: 'create.post',
-    component: CreatePostComponent,
-    canActivate: [authGuard],
-  },
+
   {
     path: 'post',
     component: ProjectComponent,
@@ -49,20 +45,6 @@ const routes: Routes = [
     path: 'messaging',
     component: MessagingPageComponent,
     canActivate: [authGuard],
-  },
-  //To be removed
-  {
-    path: 'conversation',
-    component: ConversationComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'message',
-    component: MessageComponent,
-  },
-  {
-    path: 'create-message',
-    component: CreateMessageComponent,
   },
 ];
 
