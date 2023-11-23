@@ -2,7 +2,8 @@ import { Component, Output } from '@angular/core';
 import { Conversation } from '../services/conversation';
 import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 import { AuthService } from '../services/auth/auth.service';
-
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import {SettingDrawerComponent} from './setting-drawer/setting-drawer.component'
 @Component({
   selector: 'app-messaging-page',
   templateUrl: './messaging-page.component.html',
@@ -15,6 +16,8 @@ export class MessagingPageComponent {
   constructor(
     private messagingService: InstantMessagingService,
     private authService: AuthService,
+    private _bottomSheet: MatBottomSheet
+
   ) {
     this.fetchUserConv();
   }
@@ -35,5 +38,9 @@ export class MessagingPageComponent {
 
   onClickConversation(conversationKey: string) {
     this.chosenConversation = conversationKey;
+  }
+
+  displayConvSetting(convKey : string){
+    this._bottomSheet.open(SettingDrawerComponent)
   }
 }

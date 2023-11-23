@@ -22,6 +22,14 @@
       </div>
       <a
         mat-raised-button
+        routerLink="/messaging"
+        class="edit-button"
+        [hidden]="editButtonAvailable"
+        (click)="createNewConversation()"
+        ><mat-icon>mail</mat-icon>Contact</a
+      >
+      <a
+        mat-raised-button
         routerLink="../edit"
         class="edit-button"
         [hidden]="!editButtonAvailable"

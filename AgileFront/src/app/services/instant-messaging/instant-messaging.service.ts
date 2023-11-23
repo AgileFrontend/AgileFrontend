@@ -112,4 +112,21 @@ export class InstantMessagingService {
       this.createMessage(message, conversationID);
     }
   }
+
+
+  createConversationFormUserID(userID : string,convName : string){
+    this.auth.getCurrentUser().then(
+      (currentUser) => {
+        if (currentUser != null){
+          const newConv = {
+            conversationName: convName,
+            userIDs: [userID,currentUser.uid],
+            messages: []
+          }
+          this.createConversation(newConv)
+        }
+      }
+    )
+    
+  }
 }
