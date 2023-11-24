@@ -30,6 +30,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'post:id',
+    component: ProjectComponent,
+    canActivate: [authGuard],
+  },
+  
+  {
     path: 'project/edit/:id',
     component: EditPostComponent,
   },
