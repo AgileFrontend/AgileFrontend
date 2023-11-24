@@ -41,6 +41,9 @@ import { CreateMessageComponent } from './messaging-page/create-message/create-m
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { MatSelectModule } from '@angular/material/select';
+import { CommentsComponent } from './project/comments/comments.component';
+import { CommentComponent } from './project/comments/comment/comment.component';
+import { CreateCommentComponent } from './project/comments/create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import { MatSelectModule } from '@angular/material/select';
     MessagingPageComponent,
     ConversationComponent,
     CreateMessageComponent,
+    CommentsComponent,
+    CommentComponent,
+    CreateCommentComponent,
     EditPostComponent,
   ],
   imports: [

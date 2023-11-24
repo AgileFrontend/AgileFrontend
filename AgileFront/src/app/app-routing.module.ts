@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProjectComponent } from './project/project.component';
 import { DisplayProfileComponent } from './display-profile/display-profile.component';
 import { MessagingPageComponent } from './messaging-page/messaging-page.component';
+import { CreateCommentComponent } from './project/comments/create-comment/create-comment.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 
 const routes: Routes = [
@@ -42,6 +43,11 @@ const routes: Routes = [
     path: 'messaging',
     component: MessagingPageComponent,
     canActivate: [authGuard],
+  },
+  //TODO REMOVE TEST PATH
+  {
+    path: 'create-comment',
+    component: CreateCommentComponent,
   },
 ];
 
