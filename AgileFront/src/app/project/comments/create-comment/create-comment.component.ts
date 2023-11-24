@@ -26,10 +26,7 @@ export class CreateCommentComponent {
   onSubmit() {
     console.log(this.commentToSend.status);
     if (this.commentForm.valid) {
-      this.commentService.AddCommentToPost(
-        this.commentForm.value,
-        'HIv5wzmYSQyXT2aUyYcB',
-      );
+      this.commentService.AddCommentToPost(this.commentForm.value, this.postId);
       this.commentForm.setValue({ commentToSend: '' });
     }
   }
