@@ -28,7 +28,7 @@ export class CreateCommentComponent {
     if (this.commentForm.valid) {
       this.commentService.AddCommentToPost(
         this.commentForm.value,
-        'HIv5wzmYSQyXT2aUyYcB',
+        this.postId,
       );
       this.commentForm.setValue({ commentToSend: '' });
     }
