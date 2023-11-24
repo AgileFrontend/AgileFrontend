@@ -27,7 +27,12 @@
     <mat-card-subtitle class="title">{{
       this.post.date * 1000 | date: "short"
     }}</mat-card-subtitle>
-    <img mat-card-image src="{{ this.post.imageURL }}" alt="" />
+    <img
+      style="width: 100%"
+      mat-card-image
+      src="{{ this.post.imageURL }}"
+      alt=""
+    />
     <mat-card-content>
       <p>
         {{ this.post.body }}
