@@ -1,5 +1,4 @@
 <div class="content-wrapper">
-
   <ng-container *ngFor="let post of posts$ | async">
     <app-project
       *ngIf="post.userId === currentUserId"
