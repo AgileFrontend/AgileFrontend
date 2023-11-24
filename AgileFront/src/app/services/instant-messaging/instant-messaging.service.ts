@@ -15,6 +15,7 @@ import {
   getDocs,
   Timestamp,
   orderBy,
+  doc,
 } from '@angular/fire/firestore'; //Doublecheck this import statement
 
 import { AuthService } from '../auth/auth.service';
@@ -41,12 +42,28 @@ export class InstantMessagingService {
     return await getDoc(conversationRef);
   }
 
-  async updateConversation(conversationRef: DocumentReference, field: object) {
+  async updateConversationFromRef(
+    conversationRef: DocumentReference,
+    field: object,
+  ) {
     return await updateDoc(conversationRef, field);
   }
 
-  async deleteConversation(conversationRef: DocumentReference) {
+  async updateConversationFromID(conversationId: string, field: object) {
+    return updateDoc(
+      doc(this.firestore, 'conversations', conversationId),
+      field,
+    );
+  }
+
+  async deleteConversationFromRef(conversationRef: DocumentReference) {
     return await deleteDoc(conversationRef);
+  }
+
+  async deleteConversationFromId(conversationId: string) {
+    return await deleteDoc(
+      doc(this.firestore, 'conversations', conversationId),
+    );
   }
 
   //Create a new message in a given conversation
@@ -111,5 +128,18 @@ export class InstantMessagingService {
       };
       this.createMessage(message, conversationID);
     }
+  }
+
+  createConversationFormUserID(userID: string, convName: string) {
+    this.auth.getCurrentUser().then((currentUser) => {
+      if (currentUser != null) {
+        const newConv = {
+          conversationName: convName,
+          userIDs: [userID, currentUser.uid],
+          messages: [],
+        };
+        this.createConversation(newConv);
+      }
+    });
   }
 }

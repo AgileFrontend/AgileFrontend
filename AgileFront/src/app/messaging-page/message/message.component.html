@@ -19,7 +19,9 @@
   <div *ngIf="this.message.senderID !== this.currentUserID">
     <mat-card class="message-others">
       <mat-card-header class="sender-name">
-        {{ this.message.senderID }}
+        <a [routerLink]="['/profile/', this.message.senderID]">
+          {{ this.senderUser.name }} {{ this.senderUser.surname }}
+        </a>
       </mat-card-header>
       <mat-card-subtitle>{{
         this.message.sentDate.toDate().toLocaleDateString() +
