@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { InstantMessagingService } from '../services/instant-messaging/instant-messaging.service';
 
 @Component({
   selector: 'app-display-profile',
@@ -35,6 +36,7 @@ export class DisplayProfileComponent {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
+    private messagingService: InstantMessagingService,
   ) {
     const userID = this.route.snapshot.paramMap.get('id');
     if (userID == 'me') {
@@ -90,6 +92,13 @@ export class DisplayProfileComponent {
 
   currentUrlIncludes(target: string): boolean {
     return this.router.url.includes(target);
+  }
+
+  createNewConversation() {
+    const userId = this.route.snapshot.paramMap.get('id');
+    if (userId != undefined) {
+      this.messagingService.createConversationFormUserID(userId, 'New conv');
+    }
   }
 }
 

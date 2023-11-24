@@ -41,6 +41,8 @@ import { CreateMessageComponent } from './messaging-page/create-message/create-m
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { SettingDrawerComponent } from './messaging-page/setting-drawer/setting-drawer.component';
 import { CommentsComponent } from './project/comments/comments.component';
 import { CommentComponent } from './project/comments/comment/comment.component';
 import { CreateCommentComponent } from './project/comments/create-comment/create-comment.component';
@@ -107,6 +109,8 @@ import { CreateCommentComponent } from './project/comments/create-comment/create
     MatGridListModule,
     MatTabsModule,
     MatSelectModule,
+    MatBottomSheetModule,
+    SettingDrawerComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
