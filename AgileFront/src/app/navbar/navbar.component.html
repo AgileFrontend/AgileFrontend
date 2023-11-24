@@ -4,6 +4,11 @@
   (selectedTabChange)="onTabChanged($event)"
   #tabs
 >
+<mat-tab routerLink="homepage">
+  <ng-template mat-tab-label>
+    <mat-icon>home</mat-icon> Homepage
+  </ng-template>
+</mat-tab>
   <div *ngIf="!isLoggedIn">
     <mat-tab *ngIf="!isLoggedIn" routerLink="login">
       <ng-template mat-tab-label>
@@ -13,11 +18,7 @@
     </mat-tab>
   </div>
   <div *ngIf="isLoggedIn">
-    <mat-tab routerLink="homepage">
-      <ng-template mat-tab-label>
-        <mat-icon>home</mat-icon> Homepage
-      </ng-template>
-    </mat-tab>
+    
     <mat-tab routerLink="messaging">
       <ng-template mat-tab-label>
         <mat-icon>mail</mat-icon>
