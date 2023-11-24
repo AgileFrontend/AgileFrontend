@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../services/post';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastrService } from 'ngx-toastr';
@@ -48,6 +48,8 @@ export class ProjectComponent implements OnInit {
     town: '',
     postalCode: '',
   };
+
+  areCommentVisible = false;
 
   async init() {
     const currentUser = await this.authService.getCurrentUser();
@@ -111,7 +113,7 @@ export class ProjectComponent implements OnInit {
   /**
    * Post object to display in the component template
    */
-  @Input() post!: Post;
+  @Input() @Output() post!: Post;
 
   /**
    * Method to copy the URL of the post to the clipboard
@@ -170,6 +172,11 @@ export class ProjectComponent implements OnInit {
     this.user.postalCode = userData.postalCode;
     this.user.photoURL = userData.photoURL;
     return;
+  }
+
+  //Called when the comment button is press, change the visibility of comments of a posts
+  toggleCommentsSection() {
+    this.areCommentVisible = !this.areCommentVisible;
   }
 
   isPostLiked(post: Post): boolean {

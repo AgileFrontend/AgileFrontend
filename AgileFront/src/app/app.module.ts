@@ -43,6 +43,10 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { SettingDrawerComponent } from './messaging-page/setting-drawer/setting-drawer.component';
+import { CommentsComponent } from './project/comments/comments.component';
+import { CommentComponent } from './project/comments/comment/comment.component';
+import { CreateCommentComponent } from './project/comments/create-comment/create-comment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +64,9 @@ import { SettingDrawerComponent } from './messaging-page/setting-drawer/setting-
     MessagingPageComponent,
     ConversationComponent,
     CreateMessageComponent,
+    CommentsComponent,
+    CommentComponent,
+    CreateCommentComponent,
     EditPostComponent,
   ],
   imports: [
